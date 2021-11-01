@@ -1,0 +1,91 @@
+@charset "UTF-8";
+#more {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-bottom: 40px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+#more .more-container {
+  width: 88%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0.5% 1%;
+  margin-top: 30px;
+  border-radius: 20px;
+  border: 2px solid #8493a8;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+#more .more-container .chief {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 1%;
+  border-radius: 15px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #8493a8;
+  position: relative;
+}
+#more .more-container .chief:after {
+  top: 32%;
+  right: -17%;
+  font-size: 2vw;
+  font-weight: 900;
+  content: "";
+  position: absolute;
+  font-family: "Font Awesome 5 Free", "Font Awesome 5 Brands";
+}
+#more .more-container .chief h3 {
+  padding: 0;
+}
+#more .more-container .more-box {
+  width: 23%;
+  padding: 1% 0;
+  text-align: center;
+}
+#more .more-container .more-box h3 {
+  padding: 3% 0;
+}
+#more .more-container .more-box span:first-child {
+  font-size: 0.8vw;
+  opacity: 0.8;
+}
+#more .more-container .more-box span:last-child {
+  font-size: 0.8vw;
+  opacity: 0.8;
+}
+#more .more-container .more-box a {
+  text-decoration: underline;
+}
+#more .more-container-two {
+  width: 88%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 2% 1%;
+  margin-top: 50px;
+  border-radius: 20px;
+  background: #8493a8;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+#more .more-container-two .more-content {
+  width: 50%;
+  text-align: center;
+}
+#more .more-container-two .more-content h3:last-child {
+  margin-top: 30px;
+  font-weight: 600;
+}

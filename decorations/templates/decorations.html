@@ -1,0 +1,152 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" id="metaViewport">
+    <title>Title</title>
+    <meta name="twitter:title" content="Title">
+    <meta property="og:title" content="Title">
+    <meta name="description" content="">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="img/default.png">
+    <meta property="vk:image" content="img/default.png">
+    <meta name="twitter:image" content="img/default.png">
+    <link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+    <meta name="theme-color">
+    <meta name="msapplication-navbutton-color">
+    <meta name="apple-mobile-web-app-status-bar-style">
+
+    <link rel="stylesheet" href="{% static 'css/reset.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'css/includes/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/includes/pagination.css' %}">
+    <link rel="stylesheet" href="{% static 'css/includes/sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/categories/animators.css' %}">
+    <link rel="stylesheet" href="{% static 'css/ion.rangeSlider.css' %}">
+
+
+    <script src="https://kit.fontawesome.com/6c1cf59610.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'js/ion.rangeSlider.min.js' %}"></script>
+    <script src="{% static 'js/categories/decorations.js' %}"></script>
+</head>
+
+<body>
+
+    {% include 'includes/header.html' %}
+
+    <section id="insert-panel">
+
+        <h3>
+            Только <span>самые стильные интерьеры праздника и великолепные фотозоны.</span><br>
+            Мы <span>все проверили сами и подготовили видеообзорыдля вас.</span>
+        </h3>
+
+    </section>
+
+
+    <section id="main">
+
+    {% include 'includes/sidebars/sidebar-decorations.html' %}
+
+        <div class="content">
+
+            <div class="content-top-panel">
+                <div class="notification">
+                    <h4>Более XXX проверенных оформителей - выбирайте на свой вкус</h4>
+                </div>
+                <div class="sorting">
+                    <select name="sorting" id="sorting">
+                        <option value="null">По популярности</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="foods-card"></div>
+            <div class="foods-card"></div>
+            <div class="advertisement-one">
+
+                <i class="fas fa-headset"></i>
+
+                <h3>Трудно выбрать? Оставьте заявку, мы подберём подходящие варианты</h3>
+
+                <div class="block-button">
+                    <button>Оставить заявку</button>
+                    <span>Консьерж-сервис бесплатно</span>
+                </div>
+
+            </div>
+            <div class="foods-card"></div>
+            <div class="foods-card"></div>
+
+            {% include 'includes/pagination.html' %}
+
+    </div>
+
+</section>
+
+<section id="more">
+
+    <div class="more-container">
+
+        <div class="more-box chief">
+            <h3>
+                Сохраняем ваше время и дарим скидки
+            </h3>
+        </div>
+
+        <div class="more-box">
+            <span>Более 100 вариантов</span>
+            <h3><a href="#">Праздник "под ключ"</a></h3>
+            <span>Выбирайте, чем порадовать именинника</span>
+        </div>
+
+        <div class="more-box chief">
+            <h3>
+                Праздник на любой
+                вкус и бюджет
+            </h3>
+        </div>
+
+        <div class="more-box">
+            <span>Вау-эффект обеспечен</span>
+            <h3><a href="#">Конструктор праздника</a></h3>
+            <span>Не ограничивайте фантазию</span>
+        </div>
+    </div>
+
+</section>
+
+<section id="choose">
+
+    <h2>
+        <span>Вот что мы ещё подготовили для вашего праздника</span>
+    </h2>
+
+    <div class="choose-container">
+
+        <div class="image-block one" style="background: url({% static 'images/slide1.png' %});background-size: cover;background-position: center;">
+            <h3>Вкусная и полезная еда с доставкой</h3>
+        </div>
+        <div class="image-block two" style="background: url({% static 'images/slide1.png' %});background-size: cover;background-position: center;">
+            <h3>Самые смешные аниматоры</h3>
+        </div>
+        <div class="image-block three" style="background: url({% static 'images/slide1.png' %});background-size: cover;background-position: center;">
+            <h3>Захватывающие квесты</h3>
+        </div>
+        <div class="image-block four" style="background: url({% static 'images/slide1.png' %});background-size: cover;background-position: center;">
+            <h3>Стильные и необычные декорации</h3>
+        </div>
+        <div class="image-block five" style="background: url({% static 'images/slide1.png' %});background-size: cover;background-position: center;">
+            <h3>Видеографы, которые сохранят атмосферу счастья</h3>
+        </div>
+
+    </div>
+
+</section>
+    <script src="{% static 'js/categories/decorations.js' %}"></script>
+</body>
+</html>

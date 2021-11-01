@@ -1,0 +1,133 @@
+@charset "UTF-8";
+header {
+  padding-left: 2%;
+  padding-right: 2%;
+}
+header .top-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+header .top-bar .user-location {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: 2%;
+}
+header .top-bar .user-location i {
+  margin-right: 10px;
+}
+header .top-bar .user-location a {
+  text-decoration: underline;
+}
+header .top-bar nav {
+  width: 60%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+header .top-bar .social-network i {
+  font-size: 1.8vw;
+}
+header .top-bar .contact-phone {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+header .top-bar .contact-phone span {
+  font-size: 0.62vw;
+}
+header .header-main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+header .header-main .first-part {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+header .header-main .first-part .logo {
+  width: 12%;
+  margin-right: 2%;
+}
+header .header-main .first-part .logo img {
+  width: 100%;
+  height: auto;
+}
+header .header-main .first-part .search {
+  width: 50%;
+  position: relative;
+}
+header .header-main .first-part .search input {
+  width: 90%;
+  font-size: 1vw;
+  padding-top: 2.5%;
+  padding-left: 2%;
+  padding-right: 8%;
+  padding-bottom: 2.5%;
+}
+header .header-main .first-part .search:after {
+  right: 1%;
+  top: 10px;
+  font-size: 2vw;
+  font-weight: 900;
+  content: "";
+  position: absolute;
+  font-family: "Font Awesome 5 Free", "Font Awesome 5 Brands";
+}
+header .header-main .second-part {
+  width: 15%;
+}
+header .header-main .second-part .buttons-panel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+header .header-main .second-part .buttons-panel a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+header .header-main .second-part .buttons-panel a span {
+  margin-top: 5px;
+  font-size: 0.5vw;
+}
+header .header-main .second-part .buttons-panel a i {
+  font-size: 2vw;
+}

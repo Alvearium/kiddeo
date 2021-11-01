@@ -1,0 +1,180 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" id="metaViewport">
+    <title>Title</title>
+    <meta name="twitter:title" content="Title">
+    <meta property="og:title" content="Title">
+    <meta name="description" content="">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="img/default.png">
+    <meta property="vk:image" content="img/default.png">
+    <meta name="twitter:image" content="img/default.png">
+    <link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+    <meta name="theme-color">
+    <meta name="msapplication-navbutton-color">
+    <meta name="apple-mobile-web-app-status-bar-style">
+
+    <link rel="stylesheet" href="{% static 'css/reset.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'css/includes/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/includes/section-more.css' %}">
+    <link rel="stylesheet" href="{% static 'css/includes/section-choose.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slick-theme.css' %}">
+
+    <script src="https://kit.fontawesome.com/6c1cf59610.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static '/js/index.js' %}"></script>
+    <script src="{% static '/js/slick.js' %}"></script>
+</head>
+
+<body>
+
+{% include 'includes/header.html' %}
+
+<section id="main">
+
+    <div class="main-slider">
+        <div class="slide" style="background-image: url({% static 'images/slide1.png' %}); background-size: cover;background-position: center;">
+            <div class="slide-container">
+                <div class="slide-content">
+                    <h1>Первый честный агрегатор детских праздников</h1>
+                    <h2><a href="#">Точно честный?</a></h2>
+                </div>
+            </div>
+        </div>
+        <div class="slide" style="background-image: url({% static 'images/slide1.png' %}); background-size: cover;background-position: center;">
+            <div class="slide-container">
+                <div class="slide-content">
+                    <h1>Каждый следующий заказ со скидкой</h1>
+                    <h2><a href="#">Как это - каждый?</a></h2>
+                </div>
+            </div>
+        </div>
+        <div class="slide" style="background-image: url({% static 'images/slide1.png' %}); background-size: cover;background-position: center;">
+            <div class="slide-container">
+                <div class="slide-content">
+                    <h1>Рекомендуем только то, что проверили сами</h1>
+                    <h2><a href="#">Прямо всё-всё проверили?</a></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="main-content-block">
+            <h3>
+                Мы тщательно отобрали и объеденили на платформе
+                Kiddeo предложения лучших организаторов детских
+                праздников в вашем городе
+            </h3>
+        </div>
+        <div class="main-content-block">
+            <h3>
+                Чтобы вы организовали идеальный <br>
+                детский праздник в 3 клика. <br>
+                С надёжными подрядчиками и <a href="#">безопасной сделкой.</a>
+            </h3>
+        </div>
+    </div>
+
+</section>
+
+<section id="services">
+
+    <h2>Выбирайте скорей</h2>
+
+    <div class="services-container">
+
+        <div class="service-box">
+            <div class="handle"></div>
+            <div class="service-content">
+                <h4>Праздник «под ключ»</h4>
+                <p>
+                    It is a long established fact
+                    that a reader will be distracted
+                    by the readable content of a page
+                    when looking at its layout.
+                </p>
+            </div>
+        </div>
+
+        <div class="service-box">
+            <div class="handle"></div>
+            <div class="service-content">
+                <h4>Праздничные помещения</h4>
+                <p>
+                    It is a long established fact
+                    that a reader will be distracted
+                    by the readable content of a page
+                    when looking at its layout.
+                </p>
+            </div>
+        </div>
+
+        <div class="service-box">
+            <div class="handle"></div>
+            <div class="service-content">
+                <h4>Весёлые аниматоры</h4>
+                <p>
+                    It is a long established fact
+                    that a reader will be distracted
+                    by the readable content of a page
+                    when looking at its layout.
+                </p>
+            </div>
+        </div>
+
+        <div class="service-box">
+            <div class="handle"></div>
+            <div class="service-content">
+                <h4>Полезная и вкусная еда</h4>
+                <p>
+                    It is a long established fact
+                    that a reader will be distracted
+                    by the readable content of a page
+                    when looking at its layout.
+                </p>
+            </div>
+        </div>
+
+        <div class="service-box">
+            <div class="handle"></div>
+            <div class="service-content">
+                <h4>Стильное оформление</h4>
+                <p>
+                    It is a long established fact
+                    that a reader will be distracted
+                    by the readable content of a page
+                    when looking at its layout.
+                </p>
+            </div>
+        </div>
+
+        <div class="service-box">
+            <div class="handle"></div>
+            <div class="service-content">
+                <h4>Видеографы и фотографы</h4>
+                <p>
+                    It is a long established fact
+                    that a reader will be distracted
+                    by the readable content of a page
+                    when looking at its layout.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+    {% include 'includes/section-more.html' %}
+
+    {% include 'includes/section-choose.html' %}
+
+</body>

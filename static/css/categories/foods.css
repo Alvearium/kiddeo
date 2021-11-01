@@ -1,0 +1,312 @@
+@charset "UTF-8";
+h1 {
+  font-size: 3vw;
+}
+
+h2 {
+  font-size: 2vw;
+}
+
+h3 {
+  font-size: 1.2vw;
+}
+
+h4 {
+  font-size: 1.1vw;
+}
+
+h5 {
+  font-size: 0.95vw;
+}
+
+h6 {
+  font-size: 0.9vw;
+}
+
+p {
+  font-size: 0.9vw;
+}
+
+label {
+  font-size: 1vw;
+}
+
+button {
+  font-size: 0.95vw;
+}
+
+input {
+  font-size: 0.8vw;
+}
+
+select {
+  font-size: 0.8vw;
+}
+
+nav li a {
+  font-size: 0.95vw;
+}
+
+ul li a {
+  font-size: 1.05vw;
+}
+
+#insert-panel {
+  width: 95%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0.5%;
+  margin-top: 10px;
+  margin-left: 2%;
+  margin-right: 2%;
+  border-radius: 5px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 2px solid #8493a8;
+}
+#insert-panel h3 {
+  width: 80%;
+}
+#insert-panel h3 span {
+  font-weight: 600;
+}
+
+#main {
+  margin-top: 20px;
+  padding-left: 2%;
+  padding-right: 2%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+#main .content {
+  width: 80%;
+}
+#main .content .content-top-panel {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 7px;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+#main .content .content-top-panel .notification {
+  width: 70%;
+  padding: 0.5%;
+  border-radius: 3px;
+  background: #8493a8;
+}
+#main .content .content-top-panel .sorting {
+  width: 25%;
+}
+#main .content .content-top-panel .sorting select {
+  padding: 2.4%;
+  width: 99%;
+}
+#main .content .foods-card {
+  width: 99.5%;
+  height: 300px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  border: 1px solid #000;
+  -webkit-box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+          box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+}
+#main .content .advertisement-one {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 10px;
+  padding: 2%;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+          box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+}
+#main .content .advertisement-one i {
+  font-size: 3vw;
+}
+#main .content .advertisement-one h3 {
+  width: 50%;
+}
+#main .content .advertisement-one .block-button {
+  width: 17%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+#main .content .advertisement-one .block-button button {
+  padding: 8% 19%;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  -webkit-box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+          box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+}
+#main .content .advertisement-one .block-button span {
+  font-size: 0.5vw;
+}
+
+#more {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-bottom: 40px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+#more .more-container {
+  width: 93.5%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0.5% 1%;
+  margin-top: 30px;
+  border-radius: 20px;
+  border: 2px solid #8493a8;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+#more .more-container .chief {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 1%;
+  border-radius: 15px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #8493a8;
+  position: relative;
+}
+#more .more-container .chief:after {
+  top: 32%;
+  right: -17%;
+  font-size: 2vw;
+  font-weight: 900;
+  content: "";
+  position: absolute;
+  font-family: "Font Awesome 5 Free", "Font Awesome 5 Brands";
+}
+#more .more-container .chief h3 {
+  padding: 0;
+}
+#more .more-container .more-box {
+  width: 23%;
+  padding: 1% 0;
+  text-align: center;
+}
+#more .more-container .more-box h3 {
+  padding: 3% 0;
+}
+#more .more-container .more-box span:first-child {
+  font-size: 0.8vw;
+  opacity: 0.8;
+}
+#more .more-container .more-box span:last-child {
+  font-size: 0.8vw;
+  opacity: 0.8;
+}
+#more .more-container .more-box a {
+  text-decoration: underline;
+}
+#more .more-container-two {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 2% 1%;
+  margin-top: 50px;
+  border-radius: 20px;
+  background: #8493a8;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+#more .more-container-two .more-content {
+  width: 50%;
+  text-align: center;
+}
+#more .more-container-two .more-content h3:last-child {
+  margin-top: 30px;
+  font-weight: 600;
+}
+
+#choose {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  padding-bottom: 40px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+#choose h2 span {
+  font-weight: 600;
+  opacity: 0.8;
+}
+#choose .choose-container {
+  width: 96%;
+  margin-top: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+#choose .choose-container .image-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 8% 0;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+#choose .choose-container .one {
+  width: 55%;
+}
+#choose .choose-container .two {
+  width: 45%;
+}
+#choose .choose-container .three {
+  width: 45%;
+}
+#choose .choose-container .four {
+  width: 55%;
+}
+#choose .choose-container .five {
+  width: 100%;
+}
