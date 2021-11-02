@@ -1,0 +1,219 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" id="metaViewport">
+    <title>Title</title>
+    <meta name="twitter:title" content="Title">
+    <meta property="og:title" content="Title">
+    <meta name="description" content="">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="img/default.png">
+    <meta property="vk:image" content="img/default.png">
+    <meta name="twitter:image" content="img/default.png">
+    <link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+    <meta name="theme-color">
+    <meta name="msapplication-navbutton-color">
+    <meta name="apple-mobile-web-app-status-bar-style">
+
+    <link rel="stylesheet" href="{% static 'css/reset.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slick-theme.css' %}">
+
+    <script src="https://kit.fontawesome.com/6c1cf59610.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'js/cart.js' %}"></script>
+    <script src="{% static 'js/slick.js' %}"></script>
+</head>
+
+<body>
+
+{% include 'includes/header.html' %}
+
+{% include 'includes/product-parts/mini-panel.html' %}
+
+<section id="cart">
+
+    <div class="top-bar">
+
+        <h2>Корзина</h2>
+
+        <div class="checkbox">
+            <input type="checkbox" name="choose_all" id="choose_all">
+            <label for="choose_all">Выбрать все</label>
+        </div>
+
+        <h5 class="delete_choose">Удалить выбранные</h5>
+    </div>
+
+    <div class="main">
+
+        <div class="cart-products">
+
+            <div class="product">
+
+                <div class="checkbox">
+                    <input type="checkbox" name="product1">
+                </div>
+
+                <div class="img-container">
+
+                    <img src= "url({% static 'images/slide1.png' %})" alt="Image">
+
+                </div>
+
+                <div class="product-block">
+
+                    <div class="product-info">
+
+                        <h4>Помещение для праздника Ивента Лофт</h4>
+
+                        <h4>Московский пр. 183-185</h4>
+
+                        <h4>22.02.2022 c 12 : 00 до 14 : 00</h4>
+
+                    </div>
+
+                    <div class="product-actions">
+
+                        <h5 class="in_likes">В избранное</h5>
+
+                        <h5 class="delete">Удалить</h5>
+
+                    </div>
+
+                </div>
+
+                <div class="price-block">
+
+                    <span class="price">4200</span>
+                    <span class="sale">5600</span>
+
+                    <div class="counter">
+                        <button class="minus">-</button>
+                        <button disabled>2</button>
+                        <button class="plus">+</button>
+                    </div>
+
+                    <h4>1 за 2100₽</h4>
+
+                </div>
+
+            </div>
+
+            <div class="product">
+
+                <div class="checkbox">
+                    <input type="checkbox" name="product1">
+                </div>
+
+                <div class="img-container">
+
+                    <img src="url({% static 'images/slide1.png' %})" alt="Image">
+
+                </div>
+
+                <div class="product-block">
+
+                    <div class="product-info">
+
+                        <h4>Помещение для праздника Ивента Лофт</h4>
+
+                        <h4>Московский пр. 183-185</h4>
+
+                        <h4>Доставка бесплатно</h4>
+
+                    </div>
+
+                    <div class="product-actions">
+
+                        <h5 class="in_likes">В избранное</h5>
+
+                        <h5 class="delete">Удалить</h5>
+
+                    </div>
+
+                </div>
+
+                <div class="price-block">
+
+                    <span class="price">4990</span>
+
+                    <div class="counter">
+                        <button class="minus">-</button>
+                        <button disabled>1</button>
+                        <button class="plus">+</button>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="product">
+
+                <div class="checkbox">
+                    <input type="checkbox" name="product3">
+                </div>
+
+                <div class="img-container">
+
+                    <img src="url({% static 'images/slide1.png' %})" alt="Image">
+
+                </div>
+
+                <div class="product-block">
+
+                    <div class="product-info">
+
+                        <h4>Помещение для праздника Ивента Лофт</h4>
+
+                        <h4>Московский пр. 183-185</h4>
+
+                        <h4>Праздник на 2 часа</h4>
+
+                    </div>
+
+                    <div class="product-actions">
+
+                        <h5 class="in_likes">В избранное</h5>
+
+                        <h5 class="delete">Удалить</h5>
+
+                    </div>
+
+                </div>
+
+                <div class="price-block">
+
+                    <span class="price">4200</span>
+                    <span class="sale">5600</span>
+
+                    <div class="counter">
+                        <button class="minus">-</button>
+                        <button disabled>2</button>
+                        <button class="plus">+</button>
+                    </div>
+
+                    <h4>1 за 2100₽</h4>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="end-cart">
+
+
+        </div>
+
+    </div>
+
+</section>
+
+

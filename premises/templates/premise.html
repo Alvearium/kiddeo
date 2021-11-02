@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" id="metaViewport">
+    <title>Title</title>
+    <meta name="twitter:title" content="Title">
+    <meta property="og:title" content="Title">
+    <meta name="description" content="">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="img/default.png">
+    <meta property="vk:image" content="img/default.png">
+    <meta name="twitter:image" content="img/default.png">
+    <link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+    <meta name="theme-color">
+    <meta name="msapplication-navbutton-color">
+    <meta name="apple-mobile-web-app-status-bar-style">
+
+    <link rel="stylesheet" href="{% static 'css/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slick-theme.css' %}">
+    <link rel="stylesheet" href="{% static 'css/reset.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'css/products/product-parts/descriptions.css' %}">
+    <link rel="stylesheet" href="{% static 'css/products/premise.css' %}">
+
+    <script src="https://kit.fontawesome.com/6c1cf59610.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'js/slick.js' %}"></script>
+    <script src="{% static 'js/products/premise.js' %}"></script>
+</head>
+
+<body>
+
+{% include 'includes/header.html' %}
+
+{% include 'includes/product-parts/mini-panel.html' %}
+
+{% include 'includes/product-parts/product-cards/product-card-1.html' %}
+
+{% include 'includes/product-parts/descriptions.html' %}
+
+{% include 'includes/product-parts/reasons.html' %}
+
+{% include 'includes/product-parts/frequent-questions.html' %}
+
+{% include 'includes/product-parts/advertisements/advertisement-1.html' %}
+
+{% include 'includes/product-parts/safe-deal.html' %}
+
+{% include 'includes/product-parts/purchases/purchases-additional.html' %}
+
+{% include 'includes/product-parts/advertisements/advertisement-2.html' %}
+
+{% include 'includes/product-parts/purchases/purchases-recommendations.html' %}
+
+{% include 'includes/product-parts/advertisements/advertisement-1.html' %}
+
+{% include 'includes/product-parts/purchases/purchases-similar.html' %}
+
+{% include 'includes/product-parts/purchases/purchases-viewed.html' %}
+
+{% include 'includes/product-parts/mini-card.html' %}
+
+</body>
+</html>

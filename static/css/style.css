@@ -19,12 +19,169 @@ h5 {
   font-size: 0.95vw;
 }
 
+h6 {
+  font-size: 0.9vw;
+}
+
 p {
   font-size: 0.9vw;
 }
 
+label {
+  font-size: 1vw;
+}
+
+button {
+  font-size: 0.95vw;
+}
+
+input {
+  font-size: 0.8vw;
+}
+
+select {
+  font-size: 0.8vw;
+}
+
 nav li a {
   font-size: 0.95vw;
+}
+
+ul li a {
+  font-size: 1.05vw;
+}
+
+header {
+  padding-left: 2%;
+  padding-right: 2%;
+}
+header .top-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+header .top-bar .user-location {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: 2%;
+}
+header .top-bar .user-location i {
+  margin-right: 10px;
+}
+header .top-bar .user-location a {
+  text-decoration: underline;
+}
+header .top-bar nav {
+  width: 60%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+header .top-bar .social-network i {
+  font-size: 1.8vw;
+}
+header .top-bar .contact-phone {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+header .top-bar .contact-phone span {
+  font-size: 0.62vw;
+}
+header .header-main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+header .header-main .first-part {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+header .header-main .first-part .logo {
+  width: 12%;
+  margin-right: 2%;
+}
+header .header-main .first-part .logo img {
+  width: 100%;
+  height: auto;
+}
+header .header-main .first-part .search {
+  width: 50%;
+  position: relative;
+}
+header .header-main .first-part .search input {
+  width: 90%;
+  font-size: 1vw;
+  padding-top: 2.5%;
+  padding-left: 2%;
+  padding-right: 8%;
+  padding-bottom: 2.5%;
+}
+header .header-main .first-part .search:after {
+  right: 1%;
+  top: 10px;
+  font-size: 2vw;
+  font-weight: 900;
+  content: "";
+  position: absolute;
+  font-family: "Font Awesome 5 Free", "Font Awesome 5 Brands";
+}
+header .header-main .second-part {
+  width: 15%;
+}
+header .header-main .second-part .buttons-panel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+header .header-main .second-part .buttons-panel a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+header .header-main .second-part .buttons-panel a span {
+  margin-top: 5px;
+  font-size: 0.5vw;
+}
+header .header-main .second-part .buttons-panel a i {
+  font-size: 2vw;
 }
 
 #main {
@@ -176,4 +333,150 @@ nav li a {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
   z-index: 999;
+}
+
+#more {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-bottom: 40px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+#more .more-container {
+  width: 88%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0.5% 1%;
+  margin-top: 30px;
+  border-radius: 20px;
+  border: 2px solid #8493a8;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+#more .more-container .chief {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 1%;
+  border-radius: 15px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #8493a8;
+  position: relative;
+}
+#more .more-container .chief:after {
+  top: 32%;
+  right: -17%;
+  font-size: 2vw;
+  font-weight: 900;
+  content: "";
+  position: absolute;
+  font-family: "Font Awesome 5 Free", "Font Awesome 5 Brands";
+}
+#more .more-container .chief h3 {
+  padding: 0;
+}
+#more .more-container .more-box {
+  width: 23%;
+  padding: 1% 0;
+  text-align: center;
+}
+#more .more-container .more-box h3 {
+  padding: 3% 0;
+}
+#more .more-container .more-box span:first-child {
+  font-size: 0.8vw;
+  opacity: 0.8;
+}
+#more .more-container .more-box span:last-child {
+  font-size: 0.8vw;
+  opacity: 0.8;
+}
+#more .more-container .more-box a {
+  text-decoration: underline;
+}
+#more .more-container-two {
+  width: 88%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 2% 1%;
+  margin-top: 50px;
+  border-radius: 20px;
+  background: #8493a8;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+#more .more-container-two .more-content {
+  width: 50%;
+  text-align: center;
+}
+#more .more-container-two .more-content h3:last-child {
+  margin-top: 30px;
+  font-weight: 600;
+}
+
+#choose {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  padding-bottom: 40px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+#choose h2 span {
+  font-weight: 600;
+  opacity: 0.8;
+}
+#choose .choose-container {
+  width: 90%;
+  margin-top: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+#choose .choose-container .image-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 8% 0;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+#choose .choose-container .one {
+  width: 55%;
+}
+#choose .choose-container .two {
+  width: 45%;
+}
+#choose .choose-container .three {
+  width: 45%;
+}
+#choose .choose-container .four {
+  width: 55%;
+}
+#choose .choose-container .five {
+  width: 100%;
 }

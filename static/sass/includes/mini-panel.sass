@@ -1,0 +1,22 @@
+#mini-panel
+  display: flex
+  margin-top: 10px
+  padding-left: 2%
+  padding-right: 2%
+  .breadcrumbs
+    display: flex
+    li
+      display: flex
+      align-items: center
+      margin-right: 15px
+      position: relative
+      &:after
+        right: -10px
+        content: '/'
+        position: absolute
+      &:last-child
+        &:after
+          display: none
+      i
+        margin-right: 5px
+        font-size: 1.2vw

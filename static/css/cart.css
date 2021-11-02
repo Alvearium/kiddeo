@@ -1,0 +1,383 @@
+@charset "UTF-8";
+h1 {
+  font-size: 3vw;
+}
+
+h2 {
+  font-size: 2vw;
+}
+
+h3 {
+  font-size: 1.2vw;
+}
+
+h4 {
+  font-size: 1.1vw;
+}
+
+h5 {
+  font-size: 0.95vw;
+}
+
+h6 {
+  font-size: 0.9vw;
+}
+
+p {
+  font-size: 0.9vw;
+}
+
+label {
+  font-size: 1vw;
+}
+
+button {
+  font-size: 0.95vw;
+}
+
+input {
+  font-size: 0.8vw;
+}
+
+select {
+  font-size: 0.8vw;
+}
+
+nav li a {
+  font-size: 0.95vw;
+}
+
+ul li a {
+  font-size: 1.05vw;
+}
+
+header {
+  padding-left: 2%;
+  padding-right: 2%;
+}
+header .top-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+header .top-bar .user-location {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: 2%;
+}
+header .top-bar .user-location i {
+  margin-right: 10px;
+}
+header .top-bar .user-location a {
+  text-decoration: underline;
+}
+header .top-bar nav {
+  width: 60%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+header .top-bar .social-network i {
+  font-size: 1.8vw;
+}
+header .top-bar .contact-phone {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+header .top-bar .contact-phone span {
+  font-size: 0.62vw;
+}
+header .header-main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+header .header-main .first-part {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+header .header-main .first-part .logo {
+  width: 12%;
+  margin-right: 2%;
+}
+header .header-main .first-part .logo img {
+  width: 100%;
+  height: auto;
+}
+header .header-main .first-part .search {
+  width: 50%;
+  position: relative;
+}
+header .header-main .first-part .search input {
+  width: 90%;
+  font-size: 1vw;
+  padding-top: 2.5%;
+  padding-left: 2%;
+  padding-right: 8%;
+  padding-bottom: 2.5%;
+}
+header .header-main .first-part .search:after {
+  right: 1%;
+  top: 10px;
+  font-size: 2vw;
+  font-weight: 900;
+  content: "";
+  position: absolute;
+  font-family: "Font Awesome 5 Free", "Font Awesome 5 Brands";
+}
+header .header-main .second-part {
+  width: 15%;
+}
+header .header-main .second-part .buttons-panel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+header .header-main .second-part .buttons-panel a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+header .header-main .second-part .buttons-panel a span {
+  margin-top: 5px;
+  font-size: 0.5vw;
+}
+header .header-main .second-part .buttons-panel a i {
+  font-size: 2vw;
+}
+
+#mini-panel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 10px;
+  padding-left: 2%;
+  padding-right: 2%;
+}
+#mini-panel .breadcrumbs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+#mini-panel .breadcrumbs li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: 15px;
+  position: relative;
+}
+#mini-panel .breadcrumbs li:after {
+  right: -10px;
+  content: "/";
+  position: absolute;
+}
+#mini-panel .breadcrumbs li:last-child:after {
+  display: none;
+}
+#mini-panel .breadcrumbs li i {
+  margin-right: 5px;
+  font-size: 1.2vw;
+}
+
+#cart {
+  margin-top: 20px;
+  padding-left: 2%;
+  padding-right: 2%;
+}
+#cart .top-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #999999;
+}
+#cart .top-bar .checkbox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: 2%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: left;
+  margin-left: auto;
+}
+#cart .top-bar .checkbox input[type=checkbox] {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -o-appearance: none;
+  outline: none;
+  content: none;
+  margin-right: 15px;
+}
+#cart .top-bar .checkbox input[type=checkbox]:before {
+  font-family: "FontAwesome";
+  content: "";
+  margin-top: -1px;
+  color: transparent !important;
+  background: #ffffff;
+  display: block;
+  width: 1vw;
+  height: 1vw;
+  font-size: 0.9vw;
+  border: 3px solid #006cfa;
+}
+#cart .top-bar .checkbox input[type=checkbox]:checked:before {
+  color: black !important;
+}
+#cart .top-bar .delete_choose {
+  color: red;
+}
+#cart .main {
+  margin-top: 20px;
+}
+#cart .main .cart-products {
+  width: 70%;
+  margin-right: 2%;
+}
+#cart .main .cart-products .product {
+  width: 96%;
+  padding: 1% 2%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 20px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 20px;
+  border: 2px solid #006cfa;
+}
+#cart .main .cart-products .product .checkbox {
+  margin-right: 2%;
+}
+#cart .main .cart-products .product .checkbox input[type=checkbox] {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -o-appearance: none;
+  outline: none;
+  content: none;
+}
+#cart .main .cart-products .product .checkbox input[type=checkbox]:before {
+  font-family: "FontAwesome";
+  content: "";
+  margin-top: -1px;
+  color: transparent !important;
+  background: #ffffff;
+  display: block;
+  width: 1.5vw;
+  height: 1.5vw;
+  font-size: 0.9vw;
+  border: 3px solid #006cfa;
+}
+#cart .main .cart-products .product .checkbox input[type=checkbox]:checked:before {
+  color: black !important;
+}
+#cart .main .cart-products .product .img-container {
+  width: 20%;
+  height: 250px;
+  margin-right: 5%;
+  overflow: hidden;
+}
+#cart .main .cart-products .product .img-container img {
+  height: 100%;
+  margin-left: -45%;
+}
+#cart .main .cart-products .product .product-block .product-info h4 {
+  margin-bottom: 15px;
+}
+#cart .main .cart-products .product .product-block .product-info h4 span {
+  margin-left: 6vw;
+}
+#cart .main .cart-products .product .product-block .product-info h4:first-child {
+  font-weight: 600;
+}
+#cart .main .cart-products .product .product-block .product-actions {
+  margin-top: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+#cart .main .cart-products .product .product-block .product-actions h5 {
+  color: #006cfa;
+  position: relative;
+}
+#cart .main .cart-products .product .product-block .product-actions h5:first-child {
+  margin-right: 20%;
+}
+#cart .main .cart-products .product .product-block .product-actions h5:last-child:before {
+  content: "|";
+  top: -45%;
+  left: -45%;
+  color: #999999;
+  font-size: 1.8vw;
+  position: absolute;
+}
+#cart .main .cart-products .product .price-block {
+  width: 15%;
+  text-align: center;
+  margin-left: auto;
+}
+#cart .main .cart-products .product .price-block span {
+  font-size: 2vw;
+}
+#cart .main .cart-products .product .price-block .sale {
+  text-decoration: line-through;
+}
+#cart .main .cart-products .product .price-block .counter {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+#cart .main .cart-products .product .price-block .counter button {
+  padding: 7% 14%;
+}
+#cart .main .end-cart {
+  width: 28%;
+}

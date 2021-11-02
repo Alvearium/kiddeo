@@ -1,0 +1,59 @@
+#frequent-questions
+  display: flex
+  margin-top: 10px
+  padding-left: 2%
+  padding-right: 2%
+  align-items: center
+  .tablet
+    display: flex
+    width: 20%
+    margin-right: 5%
+    padding: 7% 2%
+    justify-content: center
+    align-items: center
+    text-align: center
+    border: 2px solid #006cfa
+    border-radius: 20px
+  .accordion-wrapper
+    overflow: hidden
+    width: 70%
+    .accordion
+      width: 100%
+      color: white
+      overflow: hidden
+      margin-bottom: 16px
+      &:last-child
+        margin-bottom: 0
+      .accordion-label
+        display: flex
+        justify-content: space-between
+        padding: 1%
+        background: rgba(0, 108, 250, 0.2)
+        font-weight: 600
+        cursor: pointer
+        &:hover
+          background: #006cfa
+        &:after
+          content: "\276F"
+          width: 0.8vw
+          height: 0.8vw
+          text-align: center
+          transition: all 0.3s
+      .accordion-content
+        max-height: 0
+        color: rgba(4,57,94,1)
+        background: white
+        transition: all 0.3s
+    input
+      position: absolute
+      opacity: 0
+      z-index: -1
+    input:checked + .accordion-label
+      background: rgba(4,57,94,1)
+    input:checked + .accordion-label::after
+      margin-top: 6px
+      transform: rotate(90deg)
+    input:checked ~ .accordion-content
+      max-height: 100vh
+      padding: 1.6%
+      padding-bottom: 0
