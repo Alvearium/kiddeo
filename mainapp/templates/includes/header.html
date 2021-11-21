@@ -3,7 +3,7 @@
     <div class="top-bar">
         <div class="user-location">
             <i class="fas fa-map-marker-alt"></i>
-            <h5>Ваш город: <a href="#">Санкт-Петербург</a></h5>
+            <h5>Ваш город: <a href="#" id="user-city"></a></h5>
         </div>
         <nav>
             <li><a href="#">О компании</a></li>
@@ -54,3 +54,9 @@
         </div>
     </div>
 </header>
+<script src="http://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU" type="text/javascript"></script>
+<script type="text/javascript">
+    window.onload = function () {
+        jQuery("#user-city").text(ymaps.geolocation.city);
+    }
+</script>

@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="{% static 'css/cart.css' %}">
     <link rel="stylesheet" href="{% static 'css/slick.css' %}">
     <link rel="stylesheet" href="{% static 'css/slick-theme.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
 
     <script src="https://kit.fontawesome.com/6c1cf59610.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -32,6 +33,8 @@
 </head>
 
 <body>
+
+<div class="container-sm container-md container-lg container-xl container-xxl">
 
 {% include 'includes/header.html' %}
 
@@ -63,7 +66,7 @@
 
                 <div class="img-container">
 
-                    <img src= "url({% static 'images/slide1.png' %})" alt="Image">
+                    <img src="{% static 'images/slide1.png' %}" alt="Image">
 
                 </div>
 
@@ -114,7 +117,7 @@
 
                 <div class="img-container">
 
-                    <img src="url({% static 'images/slide1.png' %})" alt="Image">
+                    <img src="{% static 'images/slide1.png' %}" alt="Image">
 
                 </div>
 
@@ -162,7 +165,7 @@
 
                 <div class="img-container">
 
-                    <img src="url({% static 'images/slide1.png' %})" alt="Image">
+                    <img src="{% static 'images/slide1.png' %}" alt="Image">
 
                 </div>
 
@@ -209,6 +212,53 @@
 
         <div class="end-cart">
 
+            <h5>Дату и время выезда и/или доставкки можно выбрать при оформлении заказа</h5>
+
+            <div class="cart-info">
+
+                <h4 class="cart-info-title">Ваша корзина</h4>
+
+                <div class="cart-info-body">
+
+                    <div class="cart-info-body-row">
+
+                        <h4>Услуги (3)</h4>
+
+                        <span class="item_price">15 390 ₽</span>
+
+                    </div>
+
+                    <div class="cart-info-body-row">
+
+                        <h4>Ваша экономия</h4>
+
+                        <span class="full_sale">2 600₽</span>
+
+                    </div>
+
+                </div>
+
+                <div class="cart-info-result">
+
+                    <div class="cart-info-result-row">
+
+                        <h3>Итого</h3>
+
+                        <span class="final_price">12 790₽</span>
+
+                    </div>
+
+                    <h5>Чтобы получить подтверждение от партнёров, нужно оформить заказ</h5>
+
+                </div>
+
+                <div class="go-checkout">
+
+                    <button>Перейти к оформлению</button>
+                    <span>Пока вы ни за что не платите</span>
+                </div>
+
+            </div>
 
         </div>
 
@@ -216,4 +266,7 @@
 
 </section>
 
+</div>
 
+</body>
+</html>

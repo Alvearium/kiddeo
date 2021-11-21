@@ -5,7 +5,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" id="metaViewport">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+          id="metaViewport">
     <title>Title</title>
     <meta name="twitter:title" content="Title">
     <meta property="og:title" content="Title">
@@ -21,12 +22,9 @@
 
     <link rel="stylesheet" href="{% static 'css/reset.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
-    <link rel="stylesheet" href="{% static 'css/includes/header.css' %}">
-    <link rel="stylesheet" href="{% static 'css/includes/pagination.css' %}">
-    <link rel="stylesheet" href="{% static 'css/includes/sidebar.css' %}">
     <link rel="stylesheet" href="{% static 'css/categories/animators.css' %}">
     <link rel="stylesheet" href="{% static 'css/ion.rangeSlider.css' %}">
-
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
 
     <script src="https://kit.fontawesome.com/6c1cf59610.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -36,37 +34,43 @@
 
 <body>
 
-    {% include 'includes/header.html' %}
+<div class="container-sm container-md container-lg container-xl container-xxl">
 
-    <section id="insert-panel">
+{% include 'includes/header.html' %}
 
-        <h3>
-            Только <span>самые стильные интерьеры праздника и великолепные фотозоны.</span><br>
-            Мы <span>все проверили сами и подготовили видеообзорыдля вас.</span>
-        </h3>
+<section id="insert-panel">
 
-    </section>
+    <h3>
+        Только <span>самые стильные интерьеры праздника и великолепные фотозоны.</span><br>
+        Мы <span>все проверили сами и подготовили видеообзорыдля вас.</span>
+    </h3>
+
+</section>
 
 
-    <section id="main">
+<section id="main">
 
     {% include 'includes/sidebars/sidebar-decorations.html' %}
 
-        <div class="content">
+    <div class="content">
 
-            <div class="content-top-panel">
-                <div class="notification">
-                    <h4>Более XXX проверенных оформителей - выбирайте на свой вкус</h4>
-                </div>
-                <div class="sorting">
-                    <select name="sorting" id="sorting">
-                        <option value="null">По популярности</option>
-                    </select>
-                </div>
+        <div class="content-top-panel">
+            <div class="notification">
+                <h4>Более XXX проверенных оформителей - выбирайте на свой вкус</h4>
             </div>
+            <div class="sorting">
+                <select name="sorting" id="sorting">
+                    <option value="-views">По популярности</option>
+                    <option value="-raiting">По рейтингу</option>
+                    <option value="-price">Сначала дорогие</option>
+                    <option value="price">Сначала дешёвые</option>
+                </select>
+            </div>
+        </div>
 
-            <div class="foods-card"></div>
-            <div class="foods-card"></div>
+        <div class="products">
+            {% for agency in agencies reversed %}
+            {% if forloop.counter|divisibleby:"3" %}
             <div class="advertisement-one">
 
                 <i class="fas fa-headset"></i>
@@ -79,10 +83,14 @@
                 </div>
 
             </div>
-            <div class="foods-card"></div>
-            <div class="foods-card"></div>
+            {% endif %}
+            <div class="foods-card">
+                <a href="/product/decoration/{{agency.slug}}" style="width: 100%; height: 100%;">f</a>
+            </div>
+            {% endfor %}
+        </div>
 
-            {% include 'includes/pagination.html' %}
+        {% include 'includes/pagination.html' with product_count=agencies_count %}
 
     </div>
 
@@ -128,25 +136,187 @@
 
     <div class="choose-container">
 
-        <div class="image-block one" style="background: url({% static 'images/slide1.png' %});background-size: cover;background-position: center;">
+        <div class="image-block one"
+             style="background: url({% static 'images/slide1.png' %});background-size: cover;background-position: center;">
             <h3>Вкусная и полезная еда с доставкой</h3>
         </div>
-        <div class="image-block two" style="background: url({% static 'images/slide1.png' %});background-size: cover;background-position: center;">
+        <div class="image-block two"
+             style="background: url({% static 'images/slide1.png' %});background-size: cover;background-position: center;">
             <h3>Самые смешные аниматоры</h3>
         </div>
-        <div class="image-block three" style="background: url({% static 'images/slide1.png' %});background-size: cover;background-position: center;">
+        <div class="image-block three"
+             style="background: url({% static 'images/slide1.png' %});background-size: cover;background-position: center;">
             <h3>Захватывающие квесты</h3>
         </div>
-        <div class="image-block four" style="background: url({% static 'images/slide1.png' %});background-size: cover;background-position: center;">
+        <div class="image-block four"
+             style="background: url({% static 'images/slide1.png' %});background-size: cover;background-position: center;">
             <h3>Стильные и необычные декорации</h3>
         </div>
-        <div class="image-block five" style="background: url({% static 'images/slide1.png' %});background-size: cover;background-position: center;">
+        <div class="image-block five"
+             style="background: url({% static 'images/slide1.png' %});background-size: cover;background-position: center;">
             <h3>Видеографы, которые сохранят атмосферу счастья</h3>
         </div>
 
     </div>
 
 </section>
-    <script src="{% static 'js/categories/decorations.js' %}"></script>
+
+</div>
+
+<script>
+    function pagination_create(count, active) {
+        if (count >= 20) {
+            let pagination = '';
+            let numbers = (Number(count) + 20) / 20;
+            if (active === 1) {
+                pagination = '<button class="prev" style="display: none">Назад</button><ul><li class="prev" style="display: none"><</li>';
+            } else {
+                pagination = '<button class="prev">Назад</button><ul><li class="prev"><</li>';
+            }
+            for (let i = 1; i < numbers; i++) {
+                pagination += '<li>' + i + '</li>';
+            }
+            if (active === Math.floor(numbers)) {
+                pagination += '<li style="display: none">...</li><li class="next" style="display: none">></li></ul><button class="next" style="display: none">Вперёд</button>';
+            } else {
+                pagination += '<li>...</li><li class="next">></li></ul><button class="next">Вперёд</button>';
+            }
+            $('.pagination').html(pagination);
+        }
+    }
+
+    $(document).ready(function () {
+        var filters = '';
+        var order_by = '';
+        var data = '';
+        var post_count = $('.w-all').text();
+        pagination_create(post_count, 1);
+
+        $(".cost").ionRangeSlider({
+            skin: "round",
+            type: "single",
+            grid: true,
+            min: 1000,
+            max: 50000,
+            from: 25000,
+            step: 1,
+            drag_interval: true,
+            from_shadow: true,
+            grid_num: 1,
+            hide_min_max: true,
+            onFinish: function (data) {
+                if (filters == '') {
+                    filters += 'price=' + data.from;
+                } else {
+                    filters += ',price=' + data.from;
+                }
+                if (order_by === '') {
+                    data = {model: 'AgencyDecoration', filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
+                } else {
+                    data = {model: 'AgencyDecoration', order_by: order_by, filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
+                }
+                $.ajax({
+                    url: '/ajax/sidebar-filters/',
+                    data: data,
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (data) {
+                        $('#main .products').html(data.objects);
+                    }
+                });
+                return false;
+            },
+        });
+        $('.input-block').on('change', 'input', function () {
+            if ($(this).attr('type') === 'text' || $(this).attr('type') === 'date') {
+                var name = $(this).attr('data-name');
+                var val = $(this).val();
+            } else if ($(this).attr('type') === 'checkbox') {
+                if ($(this).prop('checked') === true) {
+                    var name = $(this).attr('data-name');
+                    var val = $(this).next().text();
+                } else {
+                    var name = $(this).attr('data-name');
+                    var val = '';
+                }
+            } else {
+                return;
+            }
+
+            if (filters === '') {
+                filters += name + '=' + val;
+            } else {
+                filters += ',' + name + '=' + val;
+            }
+            if (order_by === '') {
+                data = {model: 'AgencyDecoration', filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
+            } else {
+                data = {model: 'AgencyDecoration', order_by: order_by, filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
+            }
+            $.ajax({
+                url: '/ajax/sidebar-filters/',
+                data: data,
+                type: 'POST',
+                dataType: 'json',
+                success: function (data) {
+                    $('#main .products').html(data.objects);
+                }
+            });
+            return false;
+        });
+        $('.input-block').on('change', 'select', function () {
+            let name = $(this).attr('data-name');
+            let val = $(this).val();
+
+            if (filters == '') {
+                filters += name + '=' + val;
+            } else {
+                filters += ',' + name + '=' + val;
+            }
+            if (order_by === '') {
+                data = {model: 'AgencyDecoration', filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
+            } else {
+                data = {model: 'AgencyDecoration', order_by: order_by, filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
+            }
+            $.ajax({
+                url: '/ajax/sidebar-filters/',
+                data: data,
+                type: 'POST',
+                dataType: 'json',
+                success: function (data) {
+                    $('#main .products').html(data.objects);
+                }
+            });
+            return false;
+        });
+
+        $(document).on('click', '.tap', function () {
+            $(this).next().next().get(0).play();
+            $(this).fadeOut();
+        });
+        $(document).on('click', 'video', function () {
+            $(this).prev().prev().fadeIn();
+        });
+
+        $('#sorting').on('change', function () {
+            order_by = $(this).val();
+            if (filters === '') {
+                data = {model: 'AgencyDecoration', order_by: order_by, csrfmiddlewaretoken: '{{ csrf_token }}'};
+            } else {
+                data = {model: 'AgencyDecoration', order_by: order_by, filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
+            }
+            $.ajax({
+                url: '/ajax/sidebar-filters/',
+                data: data,
+                type: 'POST',
+                dataType: 'json',
+                success: function (data) {
+                    $('#main .products').html(data.objects);
+                }
+            });
+            return false;
+        });
+    });
+</script>
 </body>
 </html>

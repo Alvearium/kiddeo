@@ -1,8 +1,26 @@
 $(document).ready(function() {
+    let tabs = $('input[name="tab"]');
+
+    if (tabs.length == 3) {
+        $('body .container label').css('width', '33.333333%');
+    } else if (tabs.length == 2) {
+        $('body .container label').css('width', '50%');
+    } else if (tabs.length == 1) {
+        $('body .container label').css('width', '100%');
+    }
+
     $('.slider-viewing').slick({
         vertical: true,
+        infinite: true,
         verticalSwiping: true,
-        slidesToShow: 6,
+        slidesToShow: 5,
+    });
+    $(document).on('click', '.tap', function () {
+        $(this).prev().get(0).play();
+        $(this).fadeOut();
+    });
+    $(document).on('click', 'video', function () {
+        $(this).next().fadeIn();
     });
     $('body').on('click', '.slide', function () {
         let type = $(this).children();
@@ -17,7 +35,7 @@ $(document).ready(function() {
 
     if ($(window).width() >= 1801) {
         $('.purchases-slider').slick({
-            slidesToShow: 6,
+            slidesToShow: 5,
             slidesToScroll: 1,
             autoplay: true,
             autoplaySpeed: 2000,

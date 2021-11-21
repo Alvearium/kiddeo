@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c58c6294-9621-40b4-a53d-16b0a53b0582" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/kiddeo.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/animators/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/animators/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/animators/templates/animator.html" beforeDir="false" afterPath="$PROJECT_DIR$/animators/templates/animator.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/animators/templates/animators.html" beforeDir="false" afterPath="$PROJECT_DIR$/animators/templates/animators.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/animators/templates/includes/header.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/animators/templates/includes/pagination.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/animators/templates/includes/product-parts/advertisements/advertisement-1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/animators/templates/includes/product-parts/advertisements/advertisement-2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/animators/templates/includes/product-parts/descriptions.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/animators/templates/includes/product-parts/frequent-questions.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/animators/templates/includes/product-parts/mini-card.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/animators/templates/includes/product-parts/mini-panel.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/animators/templates/includes/product-parts/modals/add-cart.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/animators/templates/includes/product-parts/product-cards/product-card-1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/animators/templates/includes/product-parts/product-cards/product-card-2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/animators/templates/includes/product-parts/purchases/purchases-additional.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/animators/templates/includes/product-parts/purchases/purchases-recommendations.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/animators/templates/includes/product-parts/purchases/purchases-similar.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/animators/templates/includes/product-parts/purchases/purchases-viewed.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/animators/templates/includes/product-parts/reasons.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/animators/templates/includes/product-parts/safe-deal.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/animators/templates/includes/section-choose.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/animators/templates/includes/section-more.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/animators/templates/includes/sidebars/sidebar-animators.html" beforeDir="false" afterPath="$PROJECT_DIR$/animators/templates/includes/sidebars/sidebar-animators.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/animators/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/animators/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/decorations/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/decorations/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/decorations/templates/decoration.html" beforeDir="false" afterPath="$PROJECT_DIR$/decorations/templates/decoration.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/decorations/templates/decorations.html" beforeDir="false" afterPath="$PROJECT_DIR$/decorations/templates/decorations.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/decorations/templates/includes/header.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/decorations/templates/includes/pagination.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/decorations/templates/includes/product-parts/advertisements/advertisement-1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/decorations/templates/includes/product-parts/advertisements/advertisement-2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/decorations/templates/includes/product-parts/descriptions.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/decorations/templates/includes/product-parts/frequent-questions.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/decorations/templates/includes/product-parts/mini-card.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/decorations/templates/includes/product-parts/mini-panel.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/decorations/templates/includes/product-parts/modals/add-cart.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/decorations/templates/includes/product-parts/product-cards/product-card-1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/decorations/templates/includes/product-parts/product-cards/product-card-2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/decorations/templates/includes/product-parts/purchases/purchases-additional.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/decorations/templates/includes/product-parts/purchases/purchases-recommendations.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/decorations/templates/includes/product-parts/purchases/purchases-similar.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/decorations/templates/includes/product-parts/purchases/purchases-viewed.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/decorations/templates/includes/product-parts/reasons.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/decorations/templates/includes/product-parts/safe-deal.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/decorations/templates/includes/section-choose.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/decorations/templates/includes/section-more.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/decorations/templates/includes/sidebars/sidebar-decorations.html" beforeDir="false" afterPath="$PROJECT_DIR$/decorations/templates/includes/sidebars/sidebar-decorations.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/decorations/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/decorations/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kiddeo/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/kiddeo/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kiddeo/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/kiddeo/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/templates/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/templates/cart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/templates/includes/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/templates/includes/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/templates/includes/pagination.html" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/templates/includes/pagination.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/templates/includes/product-parts/descriptions.html" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/templates/includes/product-parts/descriptions.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/templates/includes/product-parts/frequent-questions.html" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/templates/includes/product-parts/frequent-questions.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/templates/includes/product-parts/mini-card.html" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/templates/includes/product-parts/mini-card.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/templates/includes/product-parts/mini-panel.html" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/templates/includes/product-parts/mini-panel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/templates/includes/product-parts/modals/add-cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/templates/includes/product-parts/modals/add-cart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/templates/includes/product-parts/product-cards/product-card-1.html" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/templates/includes/product-parts/product-cards/product-card-1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/templates/includes/product-parts/product-cards/product-card-2.html" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/templates/includes/product-parts/product-cards/product-card-2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/templates/includes/product-parts/purchases/purchases-additional.html" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/templates/includes/product-parts/purchases/purchases-additional.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/templates/includes/product-parts/purchases/purchases-recommendations.html" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/templates/includes/product-parts/purchases/purchases-recommendations.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/templates/includes/product-parts/purchases/purchases-similar.html" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/templates/includes/product-parts/purchases/purchases-similar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/templates/includes/product-parts/purchases/purchases-viewed.html" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/templates/includes/product-parts/purchases/purchases-viewed.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/templates/includes/product-parts/reasons.html" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/templates/includes/product-parts/reasons.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/premises/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/premises/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/premises/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/premises/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/premises/templates/includes/header.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/premises/templates/includes/pagination.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/premises/templates/includes/section-choose.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/premises/templates/includes/section-more.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/premises/templates/includes/sidebars/sidebar-premises.html" beforeDir="false" afterPath="$PROJECT_DIR$/premises/templates/includes/sidebars/sidebar-premises.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/premises/templates/premise.html" beforeDir="false" afterPath="$PROJECT_DIR$/premises/templates/premise.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/premises/templates/premises.html" beforeDir="false" afterPath="$PROJECT_DIR$/premises/templates/premises.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/premises/templates/product-parts/advertisements/advertisement-1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/premises/templates/product-parts/advertisements/advertisement-2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/premises/templates/product-parts/descriptions.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/premises/templates/product-parts/frequent-questions.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/premises/templates/product-parts/mini-card.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/premises/templates/product-parts/mini-panel.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/premises/templates/product-parts/modals/add-cart.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/premises/templates/product-parts/product-cards/product-card-1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/premises/templates/product-parts/product-cards/product-card-2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/premises/templates/product-parts/purchases/purchases-additional.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/premises/templates/product-parts/purchases/purchases-recommendations.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/premises/templates/product-parts/purchases/purchases-similar.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/premises/templates/product-parts/purchases/purchases-viewed.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/premises/templates/product-parts/reasons.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/premises/templates/product-parts/safe-deal.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/premises/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/premises/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurants/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/restaurants/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurants/templates/food.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurants/templates/food.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurants/templates/foods.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurants/templates/foods.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurants/templates/includes/header.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurants/templates/includes/pagination.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurants/templates/includes/product-parts/advertisements/advertisement-1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurants/templates/includes/product-parts/advertisements/advertisement-2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurants/templates/includes/product-parts/descriptions.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurants/templates/includes/product-parts/frequent-questions.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurants/templates/includes/product-parts/mini-card.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurants/templates/includes/product-parts/mini-panel.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurants/templates/includes/product-parts/modals/add-cart.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurants/templates/includes/product-parts/product-cards/product-card-1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurants/templates/includes/product-parts/product-cards/product-card-2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurants/templates/includes/product-parts/purchases/purchases-additional.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurants/templates/includes/product-parts/purchases/purchases-recommendations.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurants/templates/includes/product-parts/purchases/purchases-similar.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurants/templates/includes/product-parts/purchases/purchases-viewed.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurants/templates/includes/product-parts/reasons.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurants/templates/includes/product-parts/safe-deal.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurants/templates/includes/section-choose.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurants/templates/includes/section-more.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurants/templates/includes/sidebars/sidebar-animators.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurants/templates/includes/sidebars/sidebar-decorations.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurants/templates/includes/sidebars/sidebar-foods.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurants/templates/includes/sidebars/sidebar-foods.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurants/templates/includes/sidebars/sidebar-premises.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurants/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/restaurants/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/cart.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/cart.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/categories/animators.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/categories/animators.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/categories/foods.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/categories/foods.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/categories/premises.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/categories/premises.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/ion.rangeSlider.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/ion.rangeSlider.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/products/animator.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/products/animator.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/products/decoration.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/products/decoration.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/products/food.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/products/food.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/products/premise.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/products/premise.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/slick-theme.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/slick-theme.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/categories/animators.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/categories/decorations.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/categories/foods.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/categories/premises.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/products/animator.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/products/decoration.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/products/decoration.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/products/premise.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/products/premise.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sass/cart.sass" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sass/categories/animators.sass" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sass/categories/foods.sass" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sass/categories/premises.sass" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sass/includes/font-sizes.sass" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sass/includes/frequent-questions.sass" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sass/includes/header.sass" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sass/includes/mini-panel.sass" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sass/includes/pagination.sass" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sass/includes/purchases.sass" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sass/includes/reasons.sass" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sass/includes/section-choose.sass" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sass/includes/section-more.sass" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sass/includes/sidebar.sass" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sass/products/animator.sass" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sass/products/decoration.sass" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sass/products/food.sass" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sass/products/premise.sass" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sass/products/product-parts/advertisements/advertisements-1.sass" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sass/products/product-parts/descriptions.sass" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sass/products/product-parts/mini-card.sass" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sass/products/product-parts/modals/add-cart.sass" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sass/products/product-parts/product-cards/product-card-1.sass" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sass/products/product-parts/product-cards/product-card-2.sass" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sass/products/product-parts/safe-deal.sass" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sass/style.sass" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="214V4JC3415B4tPxFV1WjGVZreG" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../kiddeofront" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c58c6294-9621-40b4-a53d-16b0a53b0582" name="Default Changelist" comment="" />
+      <created>1637200154092</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1637200154092</updated>
+      <workItem from="1637200157049" duration="50230000" />
+      <workItem from="1637456710056" duration="388000" />
+      <workItem from="1637463739757" duration="2313000" />
+      <workItem from="1637474803718" duration="776000" />
+      <workItem from="1637476104520" duration="17159000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="581" y="205" key="FileChooserDialogImpl" timestamp="1637476368693">
+      <screen x="0" y="0" width="1603" height="902" />
+    </state>
+    <state x="581" y="205" key="FileChooserDialogImpl/0.0.1603.902@0.0.1603.902" timestamp="1637476368693" />
+    <state x="422" y="61" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1637342838667">
+      <screen x="0" y="0" width="1603" height="902" />
+    </state>
+    <state x="422" y="61" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1603.902@0.0.1603.902" timestamp="1637342838667" />
+  </component>
+</project>

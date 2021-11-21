@@ -23,8 +23,8 @@
     <link rel="stylesheet" href="{% static 'css/slick-theme.css' %}">
     <link rel="stylesheet" href="{% static 'css/reset.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
-    <link rel="stylesheet" href="{% static 'css/products/product-parts/descriptions.css' %}">
     <link rel="stylesheet" href="{% static 'css/products/premise.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
 
     <script src="https://kit.fontawesome.com/6c1cf59610.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -34,17 +34,19 @@
 
 <body>
 
+<div class="container-sm container-md container-lg container-xl container-xxl">
+
 {% include 'includes/header.html' %}
 
-{% include 'includes/product-parts/mini-panel.html' %}
+{% include 'includes/product-parts/mini-panel.html' with product=premise %}
 
-{% include 'includes/product-parts/product-cards/product-card-1.html' %}
+{% include 'includes/product-parts/product-cards/product-card-1.html' with product=premise cheaper_price=min_price cheaper_slug=cheaper_slug  %}
 
-{% include 'includes/product-parts/descriptions.html' %}
+{% include 'includes/product-parts/descriptions.html' with product=premise audit_elements=audit_elements %}
 
-{% include 'includes/product-parts/reasons.html' %}
+{% include 'includes/product-parts/reasons.html' with product=premise %}
 
-{% include 'includes/product-parts/frequent-questions.html' %}
+{% include 'includes/product-parts/frequent-questions.html' with product=premise %}
 
 {% include 'includes/product-parts/advertisements/advertisement-1.html' %}
 
@@ -62,7 +64,9 @@
 
 {% include 'includes/product-parts/purchases/purchases-viewed.html' %}
 
-{% include 'includes/product-parts/mini-card.html' %}
+{% include 'includes/product-parts/mini-card.html' with product=premise %}
+
+</div>
 
 </body>
 </html>

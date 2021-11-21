@@ -21,20 +21,19 @@
 
     <link rel="stylesheet" href="{% static 'css/reset.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
-    <link rel="stylesheet" href="{% static 'css/includes/header.css' %}">
-    <link rel="stylesheet" href="{% static 'css/includes/pagination.css' %}">
-    <link rel="stylesheet" href="{% static 'css/includes/sidebar.css' %}">
     <link rel="stylesheet" href="{% static 'css/categories/premises.css' %}">
     <link rel="stylesheet" href="{% static 'css/ion.rangeSlider.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
 
 
     <script src="https://kit.fontawesome.com/6c1cf59610.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{% static 'js/ion.rangeSlider.min.js' %}"></script>
-    <script src="{% static 'js/categories/premises.js' %}"></script>
 </head>
 
 <body>
+
+<div class="container-sm container-md container-lg container-xl container-xxl">
 
 {% include 'includes/header.html' %}
 
@@ -72,151 +71,62 @@
                 <h4>Более 100 проверенных мест для праздника - выбирай на свой вкус</h4>
             </div>
             <div class="sorting">
-                <select name="sorting" id="sorting">
-                    <option value="null">По популярности</option>
+                <select id="sorting">
+                    <option value="-views">По популярности</option>
+                    <option value="-raiting">По рейтингу</option>
+                    <option value="-price">Сначала дорогие</option>
+                    <option value="price">Сначала дешёвые</option>
                 </select>
             </div>
         </div>
 
-        <div class="premises-card">
+        <div class="products">
+            {% for premise in premises reversed %}
+            {% if forloop.counter|divisibleby:"3" %}
+            <div class="advertisement-one">
 
-            <div class="wrap-thumbnail">
+                <i class="fas fa-headset"></i>
 
-                <div class="discount">
-                    <h4>Подарок</h4>
+                <h3>Трудно выбрать? Оставьте заявку, мы подберём подходящие варианты</h3>
+
+                <div class="block-button">
+                    <button>Оставить заявку</button>
+                    <span>Консьерж-сервис бесплатно</span>
                 </div>
-
-                <div class="tap">
-                    <i class="fas fa-hand-pointer"></i>
-                </div>
-
-                <div class="camera">
-                    <i class="fas fa-video"></i>
-                </div>
-
-                <img src="https://imgholder.ru/1920x1080/8493a8/adb9ca&text=IMAGE+HOLDER&font=kelson" alt="Image">
-
-                <div class="blackout"></div>
-                
-            </div>
-
-            <div class="premises-card-content">
 
             </div>
+            {% endif %}
+            <div class="premises-card">
+
+                <div class="wrap-thumbnail">
+
+                    <div class="discount">
+                        <h4>Подарок</h4>
+                    </div>
+
+                    <div class="tap">
+                        <i class="fas fa-hand-pointer"></i>
+                    </div>
+
+                    <div class="camera">
+                        <i class="fas fa-video"></i>
+                    </div>
+
+                    <video controls="false" src="/static/video/video.mp4"></video>
+
+                    <div class="blackout"></div>
+
+                </div>
+
+                <div class="premises-card-content">
+                    <a href="/product/premise/{{premise.slug}}" style="width: 100%; height: 100%;">f</a>
+                </div>
+
+            </div>
+            {% endfor %}
 
         </div>
-
-        <div class="premises-card">
-
-            <div class="wrap-thumbnail">
-
-                <div class="discount">
-                    <h4>Подарок</h4>
-                </div>
-
-                <div class="tap">
-                    <i class="fas fa-hand-pointer"></i>
-                </div>
-
-                <div class="camera">
-                    <i class="fas fa-video"></i>
-                </div>
-
-                <img src="https://imgholder.ru/1920x1080/8493a8/adb9ca&text=IMAGE+HOLDER&font=kelson" alt="Image">
-
-                <div class="blackout"></div>
-
-            </div>
-
-            <div class="premises-card-content">
-
-            </div>
-
-        </div>
-
-        <div class="advertisement-one">
-
-            <i class="fas fa-headset"></i>
-
-            <h3>Трудно выбрать? Оставьте заявку, мы подберём подходящие варианты</h3>
-
-            <div class="block-button">
-                <button>Оставить заявку</button>
-                <span>Консьерж-сервис бесплатно</span>
-            </div>
-
-        </div>
-
-        <div class="premises-card">
-
-            <div class="wrap-thumbnail">
-
-                <div class="discount">
-                    <h4>Подарок</h4>
-                </div>
-
-                <div class="tap">
-                    <i class="fas fa-hand-pointer"></i>
-                </div>
-
-                <div class="camera">
-                    <i class="fas fa-video"></i>
-                </div>
-
-                <img src="https://imgholder.ru/1920x1080/8493a8/adb9ca&text=IMAGE+HOLDER&font=kelson" alt="Image">
-
-                <div class="blackout"></div>
-
-            </div>
-
-            <div class="premises-card-content">
-
-            </div>
-
-        </div>
-
-        <div class="premises-card">
-
-            <div class="wrap-thumbnail">
-
-                <div class="discount">
-                    <h4>Подарок</h4>
-                </div>
-
-                <div class="tap">
-                    <i class="fas fa-hand-pointer"></i>
-                </div>
-
-                <div class="camera">
-                    <i class="fas fa-video"></i>
-                </div>
-
-                <img src="https://imgholder.ru/1920x1080/8493a8/adb9ca&text=IMAGE+HOLDER&font=kelson" alt="Image">
-
-                <div class="blackout"></div>
-
-            </div>
-
-            <div class="premises-card-content">
-
-            </div>
-
-        </div>
-
-        <div class="advertisement-one">
-
-            <i class="fas fa-headset"></i>
-
-            <h3>Трудно выбрать? Оставьте заявку, мы подберём подходящие варианты</h3>
-
-            <div class="block-button">
-                <button>Оставить заявку</button>
-                <span>Консьерж-сервис бесплатно</span>
-            </div>
-
-        </div>
-
-        {% include 'includes/pagination.html' %}
+        {% include 'includes/pagination.html' with product_count=premises_count%}
 
     </div>
 
@@ -279,8 +189,200 @@
         </div>
 
     </div>
-
 </section>
+
+</div>
+
+<script>
+    function pagination_create(count, active) {
+        if (count >= 20) {
+            let pagination = '';
+            let numbers = (Number(count) + 20) / 20;
+            if (active === 1) {
+                pagination = '<button class="prev" style="display: none">Назад</button><ul><li class="prev" style="display: none"><</li>';
+            } else {
+                pagination = '<button class="prev">Назад</button><ul><li class="prev"><</li>';
+            }
+            for (let i = 1; i < numbers; i++) {
+                pagination += '<li>' + i + '</li>';
+            }
+            if (active === Math.floor(numbers)) {
+                pagination += '<li style="display: none">...</li><li class="next" style="display: none">></li></ul><button class="next" style="display: none">Вперёд</button>';
+            } else {
+                pagination += '<li>...</li><li class="next">></li></ul><button class="next">Вперёд</button>';
+            }
+            $('.pagination').html(pagination);
+        }
+    }
+    $(document).ready(function() {
+        var filters = '';
+        var order_by = '';
+        var data = '';
+        var post_count = $('.w-all').text();
+        pagination_create(post_count, 1);
+
+        $(".rental_price").ionRangeSlider({
+            skin: "round",
+            type: "single",
+            grid: true,
+            min: 1600,
+            max: 3200,
+            from: 2400,
+            step: 1,
+            drag_interval: true,
+            from_shadow: true,
+            grid_num: 1,
+            hide_min_max: true,
+            onFinish: function(data) {
+                if (filters == '') {
+                    filters += 'price=' + data.from;
+                } else {
+                    filters +=  ',price=' + data.from;
+                }
+                if (order_by === '') {
+                    data = {model: 'Premises', filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
+                } else {
+                    data = {model: 'Premises', order_by: order_by, filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
+                }
+                $.ajax({
+                    url: '/ajax/sidebar-filters/',
+                    data: data,
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function(data){
+                        $('#main .products').html(data.objects);
+                    }
+                });
+                return false;
+            },
+        });
+        $(".square").ionRangeSlider({
+            skin: "round",
+            type: "single",
+            grid: true,
+            min: 30,
+            max: 225,
+            from: 123,
+            step: 1,
+            drag_interval: true,
+            from_shadow: true,
+            grid_num: 1,
+            hide_min_max: true,
+            onFinish: function(data) {
+                if (filters === '') {
+                    filters += 'square=' + data.from;
+                } else {
+                    filters +=  ',square=' + data.from;
+                }
+                if (order_by === '') {
+                    data = {model: 'Premises', filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
+                } else {
+                    data = {model: 'Premises', order_by: order_by, filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
+                }
+                $.ajax({
+                    url: '/ajax/sidebar-filters/',
+                    data: data,
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function(data){
+                        $('#main .products').html(data.objects);
+                    }
+                });
+                return false;
+            },
+        });
+
+        $('.input-block').on('change', 'input', function () {
+            if ($(this).attr('type') === 'text' || $(this).attr('type') === 'date') {
+                var name = $(this).attr('data-name');
+                var val = $(this).val();
+            } else if ($(this).attr('type') === 'checkbox'){
+                if ($(this).prop('checked') === true) {
+                    var name = $(this).attr('data-name');
+                    var val = $(this).next().text();
+                } else {
+                    var name = $(this).attr('data-name');
+                    var val = '';
+                }
+            } else {
+                return;
+            }
+
+            if (filters === '') {
+                filters +=  name + '=' + val;
+            } else {
+                filters +=  ',' + name + '=' + val;
+            }
+            if (order_by === '') {
+                data = {model: 'Premises', filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
+            } else {
+                data = {model: 'Premises', order_by: order_by, filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
+            }
+            $.ajax({
+                url: '/ajax/sidebar-filters/',
+                data: data,
+                type: 'POST',
+                dataType: 'json',
+                success: function(data){
+                    $('#main .products').html(data.objects);
+                }
+            });
+            return false;
+        });
+        $('.input-block').on('change', 'select', function () {
+            let name = $(this).attr('data-name');
+            let val = $(this).val();
+
+            if (filters == '') {
+                filters +=  name + '=' + val;
+            } else {
+                filters +=  ',' + name + '=' + val;
+            }
+            if (order_by === '') {
+                data = {model: 'Premises', filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
+            } else {
+                data = {model: 'Premises', order_by: order_by, filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
+            }
+            $.ajax({
+                url: '/ajax/sidebar-filters/',
+                data: data,
+                type: 'POST',
+                dataType: 'json',
+                success: function(data){
+                    $('#main .products').html(data.objects);
+                }
+            });
+            return false;
+        });
+
+        $(document).on('click', '.tap', function () {
+            $(this).next().next().get(0).play();
+            $(this).fadeOut();
+        });
+        $(document).on('click', 'video', function () {
+            $(this).prev().prev().fadeIn();
+        });
+
+        $('#sorting').on('change', function () {
+            order_by = $(this).val();
+            if (filters === '') {
+                data = {model: 'Premises', order_by: order_by, csrfmiddlewaretoken: '{{ csrf_token }}'};
+            } else {
+                data = {model: 'Premises', order_by: order_by, filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
+            }
+            $.ajax({
+                url: '/ajax/sidebar-filters/',
+                data: data,
+                type: 'POST',
+                dataType: 'json',
+                success: function(data){
+                    $('#main .products').html(data.objects);
+                }
+            });
+            return false;
+        });
+    });
+</script>
 </body>
 
 

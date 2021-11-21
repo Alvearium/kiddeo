@@ -674,3 +674,29 @@ Build date: 2019-12-19 16:51:02
   color: silver;
   font-size: 11px;
 }
+@media (min-width: 1700px) {
+  .irs--round .irs-handle{
+    width: 25px;
+    height: 25px;
+  }
+  .irs--round .irs-grid-text {
+    color: silver;
+    font-size: 12px;
+  }
+  .irs--round .irs-single {
+    font-size: 12px;
+  }
+}
+@media (max-width: 1200px) {
+  .irs--round .irs-grid-text {
+    color: silver;
+    font-size: 10px;
+    bottom: 7px;
+  }
+  .irs--round .irs-single {
+    font-size: 8px;
+  }
+  .irs-single {
+    top: 4px;
+  }
+}

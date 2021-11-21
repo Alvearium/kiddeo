@@ -480,3 +480,171 @@ header .header-main .second-part .buttons-panel a i {
 #choose .choose-container .five {
   width: 100%;
 }
+@media (min-width: 1700px) {
+    h1 {
+        font-size: 45px;
+    }
+
+    h2 {
+        font-size: 25px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    h4 {
+        font-size: 15px;
+    }
+
+    h5 {
+        font-size: 13px;
+    }
+
+    h6 {
+        font-size: 11px;
+    }
+
+    p {
+        font-size: 10px;
+    }
+
+    label {
+        font-size: 13px;
+    }
+
+    button {
+        font-size: 12px;
+    }
+
+    input {
+        font-size: 8px;
+    }
+
+    select {
+        font-size: 8px;
+    }
+
+    nav li a {
+        font-size: 12px;
+    }
+
+    ul li a {
+        font-size: 14px;
+    }
+    header .top-bar .contact-phone span {
+        font-size: 9px;
+    }
+    header .top-bar .social-network i {
+        font-size: 30px;
+    }
+    header .header-main .first-part .search:after {
+        font-size: 26px
+    }
+    header .header-main .first-part .search input {
+        font-size: 12px;
+    }
+    header .header-main .second-part .buttons-panel a i {
+        font-size: 30px;
+    }
+    header .header-main .second-part .buttons-panel a span {
+        font-size: 10px;
+    }
+    #main .main-content .main-content-block:last-child:before {
+        font-size: 70px;
+    }
+    #more .more-container .more-box span:last-child {
+        font-size: 12px;
+    }
+    #services .services-container .service-box .handle {
+        width: 30px;
+        height: 30px;
+    }
+    #more .more-container .chief:after {
+        font-size: 35px;
+    }
+}
+@media (max-width: 1200px) {
+    h1 {
+        font-size: 30px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    h3 {
+        font-size: 14px;
+    }
+
+    h4 {
+        font-size: 11px;
+    }
+
+    h5 {
+        font-size: 10px;
+    }
+
+    h6 {
+        font-size: 8px;
+    }
+
+    p {
+        font-size: 9px;
+    }
+
+    label {
+        font-size: 10px;
+    }
+
+    button {
+        font-size: 9px;
+    }
+
+    input {
+        font-size: 5px;
+    }
+
+    select {
+        font-size: 5px;
+    }
+
+    nav li a {
+        font-size: 9px;
+    }
+
+    ul li a {
+        font-size: 11px;
+    }
+    header .top-bar .contact-phone span {
+        font-size: 7px;
+    }
+    header .top-bar .social-network i {
+        font-size: 23px;
+    }
+    header .header-main .first-part .search:after {
+        font-size: 12px
+    }
+    header .header-main .first-part .search input {
+        font-size: 9px;
+    }
+    header .header-main .second-part .buttons-panel a i {
+        font-size: 23px;
+    }
+    header .header-main .second-part .buttons-panel a span {
+        font-size: 7px;
+    }
+    #main .main-content .main-content-block:last-child:before {
+        font-size: 60px;
+    }
+    #more .more-container .more-box span:last-child {
+        font-size: 9px;
+    }
+    #services .services-container .service-box .handle {
+        width: 25px;
+        height: 25px;
+    }
+    #more .more-container .chief:after {
+        font-size: 25px;
+    }
+}

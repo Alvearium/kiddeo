@@ -1,90 +1,63 @@
+{% load static %}
 <section id="tabs">
     <div class="container">
-
+        {% if product.description_1 != Null %}
         <input type="radio" id="tab1" name="tab" checked>
         <label for="tab1">Описание</label>
+        {% endif %}
+        {% if reviews_elements != False %}
         <input type="radio" id="tab2" name="tab">
         <label for="tab2">Отзывы</label>
+        {% endif %}
+        {% if questions_elements != False %}
         <input type="radio" id="tab3" name="tab">
         <label for="tab3">Вопросы</label>
+        {% endif %}
+        {% if audit_elements != False %}
         <input type="radio" id="tab4" name="tab">
         <label for="tab4">Наш аудит</label>
+        {% endif %}
         <div class="content-container">
+            {% if product.description_1 != Null %}
             <div class="content" id="c1">
                 <h3>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                 </h3>
                 <p>
-                    Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться.
-                    Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение
-                    шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается
-                    при простой дубликации "Здесь ваш текст.. Здесь ваш текст.. Здесь ваш текст.." Многие
-                    программы электронной вёрстки и редакторы HTML используют Lorem Ipsum в качестве текста по
-                    умолчанию, так что поиск по ключевым словам "lorem ipsum" сразу показывает, как много
-                    веб-страниц всё ещё дожидаются своего настоящего рождения. За прошедшие годы текст Lorem
-                    Ipsum получил много версий. Некоторые версии появились по ошибке, некоторые - намеренно
-                    (например, юмористические варианты).
+                    {{product.description_1}}
                 </p>
                 <div class="desc-blocks">
 
                     <div class="desc-block">
                         <h3>Звуковое оборудование</h3>
-                        <h5>
-                            Колонки <br>
-                            Микрофоны <br>
-                            Караоке
-                        </h5>
+                        <h5>{{product.description_2}}</h5>
                     </div>
                     <div class="desc-block">
                         <h3>Световое и шоу оборудование</h3>
-                        <h5>
-                            Колонки <br>
-                            Микрофоны <br>
-                            Караоке
-                        </h5>
+                        <h5>{{product.description_3}}</h5>
                     </div>
                     <div class="desc-block">
                         <h3>Техническое оборудование</h3>
-                        <h5>
-                            Колонки <br>
-                            Микрофоны <br>
-                            Караоке
-                        </h5>
+                        <h5>{{product.description_4}}</h5>
                     </div>
                     <div class="desc-block">
                         <h3>Мебель</h3>
-                        <h5>
-                            Колонки <br>
-                            Микрофоны <br>
-                            Караоке
-                        </h5>
+                        <h5>{{product.description_5}}</h5>
                     </div>
                     <div class="desc-block">
                         <h3>Наши правила</h3>
-                        <h5>
-                            Давно выяснено, что при оценке дизайна и композиции читаемый
-                            текст мешает сосредоточиться. Lorem Ipsum используют потому,
-                            что тот обеспечивает более или менее стандартное заполнение
-                            шаблона, а также реальное распределение букв и пробелов в
-                            абзацах, которое не получается при простой дубликации "Здесь
-                            ваш текст.. Здесь ваш текст.. Здесь ваш текст.."
-                        </h5>
+                        <h5>{{product.description_6}}</h5>
                     </div>
                     <div class="desc-block">
                         <h3>Кухня и посуда</h3>
-                        <h5>
-                            Давно выяснено, что при оценке дизайна и композиции читаемый
-                            текст мешает сосредоточиться. Lorem Ipsum используют потому,
-                            что тот обеспечивает более или менее стандартное заполнение
-                            шаблона, а также реальное распределение букв и пробелов в
-                            абзацах, которое не получается при простой дубликации "Здесь
-                            ваш текст.. Здесь ваш текст.. Здесь ваш текст.."
-                        </h5>
+                        <h5>{{product.description_7}}</h5>
                     </div>
 
                 </div>
             </div>
+            {% endif %}
+            {% if reviews_elements != False %}
             <div class="content" id="c2">
                 <div class="review">
                     <div class="review-title">
@@ -103,9 +76,9 @@
                         (например, юмористические варианты).
                     </p>
                     <div class="review-images">
-                        <img src="/assets/images/slide1.png" alt="Image">
-                        <img src="/assets/images/slide1.png" alt="Image">
-                        <img src="/assets/images/slide1.png" alt="Image">
+                        <img src="{% static 'images/slide1.png' %}" alt="Image">
+                        <img src="{% static 'images/slide1.png' %}" alt="Image">
+                        <img src="{% static 'images/slide1.png' %}" alt="Image">
                     </div>
                 </div>
                 <div class="review">
@@ -125,13 +98,15 @@
                         (например, юмористические варианты).
                     </p>
                     <div class="review-images">
-                        <img src="/assets/images/slide1.png" alt="Image">
-                        <img src="/assets/images/slide1.png" alt="Image">
-                        <img src="/assets/images/slide1.png" alt="Image">
+                        <img src="{% static 'images/slide1.png' %}" alt="Image">
+                        <img src="{% static 'images/slide1.png' %}" alt="Image">
+                        <img src="{% static 'images/slide1.png' %}" alt="Image">
                     </div>
                 </div>
                 <div class="load_more"><h3>Показать ещё</h3></div>
             </div>
+            {% endif %}
+            {% if questions_elements != False %}
             <div class="content" id="c3">
                 <div class="question">
                     <div class="question-title">
@@ -150,9 +125,9 @@
                         (например, юмористические варианты).
                     </p>
                     <div class="question-images">
-                        <img src="/assets/images/slide1.png" alt="Image">
-                        <img src="/assets/images/slide1.png" alt="Image">
-                        <img src="/assets/images/slide1.png" alt="Image">
+                        <img src="{% static 'images/slide1.png' %}" alt="Image">
+                        <img src="{% static 'images/slide1.png' %}" alt="Image">
+                        <img src="{% static 'images/slide1.png' %}" alt="Image">
                     </div>
                 </div>
                 <div class="question">
@@ -172,60 +147,35 @@
                         (например, юмористические варианты).
                     </p>
                     <div class="question-images">
-                        <img src="/assets/images/slide1.png" alt="Image">
-                        <img src="/assets/images/slide1.png" alt="Image">
-                        <img src="/assets/images/slide1.png" alt="Image">
+                        <img src="{% static 'images/slide1.png' %}" alt="Image">
+                        <img src="{% static 'images/slide1.png' %}" alt="Image">
+                        <img src="{% static 'images/slide1.png' %}" alt="Image">
                     </div>
                 </div>
                 <div class="load_more"><h3>Показать ещё</h3></div>
             </div>
+            {% endif %}
+            {% if audit_elements != False %}
             <div class="content" id="c4">
+                {% for audit_element in audit_elements %}
                 <div class="audit">
                     <div class="audit-title">
                         <i class="fas fa-piggy-bank"></i>
-                        <h3>Проверка финансовой безопасности</h3>
+                        <h3>{{ audit_element.title }}</h3>
                     </div>
-                    <p>
-                        Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться.
-                        Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение
-                        шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается
-                        при простой дубликации "Здесь ваш текст.. Здесь ваш текст.. Здесь ваш текст.." Многие
-                        программы электронной вёрстки и редакторы HTML используют Lorem Ipsum в качестве текста по
-                        умолчанию, так что поиск по ключевым словам "lorem ipsum" сразу показывает, как много
-                        веб-страниц всё ещё дожидаются своего настоящего рождения. За прошедшие годы текст Lorem
-                        Ipsum получил много версий. Некоторые версии появились по ошибке, некоторые - намеренно
-                        (например, юмористические варианты).
-                    </p>
+                    <p>{{ audit_element.content }}</p>
                     <div class="audit-images">
-                        <img src="/assets/images/slide1.png" alt="Image">
-                        <img src="/assets/images/slide1.png" alt="Image">
-                        <img src="/assets/images/slide1.png" alt="Image">
+                        {% for audit_element_image in audit_element.premisesimage_set.all %}
+                        <img src="{{ audit_element_image.image.url }}" alt="Image">
+                        {% endfor %}
                     </div>
                 </div>
-                <div class="audit">
-                    <div class="audit-title">
-                        <i class="fas fa-tractor"></i>
-                        <h3>Проверка хозяйственно-экономической деятельности</h3>
-                    </div>
-                    <p>
-                        Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться.
-                        Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение
-                        шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается
-                        при простой дубликации "Здесь ваш текст.. Здесь ваш текст.. Здесь ваш текст.." Многие
-                        программы электронной вёрстки и редакторы HTML используют Lorem Ipsum в качестве текста по
-                        умолчанию, так что поиск по ключевым словам "lorem ipsum" сразу показывает, как много
-                        веб-страниц всё ещё дожидаются своего настоящего рождения. За прошедшие годы текст Lorem
-                        Ipsum получил много версий. Некоторые версии появились по ошибке, некоторые - намеренно
-                        (например, юмористические варианты).
-                    </p>
-                    <div class="audit-images">
-                        <img src="/assets/images/slide1.png" alt="Image">
-                        <img src="/assets/images/slide1.png" alt="Image">
-                        <img src="/assets/images/slide1.png" alt="Image">
-                    </div>
-                </div>
+                {% if forloop.counter|divisibleby:"2" %}
                 <div class="load_more"><h3>Показать ещё</h3></div>
+                {% endif %}
+                {% endfor %}
             </div>
+            {% endif %}
         </div>
     </div>
 </section>

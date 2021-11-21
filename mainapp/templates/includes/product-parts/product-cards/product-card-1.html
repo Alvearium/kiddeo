@@ -1,9 +1,11 @@
+{% load static %}
+{% load mathfilters %}
 <section id="product-card">
 
     <div class="title-container">
 
         <div class="title-block">
-            <h2>Ивента Лофт</h2>
+            <h2>{{product.title}}</h2>
             <div class="rating">
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
@@ -36,7 +38,7 @@
 
         <div class="description-block">
 
-            <h4>Просторныф лофт с фотозоной, отдельной кухней и высокими потолками. Есть все, что нужно для уютного и весёлого дня рожденияы.</h4>
+            <h4>{{product.mini_desc}}</h4>
 
         </div>
 
@@ -47,35 +49,31 @@
         <div class="block-viewing">
 
             <div class="slider-viewing">
+                {% for product_slider_image in product.premisesimage_set.all %}
                 <div class="slide">
-                    <img src="https://imgholder.ru/1920x1080/8493a8/adb9ca&text=IMAGE+HOLDER&font=kelson" alt="Image">
+                    <img src="{{product_slider_image.image.url}}" alt="Image">
                 </div>
+                {% endfor %}
+                {% if not product.video %}
                 <div class="slide">
-                    <img src="https://imgholder.ru/1920x1080/8493a8/adb9ca&text=IMAGE+HOLDER&font=kelson" alt="Image">
+                    <img src="{{product.image.url}}" alt="Image">
                 </div>
+                {% else %}
                 <div class="slide">
-                    <img src="https://imgholder.ru/1920x1080/8493a8/adb9ca&text=IMAGE+HOLDER&font=kelson" alt="Image">
-                </div>
-                <div class="slide">
-                    <img src="https://imgholder.ru/1920x1080/8493a8/adb9ca&text=IMAGE+HOLDER&font=kelson" alt="Image">
-                </div>
-                <div class="slide">
-                    <img src="https://imgholder.ru/1920x1080/8493a8/adb9ca&text=IMAGE+HOLDER&font=kelson" alt="Image">
-                </div>
-                <div class="slide">
-                    <img src="https://imgholder.ru/1920x1080/8493a8/adb9ca&text=IMAGE+HOLDER&font=kelson" alt="Image">
-                </div>
-                <div class="slide">
-                    <video autoplay controls="false" src="/assets/video/video.mp4"></video>
+                    <video controls="false" src="{{ product.video.url }}"></video>
                     <div class="camera">
                         <i class="fas fa-video"></i>
                     </div>
                     <div class="blackout"></div>
                 </div>
+                {% endif %}
             </div>
             <div class="slider-preview">
-                <div style="background: url('/assets/images/slide1.png'); background-size: cover; background-position: center">
-                </div>
+                {% if product.video %}
+                <video controls="false" src="{{ product.video.url }}"></video><div class="tap"><i class="fas fa-hand-pointer"></i></div>
+                {% else %}
+                <div style="background: url({{ product.image.url }}); background-size: cover; background-position: center"></div>
+                {% endif %}
 
             </div>
 
@@ -85,27 +83,31 @@
 
             <div class="characteristic-row">
                 <h4>Вместимость</h4>
-                <h3>50 человек</h3>
+                <h3>{{product.count_peoples}}</h3>
             </div>
 
             <div class="characteristic-row">
                 <h4>Площадь</h4>
-                <h3>85 кв.м</h3>
+                <h3>{{product.square}} кв.м</h3>
             </div>
 
             <div class="characteristic-row">
                 <h4>Этаж</h4>
-                <h3>3</h3>
+                <h3>{{product.floor}}</h3>
             </div>
 
             <div class="characteristic-row">
                 <h4>Парковка</h4>
+                {% if product.parking %}
                 <h3>Собственная</h3>
+                {% else %}
+                <h3>Общественная</h3>
+                {% endif %}
             </div>
 
             <div class="characteristic-row">
                 <h4>Адрес</h4>
-                <h3>Московский пр. 183-185</h3>
+                <h3>{{product.address}}</h3>
             </div>
 
             <div class="characteristic-row">
@@ -120,18 +122,26 @@
         <div class="block-add-cart">
 
             <div class="row-price">
-                <span class="price">2100₽</span>
+                {% if product.sale %}
+                <span class="price">{{product.sale}}₽</span>
                 <h4>за час</h4>
-                <span class="sale_price">2800₽</span>
+                <span class="sale_price">{{product.price}}₽</span>
+                {% else %}
+                <span class="price">{{product.price}}₽</span>
+                <h4>за час</h4>
+                {% endif %}
             </div>
-            <h4><span class="economy">700₽</span> ваша экономия в час</h4>
+            {% if product.sale %}
+            <h4><span class="economy">{{product.price|sub:product.sale}}₽</span> ваша экономия в час</h4>
+            {% endif %}
             <h4>Б <span class="bonus">X2</span> 80 бонусов на ваш счёт</h4>
             <button class="add_cart">Добавить в корзину</button>
-            <div class="row-cheaper">
+            {% if min_price != product.price %}
+            <a href="{{ SITE_URL }}/product/premise/{{cheaper_slug}}" class="row-cheaper">
                 <h4>Есть дешевле</h4>
-                <span>2050₽</span>
-            </div>
-
+                <span>{{min_price}}₽</span>
+            </a>
+            {% endif %}
         </div>
 
 </section>

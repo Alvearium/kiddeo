@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="{% static 'css/reset.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
     <link rel="stylesheet" href="{% static 'css/products/food.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
 
     <script src="https://kit.fontawesome.com/6c1cf59610.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -33,17 +34,19 @@
 
 <body>
 
+<div class="container-sm container-md container-lg container-xl container-xxl">
+
 {% include 'includes/header.html' %}
 
-{% include 'includes/product-parts/mini-panel.html' %}
+{% include 'includes/product-parts/mini-panel.html' with product=restaurant %}
 
-{% include 'includes/product-parts/product-cards/product-card-2.html' %}
+{% include 'includes/product-parts/product-cards/product-card-2.html' with parent=restaurant products=foods name=name subcategories=subcategories %}
 
-{% include 'includes/product-parts/descriptions.html' %}
+{% include 'includes/product-parts/descriptions.html' with product=restaurant %}
 
-{% include 'includes/product-parts/reasons.html' %}
+{% include 'includes/product-parts/reasons.html' with product=restaurant %}
 
-{% include 'includes/product-parts/frequent-questions.html' %}
+{% include 'includes/product-parts/frequent-questions.html' with product=restaurant %}
 
 {% include 'includes/product-parts/advertisements/advertisement-1.html' %}
 
@@ -59,7 +62,61 @@
 
 {% include 'includes/product-parts/purchases/purchases-viewed.html' %}
 
-{% include 'includes/product-parts/modals/add-cart.html' %}
+{% include 'includes/product-parts/modals/add-cart.html' with product=restaurant %}
+
+</div>
 
 </body>
+<script>
+    $(document).ready(function() {
+        let products = $('.products-slider');
+
+        while(products.children('div:not(.slide)').length)
+            products.children('div:not(.slide):lt(6)').wrapAll('<div class="slide">');
+
+
+        $('.products-slider').slick({
+            infinite: false,
+        });
+
+        if ($(window).width() >= 1801) {
+            $('.purchases-slider').slick({
+                slidesToShow: 6,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2000,
+            });
+        }else if ($(window).width() >= 1301) {
+            $('.purchases-slider').slick({
+                slidesToShow: 5,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2000,
+            });
+        } else {
+            $('.purchases-slider').slick({
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2000,
+            });
+        }
+        $(document).on('click', '.category', function () {
+            let select_cat = $('h3', this).text();
+            let data = {model: 'Food', category: select_cat, csrfmiddlewaretoken: '{{ csrf_token }}'};
+            $.ajax({
+                url: '/ajax/mini-products-category-filter/',
+                data: data,
+                type: 'POST',
+                dataType: 'json',
+                success: function (data) {
+                    $('.products-slider').html(data.products);
+                    while(products.children('div:not(.slide)').length)
+                        products.children('div:not(.slide):lt(6)').wrapAll('<div class="slide">');
+                }
+            });
+            return false;
+        });
+    });
+</script>
 </html>
