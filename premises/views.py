@@ -1,9 +1,14 @@
-import json
-from django.shortcuts import render
+from itertools import chain
+from django.shortcuts import redirect, render
+from animators.models import Agency
+from decorations.models import AgencyDecoration
+from mainapp.views import addPurchasesViewed
 from premises.models import Premises, PremisesImage
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, get_list_or_404
-from django.db.models import Avg, Max, Min
+from django.db.models import Min
+
+from restaurants.models import Food
 
 # Create your views here.
 def premisesView(request):
@@ -17,15 +22,18 @@ def premiseView(request, premise_slug):
     min_price = min_price_dict['price__min']
     cheaper = get_object_or_404(Premises, price=min_price)
     district_list = get_list_or_404(Premises, district = premise.district)
-
+    recomendations = productRecomendation()
     premises_images = PremisesImage.objects.filter(premises_id=premise.id)
-
+    listPurchasesViewed = addPurchasesViewed(request, premise, 'premise')
+    print(listPurchasesViewed)
     return render(request, 'premise.html', {
         "premise": premise,
         'min_price': min_price,
         'cheaper_slug': cheaper.slug,
         'premises_images': premises_images,
         'district_list': district_list,
+        'recomendations': recomendations,
+        'listPurchasesViewed': listPurchasesViewed,
     })
 
 def SplitStringAndFilteringWithoutOrder(string):
@@ -73,5 +81,16 @@ def premisesSidebarFilters(request):
         'count': count
     }
 
-
     return JsonResponse(responseData)
+
+def productRecomendation():
+
+    result_list = []
+
+    result_list.append(Premises.objects.order_by('?').first())
+    result_list.append(Food.objects.order_by('?').first())
+    result_list.append(AgencyDecoration.objects.order_by('?').first())
+    result_list.append(Agency.objects.order_by('?').first())
+
+    return(result_list)
+
