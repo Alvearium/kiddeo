@@ -1,3 +1,4 @@
+{% load static %}
 <section id="tabs">
     <div class="container">
 
@@ -16,71 +17,33 @@
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                 </h3>
                 <p>
-                    Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться.
-                    Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение
-                    шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается
-                    при простой дубликации "Здесь ваш текст.. Здесь ваш текст.. Здесь ваш текст.." Многие
-                    программы электронной вёрстки и редакторы HTML используют Lorem Ipsum в качестве текста по
-                    умолчанию, так что поиск по ключевым словам "lorem ipsum" сразу показывает, как много
-                    веб-страниц всё ещё дожидаются своего настоящего рождения. За прошедшие годы текст Lorem
-                    Ipsum получил много версий. Некоторые версии появились по ошибке, некоторые - намеренно
-                    (например, юмористические варианты).
+                    {{premise.description_1}}
                 </p>
                 <div class="desc-blocks">
 
                     <div class="desc-block">
                         <h3>Звуковое оборудование</h3>
-                        <h5>
-                            Колонки <br>
-                            Микрофоны <br>
-                            Караоке
-                        </h5>
+                        <h5>{{premise.description_2}}</h5>
                     </div>
                     <div class="desc-block">
                         <h3>Световое и шоу оборудование</h3>
-                        <h5>
-                            Колонки <br>
-                            Микрофоны <br>
-                            Караоке
-                        </h5>
+                        <h5>{{premise.description_3}}</h5>
                     </div>
                     <div class="desc-block">
                         <h3>Техническое оборудование</h3>
-                        <h5>
-                            Колонки <br>
-                            Микрофоны <br>
-                            Караоке
-                        </h5>
+                        <h5>{{premise.description_4}}</h5>
                     </div>
                     <div class="desc-block">
                         <h3>Мебель</h3>
-                        <h5>
-                            Колонки <br>
-                            Микрофоны <br>
-                            Караоке
-                        </h5>
+                        <h5>{{premise.description_5}}</h5>
                     </div>
                     <div class="desc-block">
                         <h3>Наши правила</h3>
-                        <h5>
-                            Давно выяснено, что при оценке дизайна и композиции читаемый
-                            текст мешает сосредоточиться. Lorem Ipsum используют потому,
-                            что тот обеспечивает более или менее стандартное заполнение
-                            шаблона, а также реальное распределение букв и пробелов в
-                            абзацах, которое не получается при простой дубликации "Здесь
-                            ваш текст.. Здесь ваш текст.. Здесь ваш текст.."
-                        </h5>
+                        <h5>{{premise.description_6}}</h5>
                     </div>
                     <div class="desc-block">
                         <h3>Кухня и посуда</h3>
-                        <h5>
-                            Давно выяснено, что при оценке дизайна и композиции читаемый
-                            текст мешает сосредоточиться. Lorem Ipsum используют потому,
-                            что тот обеспечивает более или менее стандартное заполнение
-                            шаблона, а также реальное распределение букв и пробелов в
-                            абзацах, которое не получается при простой дубликации "Здесь
-                            ваш текст.. Здесь ваш текст.. Здесь ваш текст.."
-                        </h5>
+                        <h5>{{premise.description_7}}</h5>
                     </div>
 
                 </div>
@@ -103,9 +66,9 @@
                         (например, юмористические варианты).
                     </p>
                     <div class="review-images">
-                        <img src="/assets/images/slide1.png" alt="Image">
-                        <img src="/assets/images/slide1.png" alt="Image">
-                        <img src="/assets/images/slide1.png" alt="Image">
+                        <img src="{% static 'images/slide1.png' %}" alt="Image">
+                        <img src="{% static 'images/slide1.png' %}" alt="Image">
+                        <img src="{% static 'images/slide1.png' %}" alt="Image">
                     </div>
                 </div>
                 <div class="review">
@@ -125,9 +88,9 @@
                         (например, юмористические варианты).
                     </p>
                     <div class="review-images">
-                        <img src="/assets/images/slide1.png" alt="Image">
-                        <img src="/assets/images/slide1.png" alt="Image">
-                        <img src="/assets/images/slide1.png" alt="Image">
+                        <img src="{% static 'images/slide1.png' %}" alt="Image">
+                        <img src="{% static 'images/slide1.png' %}" alt="Image">
+                        <img src="{% static 'images/slide1.png' %}" alt="Image">
                     </div>
                 </div>
                 <div class="load_more"><h3>Показать ещё</h3></div>
@@ -150,9 +113,9 @@
                         (например, юмористические варианты).
                     </p>
                     <div class="question-images">
-                        <img src="/assets/images/slide1.png" alt="Image">
-                        <img src="/assets/images/slide1.png" alt="Image">
-                        <img src="/assets/images/slide1.png" alt="Image">
+                        <img src="{% static 'images/slide1.png' %}" alt="Image">
+                        <img src="{% static 'images/slide1.png' %}" alt="Image">
+                        <img src="{% static 'images/slide1.png' %}" alt="Image">
                     </div>
                 </div>
                 <div class="question">
@@ -172,9 +135,9 @@
                         (например, юмористические варианты).
                     </p>
                     <div class="question-images">
-                        <img src="/assets/images/slide1.png" alt="Image">
-                        <img src="/assets/images/slide1.png" alt="Image">
-                        <img src="/assets/images/slide1.png" alt="Image">
+                        <img src="{% static 'images/slide1.png' %}" alt="Image">
+                        <img src="{% static 'images/slide1.png' %}" alt="Image">
+                        <img src="{% static 'images/slide1.png' %}" alt="Image">
                     </div>
                 </div>
                 <div class="load_more"><h3>Показать ещё</h3></div>
@@ -197,9 +160,9 @@
                         (например, юмористические варианты).
                     </p>
                     <div class="audit-images">
-                        <img src="/assets/images/slide1.png" alt="Image">
-                        <img src="/assets/images/slide1.png" alt="Image">
-                        <img src="/assets/images/slide1.png" alt="Image">
+                        <img src="{% static 'images/slide1.png' %}" alt="Image">
+                        <img src="{% static 'images/slide1.png' %}" alt="Image">
+                        <img src="{% static 'images/slide1.png' %}" alt="Image">
                     </div>
                 </div>
                 <div class="audit">
@@ -219,9 +182,9 @@
                         (например, юмористические варианты).
                     </p>
                     <div class="audit-images">
-                        <img src="/assets/images/slide1.png" alt="Image">
-                        <img src="/assets/images/slide1.png" alt="Image">
-                        <img src="/assets/images/slide1.png" alt="Image">
+                        <img src="{% static 'images/slide1.png' %}" alt="Image">
+                        <img src="{% static 'images/slide1.png' %}" alt="Image">
+                        <img src="{% static 'images/slide1.png' %}" alt="Image">
                     </div>
                 </div>
                 <div class="load_more"><h3>Показать ещё</h3></div>

@@ -2,7 +2,7 @@
     <div class="title-container">
 
         <div class="title-block">
-            <h2>Ивента Лофт</h2>
+            <h2>{{premise.title}}</h2>
             <div class="rating">
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
@@ -37,7 +37,11 @@
     <div class="add-to-cart-block">
 
         <div class="row-price">
-            <span class="price">2100₽</span>
+            {% if not premise.sale %}
+            <span class="price">{{premise.price}}₽</span>
+            {% else %}
+            <span class="sale_price">{{premise.sale}}₽</span>
+            {% endif %}
             <h4>за час</h4>
         </div>
 
@@ -49,7 +53,7 @@
 
     <div class="description-block">
 
-        <h5>Просторныф лофт с фотозоной, отдельной кухней и высокими потолками. Есть все, что нужно для уютного и весёлого дня рождения.</h5>
+        <h5>{{premise.mini_desc}}</h5>
 
     </div>
 </section>

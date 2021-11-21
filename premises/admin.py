@@ -11,6 +11,7 @@ class PremisesImageInline(admin.TabularInline):
 @admin.register(Premises)
 class PremisesAdmin(admin.ModelAdmin):
     inlines = [PremisesImageInline]
+    prepopulated_fields = {"slug": ("title",)}
 
 @admin.register(PremisesImage)
 class PremisesImage(admin.ModelAdmin):

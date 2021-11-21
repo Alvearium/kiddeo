@@ -1,8 +1,16 @@
 $(document).ready(function() {
     $('.slider-viewing').slick({
         vertical: true,
+        infinite: true,
         verticalSwiping: true,
-        slidesToShow: 6,
+        slidesToShow: 5,
+    });
+    $(document).on('click', '.tap', function () {
+        $(this).prev().get(0).play();
+        $(this).fadeOut();
+    });
+    $(document).on('click', 'video', function () {
+        $(this).next().fadeIn();
     });
     $('body').on('click', '.slide', function () {
         let type = $(this).children();
