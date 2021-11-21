@@ -1,9 +1,14 @@
 import json
-from django.shortcuts import render
-from premises.models import Premises, PremisesImage, Audits, AuditElement
+from itertools import chain
+from django.shortcuts import redirect, render
 from django.http import JsonResponse
-from django.shortcuts import get_object_or_404
-from django.db.models import Avg, Max, Min
+from django.db.models import Min
+from mainapp.views import addPurchasesViewed
+from django.shortcuts import get_object_or_404, get_list_or_404
+from premises.models import Premises, PremisesImage, Audits, AuditElement
+from animators.models import Agency, Animator
+from restaurants.models import Restaurant, Food
+from decorations.models import AgencyDecoration, Decoration
 
 # Create your views here.
 def premisesView(request):
@@ -16,8 +21,10 @@ def premiseView(request, premise_slug):
     min_price_dict = Premises.objects.all().aggregate(Min('price'))
     min_price = min_price_dict['price__min']
     cheaper = get_object_or_404(Premises, price=min_price)
-
+    recommendations = productRecommendation()
     audit = Audits.objects.filter(premise_id=premise.id)
+    listPurchasesViewed = addPurchasesViewed(request, premise, 'premise')
+    district_list = get_list_or_404(Premises, district = premise.district)
 
     if not audit:
         audit_elements = False
@@ -28,5 +35,19 @@ def premiseView(request, premise_slug):
         "premise": premise,
         'min_price': min_price,
         'cheaper_slug': cheaper.slug,
-        'audit_elements': audit_elements
+        'audit_elements': audit_elements,
+        'district_list': district_list,
+        'recommendations': recommendations,
+        'listPurchasesViewed': listPurchasesViewed
     })
+
+def productRecommendation():
+
+    result_list = []
+
+    result_list.append(Premises.objects.order_by('?').first())
+    result_list.append(Food.objects.order_by('?').first())
+    result_list.append(AgencyDecoration.objects.order_by('?').first())
+    result_list.append(Agency.objects.order_by('?').first())
+
+    return(result_list)
