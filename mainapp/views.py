@@ -1,9 +1,11 @@
+from .cart import Cart
 from django.http import JsonResponse
 from django.shortcuts import render
 from premises.models import Premises
 from animators.models import Agency, Animator
 from restaurants.models import Restaurant, Food
 from decorations.models import AgencyDecoration, Decoration
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 def indexView(request):
@@ -11,6 +13,17 @@ def indexView(request):
 
 def cartView(request):
     return render(request, 'cart.html', {})
+
+def AddCart(request):
+    responseData  = {}
+    model_name = request.POST.get('model', None)
+    product_id = request.POST.get('product_id', None)
+    # ------------------------------
+    cart = Cart(request)
+    product = get_object_or_404(Premises, id = product_id)
+    cart.add(product=product, option='premise')
+
+    return JsonResponse(responseData)
 
 def checkPurchasesViewedItem(request, name, id):
     for item in request.session['viewed_products']:

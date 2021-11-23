@@ -6,7 +6,7 @@ from restaurants.views import foodsView, foodView
 from premises.views import premisesView, premiseView
 from animators.views import animatorsView, animatorView
 from decorations.views import decorationsView, decorationView
-from mainapp.views import indexView, cartView, MiniProductsCategoryFilter, SidebarFilters
+from mainapp.views import indexView, cartView, MiniProductsCategoryFilter, SidebarFilters, AddCart
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -20,6 +20,7 @@ urlpatterns = [
     path('product/premise/<slug:premise_slug>/', premiseView, name = 'premiseProduct'),
     path('product/animator/<slug:animator_slug>/', animatorView, name = 'animatorProduct'),
     path('product/decoration/<slug:decoration_slug>', decorationView, name = 'decorationProduct'),
+    path('ajax/add-cart/', AddCart, name = 'addCart'),
     path('ajax/sidebar-filters/', SidebarFilters, name = 'SidebarFilters'),
     path('ajax/mini-products-category-filter/', MiniProductsCategoryFilter, name = 'MiniProductsCategoryFilter'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

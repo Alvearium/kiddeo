@@ -1,5 +1,6 @@
 import json
 from itertools import chain
+from mainapp.cart import Cart
 from django.shortcuts import redirect, render
 from django.http import JsonResponse
 from django.db.models import Min
@@ -51,3 +52,7 @@ def productRecommendation():
     result_list.append(Agency.objects.order_by('?').first())
 
     return(result_list)
+
+
+
+# print(request.session['cart'])
