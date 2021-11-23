@@ -64,3 +64,39 @@ class Animator(models.Model):
 
     def __str__(self):
         return self.name
+    
+class Audits(models.Model):
+
+    class Meta:
+        verbose_name = 'Аудит'
+        verbose_name_plural = 'Аудиты'
+
+    agency = models.ForeignKey(Agency, verbose_name='Агенство Аниматоров', on_delete=models.CASCADE, null = True)
+    title = models.CharField(max_length= 255, verbose_name='Название', null = True)
+
+
+    def __str__(self):
+        return self.title
+
+class AuditElement(models.Model):
+
+    class Meta:
+        verbose_name = 'Элемент аудита'
+        verbose_name_plural = 'Элементы аудитов'
+
+    audit = models.ForeignKey(Audits, verbose_name='Аудит', on_delete=models.CASCADE, null = True)
+    title = models.CharField(max_length= 255, verbose_name='Название', null = True)
+    content = models.TextField(verbose_name = 'Текст', null = True)
+
+    def __str__(self):
+            return self.title
+
+class AgencyImage(models.Model):
+
+    class Meta:
+        verbose_name = 'Изображение'
+        verbose_name_plural = 'Изображения'
+
+    agency = models.ForeignKey(Agency, verbose_name = 'Агенство Аниматоров', on_delete = models.CASCADE, null = True)
+    audit_element = models.ForeignKey(AuditElement, verbose_name = 'Элемент аудита', on_delete = models.CASCADE, null = True)
+    image = models.ImageField(verbose_name = 'Изображение')

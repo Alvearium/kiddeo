@@ -1,5 +1,7 @@
 from django.db import models
+from django.urls.base import reverse
 from mainapp.models import Category
+
 
 # Create your models here.
 class Premises(models.Model):
