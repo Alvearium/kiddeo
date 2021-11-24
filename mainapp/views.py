@@ -25,6 +25,24 @@ def AddCart(request):
 
     return JsonResponse(responseData)
 
+def OutputModalData(request):
+     result = ''
+     model_name = request.POST.get('model', None)
+     product_id = request.POST.get('product_id', None)
+     model = globals()[model_name.capitalize()]
+     product = get_object_or_404(model, id = product_id)
+     result = '<div class="modal-add-cart"><div class="close"><i class="fas fa-times"></i></div><div class="main-part"><div class="main-block"><div class="title"><h2>' + product.name + '</h2>'
+     if model_name == 'animator':
+        result += '<span>' + str(product.duration) +'ч</span>'
+     elif model_name == 'food':
+        result += '<span>' + str(product.duration) + 'г</span>'
+     result += '</div><div class="description"><ul>' + product.description + '</ul></div><div class="characteristics-block"><div class="characteristics"><p>' + product.structure + '</p></div><div class="feature"><i class="fas fa-shopping-cart"></i><p>' +  product.delivery + '</p></div></div></div><div class="img-container"><img src="' + product.image.url + '" alt="Image"></div></div><textarea name="order_comment" id="order_comment">Ваши пожелания и комментарии к заказу</textarea><div class="buttons-block"><button class="add_cart">Добавить в корзину <span>' + str(product.price) + '</span></button><button class="minus">-</button><button disabled>1</button><button class="plus">+</button></div></div>'
+     responseData  = {
+        'result': result,
+     }
+     return JsonResponse(responseData)
+
+
 def checkPurchasesViewedItem(request, name, id):
     for item in request.session['viewed_products']:
         if item["title"] == name and item["id"] == id:
