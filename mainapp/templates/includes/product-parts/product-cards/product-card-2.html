@@ -94,11 +94,11 @@
     <div class="products-slider">
 
         {% for product in products reversed %}
-        <div class="product" category="{{product.subcategory}}">
+        <div class="product" category="{{product.subcategory}}" data-slug="{{parent.slug}}" data-model="{{name}}" data-product="{{product.id}}">
 
             <div class="product-block">
 
-                <h3>{{ product.name }}</h3>
+                <h3>{{ product.title }}</h3>
 
                 <div class="product-desc">
 

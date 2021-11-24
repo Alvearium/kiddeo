@@ -135,7 +135,7 @@
             <h4><span class="economy">{{product.price|sub:product.sale}}₽</span> ваша экономия в час</h4>
             {% endif %}
             <h4>Б <span class="bonus">X2</span> 80 бонусов на ваш счёт</h4>
-            <button class="add_cart" data-product="{{product.id}}" data-model="Premises">Добавить в корзину</button>
+            <button class="add_cart" data-product="{{product.id}}" data-slug="product.slug" data-model="Premises" data-quantity="1">Добавить в корзину</button>
             {% if min_price != product.price %}
             <a href="{{ SITE_URL }}/product/premise/{{cheaper_slug}}" class="row-cheaper">
                 <h4>Есть дешевле</h4>
@@ -151,7 +151,9 @@
         $(document).on('click','.add_cart', function () {
             let product = $(this).attr('data-product');
             let model = $(this).attr('data-model');
-            let data = {product_id: product, model_name: model, csrfmiddlewaretoken: '{{ csrf_token }}'}
+            let slug = $(this).attr('data-slug');
+            let quantity = $(this).attr('data-quantity');
+            let data = {product_id: product, slug: slug, model_name: model, quantity: quantity, csrfmiddlewaretoken: '{{ csrf_token }}'}
 
             $.ajax({
                 url: '/ajax/add-cart/',

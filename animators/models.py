@@ -52,7 +52,7 @@ class Animator(models.Model):
     agency = models.ForeignKey(Agency, verbose_name='Агенство', on_delete=models.CASCADE)
     category = models.ForeignKey(Category, verbose_name='Категория', on_delete=models.CASCADE,)
     subcategory = models.CharField(max_length=255, verbose_name='Подкатегория', null = True)
-    name = models.CharField(max_length=255, verbose_name='Название')
+    title = models.CharField(max_length=255, verbose_name='Название')
     image = models.ImageField(verbose_name = 'Изображение')
     price = models.DecimalField(max_digits=9, decimal_places=0, verbose_name='Цена', null = True)
     sale = models.DecimalField(max_digits=9, decimal_places=0, verbose_name='Скидка', null = True)
@@ -63,8 +63,8 @@ class Animator(models.Model):
     delivery = models.TextField(verbose_name = 'Доставка')
 
     def __str__(self):
-        return self.name
-    
+        return self.title
+
 class Audits(models.Model):
 
     class Meta:
