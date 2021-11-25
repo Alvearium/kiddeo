@@ -5,7 +5,7 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import force_text
 
-from premises.models import Premises, PremisesImage, Audits, AuditElement
+from premises.models import Premises, PremisesImage, Questions, Audits, AuditElement
 
 # Register your models here.
 class PremisesImageInline(admin.TabularInline):
@@ -31,6 +31,11 @@ class AuditElementInline(admin.StackedInline):
         return _("(Нажмите Сохранить и продолжить редактирование, чтобы вставить изображения)")
     get_edit_link.short_description = _("Изображения")
 
+class QuestionsInline(admin.TabularInline):
+    model = PremisesImage
+    fields = ["image"]
+    extra = 0
+
 class AuditElementImagesInline(admin.TabularInline):
     model = PremisesImage
     fields = ["image"]
@@ -40,6 +45,10 @@ class AuditElementImagesInline(admin.TabularInline):
 class PremisesAdmin(admin.ModelAdmin):
     inlines = [PremisesImageInline]
     prepopulated_fields = {"slug": ("title",)}
+
+@admin.register(Questions)
+class QuestionsAdmin(admin.ModelAdmin):
+    inlines = [QuestionsInline]
 
 @admin.register(Audits)
 class AuditsAdmin(admin.ModelAdmin):
