@@ -67,7 +67,7 @@
                     </div>
                     <p>{{ review.content }}</p>
                     <div class="review-images">
-                        {% for review_image in review.premisesimage_set.all %}
+                        {% for review_image in review.imagelibrary_set.all %}
                         <img src="{{ review_image.image.url }}" alt="Image">
                         {% endfor %}
                     </div>
@@ -88,7 +88,7 @@
                     </div>
                     <p>{{ question.content }}</p>
                     <div class="question-images">
-                        {% for question_image in question.premisesimage_set.all %}
+                        {% for question_image in question.imagelibrary_set.all %}
                         <img src="{{ question_image.image.url }}" alt="Image">
                         {% endfor %}
                     </div>
@@ -109,7 +109,7 @@
                     </div>
                     <p>{{ audit_element.content }}</p>
                     <div class="audit-images">
-                        {% for audit_element_image in audit_element.premisesimage_set.all %}
+                        {% for audit_element_image in audit_element.imagelibrary_set.all %}
                         <img src="{{ audit_element_image.image.url }}" alt="Image">
                         {% endfor %}
                     </div>
@@ -123,4 +123,17 @@
         </div>
     </div>
 </section>
+<script>
+    $(document).ready(function() {
+        let tabs = $('input[name="tab"]');
+
+        if (tabs.length == 3) {
+            $('body .container label').css('width', '33.333333%');
+        } else if (tabs.length == 2) {
+            $('body .container label').css('width', '50%');
+        } else if (tabs.length == 1) {
+            $('body .container label').css('width', '100%');
+        }
+    });
+</script>
 

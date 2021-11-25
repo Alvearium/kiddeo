@@ -115,7 +115,7 @@ class Questions(models.Model):
     def __str__(self):
         return self.title
 
-class PremisesImage(models.Model):
+class ImageLibrary(models.Model):
 
     class Meta:
         verbose_name = 'Изображение'

@@ -1,15 +1,11 @@
 import json
 from itertools import chain
-from mainapp.cart import Cart
 from django.shortcuts import redirect, render
 from django.http import JsonResponse
 from django.db.models import Min
-from mainapp.views import addPurchasesViewed
+from mainapp.views import addPurchasesViewed, productRecommendation
 from django.shortcuts import get_object_or_404, get_list_or_404
-from premises.models import Premises, PremisesImage, Reviews, Questions, Audits, AuditElement
-from animators.models import Agency, Animator
-from restaurants.models import Restaurant, Food
-from decorations.models import AgencyDecoration, Decoration
+from premises.models import Premises, ImageLibrary, Reviews, Questions, Audits, AuditElement
 
 # Create your views here.
 def premisesView(request):
@@ -22,10 +18,10 @@ def premiseView(request, premise_slug):
     min_price_dict = Premises.objects.all().aggregate(Min('price'))
     min_price = min_price_dict['price__min']
     cheaper = get_object_or_404(Premises, price=min_price)
-    recommendations = productRecommendation()
-    audit = Audits.objects.filter(premise_id=premise.id)
+    audit = Audits.objects.filter(premise_id=premise.id)[:2]
     reviews = Reviews.objects.filter(premise_id=premise.id)[:2]
     questions = Questions.objects.filter(premise_id=premise.id)[:2]
+    recommendations = productRecommendation()
     listPurchasesViewed = addPurchasesViewed(request, premise, 'premise')
     district_list = get_list_or_404(Premises, district = premise.district)
 
@@ -51,17 +47,6 @@ def premiseView(request, premise_slug):
         'recommendations': recommendations,
         'listPurchasesViewed': listPurchasesViewed
     })
-
-def productRecommendation():
-
-    result_list = []
-
-    result_list.append(Premises.objects.order_by('?').first())
-    result_list.append(Food.objects.order_by('?').first())
-    result_list.append(AgencyDecoration.objects.order_by('?').first())
-    result_list.append(Agency.objects.order_by('?').first())
-
-    return(result_list)
 
 
 

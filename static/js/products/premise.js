@@ -1,14 +1,4 @@
 $(document).ready(function() {
-    let tabs = $('input[name="tab"]');
-
-    if (tabs.length == 3) {
-        $('body .container label').css('width', '33.333333%');
-    } else if (tabs.length == 2) {
-        $('body .container label').css('width', '50%');
-    } else if (tabs.length == 1) {
-        $('body .container label').css('width', '100%');
-    }
-
     $('.slider-viewing').slick({
         vertical: true,
         infinite: true,

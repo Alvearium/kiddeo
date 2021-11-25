@@ -5,13 +5,9 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import force_text
 
-from premises.models import Premises, PremisesImage, Questions, Audits, AuditElement
+from premises.models import Premises, ImageLibrary, Reviews, Questions, Audits, AuditElement
 
-# Register your models here.
-class PremisesImageInline(admin.TabularInline):
-    model = PremisesImage
-    extra = 0
-
+# Register audits
 class AuditElementInline(admin.StackedInline):
     model = AuditElement
     extra = 0
@@ -31,24 +27,45 @@ class AuditElementInline(admin.StackedInline):
         return _("(Нажмите Сохранить и продолжить редактирование, чтобы вставить изображения)")
     get_edit_link.short_description = _("Изображения")
 
-class QuestionsInline(admin.TabularInline):
-    model = PremisesImage
+class AuditElementImagesInline(admin.TabularInline):
+    model = ImageLibrary
     fields = ["image"]
     extra = 0
 
-class AuditElementImagesInline(admin.TabularInline):
-    model = PremisesImage
+# Register questions
+class QuestionsInline(admin.TabularInline):
+    model = ImageLibrary
+    fields = ["image"]
+    extra = 0
+
+# Register reviews
+class ReviewsImageInline(admin.TabularInline):
+    model = ImageLibrary
+    fields = ["image"]
+    extra = 0
+
+class ReviewsInline(admin.TabularInline):
+    model = Reviews
+    extra = 0
+
+# Register Image Library
+class PremisesImageInline(admin.TabularInline):
+    model = ImageLibrary
     fields = ["image"]
     extra = 0
 
 @admin.register(Premises)
 class PremisesAdmin(admin.ModelAdmin):
-    inlines = [PremisesImageInline]
+    inlines = [PremisesImageInline, ReviewsInline]
     prepopulated_fields = {"slug": ("title",)}
 
 @admin.register(Questions)
 class QuestionsAdmin(admin.ModelAdmin):
     inlines = [QuestionsInline]
+
+@admin.register(Reviews)
+class ReviewsAdmin(admin.ModelAdmin):
+    inlines = [ReviewsImageInline]
 
 @admin.register(Audits)
 class AuditsAdmin(admin.ModelAdmin):
@@ -58,7 +75,7 @@ class AuditsAdmin(admin.ModelAdmin):
 class AuditElement(admin.ModelAdmin):
     inlines = [AuditElementImagesInline]
 
-@admin.register(PremisesImage)
-class PremisesImage(admin.ModelAdmin):
+@admin.register(ImageLibrary)
+class ImageLibrary(admin.ModelAdmin):
     pass
 

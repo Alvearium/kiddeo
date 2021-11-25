@@ -92,12 +92,40 @@ class AuditElement(models.Model):
     def __str__(self):
             return self.title
 
-class AgencyImage(models.Model):
+class Reviews(models.Model):
+
+    class Meta:
+        verbose_name = 'Отзыв'
+        verbose_name_plural = 'Отзывы'
+
+    agency = models.ForeignKey(AgencyDecoration, verbose_name='Агенство', on_delete=models.CASCADE)
+    title = models.CharField(max_length= 255, verbose_name='Название')
+    content = models.TextField(verbose_name = 'Текст')
+
+    def __str__(self):
+        return self.title
+
+class Questions(models.Model):
+
+    class Meta:
+        verbose_name = 'Вопрос'
+        verbose_name_plural = 'Вопросы'
+
+    agency = models.ForeignKey(AgencyDecoration, verbose_name='Агенство', on_delete=models.CASCADE)
+    title = models.CharField(max_length= 255, verbose_name='Название')
+    content = models.TextField(verbose_name = 'Текст')
+
+    def __str__(self):
+        return self.title
+
+class ImageLibrary(models.Model):
 
     class Meta:
         verbose_name = 'Изображение'
         verbose_name_plural = 'Изображения'
 
     agency = models.ForeignKey(AgencyDecoration, verbose_name = 'Агенство', on_delete = models.CASCADE, null = True)
+    reviews = models.ForeignKey(Reviews, verbose_name = 'Отзывы', on_delete = models.CASCADE, null = True)
+    question =  models.ForeignKey(Questions, verbose_name = 'Вопрос', on_delete = models.CASCADE, null = True)
     audit_element = models.ForeignKey(AuditElement, verbose_name = 'Элемент аудита', on_delete = models.CASCADE, null = True)
     image = models.ImageField(verbose_name = 'Изображение')

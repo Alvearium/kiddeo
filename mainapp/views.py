@@ -46,7 +46,7 @@ def OutputModalData(request):
      }
      return JsonResponse(responseData)
 
-
+#Purchases
 def checkPurchasesViewedItem(request, name, id):
     for item in request.session['viewed_products']:
         if item["title"] == name and item["id"] == id:
@@ -80,7 +80,16 @@ def addPurchasesViewed(request, product, model):
 
     return  request.session['viewed_products']
 
+def productRecommendation():
 
+    result_list = []
+
+    result_list.append(Premises.objects.order_by('?').first())
+    result_list.append(Food.objects.order_by('?').first())
+    result_list.append(AgencyDecoration.objects.order_by('?').first())
+    result_list.append(Agency.objects.order_by('?').first())
+
+    return(result_list)
 #AJAX functions
 def SplitStringAndFilteringWithoutOrder(string, model):
     if ',' in string:

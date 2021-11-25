@@ -4,13 +4,9 @@ from django.utils.encoding import force_text
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
-from animators.models import Agency, Animator, Audits, AgencyImage, AuditElement
+from animators.models import Agency, Animator, Reviews, Questions, Audits, AuditElement, ImageLibrary
 
 # Register your models here.
-class AgencyImageInline(admin.TabularInline):
-    model = AgencyImage
-    extra = 0
-
 class AuditElementInline(admin.StackedInline):
     model = AuditElement
     extra = 0
@@ -30,19 +26,48 @@ class AuditElementInline(admin.StackedInline):
         return _("(Нажмите Сохранить и продолжить редактирование, чтобы вставить изображения)")
     get_edit_link.short_description = _("Изображения")
 
-@admin.register(Animator)
-class AnimatorAdmin(admin.ModelAdmin):
-    pass
-
 class AuditElementImagesInline(admin.TabularInline):
-    model = AgencyImage
+    model = ImageLibrary
     fields = ["image"]
+    extra = 0
+
+# Register questions
+class QuestionsInline(admin.TabularInline):
+    model = ImageLibrary
+    fields = ["image"]
+    extra = 0
+
+# Register reviews
+class ReviewsImageInline(admin.TabularInline):
+    model = ImageLibrary
+    fields = ["image"]
+    extra = 0
+
+class ReviewsInline(admin.TabularInline):
+    model = Reviews
+    extra = 0
+
+# Register Image Library
+class AgencyImageInline(admin.TabularInline):
+    model = ImageLibrary
     extra = 0
 
 @admin.register(Agency)
 class AgencyAdmin(admin.ModelAdmin):
-    inlines = [AgencyImageInline]
+    inlines = [AgencyImageInline, ReviewsInline]
     prepopulated_fields = {"slug": ("title",)}
+
+@admin.register(Animator)
+class AnimatorAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Questions)
+class QuestionsAdmin(admin.ModelAdmin):
+    inlines = [QuestionsInline]
+
+@admin.register(Reviews)
+class ReviewsAdmin(admin.ModelAdmin):
+    inlines = [ReviewsImageInline]
 
 @admin.register(Audits)
 class AuditsAdmin(admin.ModelAdmin):
@@ -52,6 +77,7 @@ class AuditsAdmin(admin.ModelAdmin):
 class AuditElement(admin.ModelAdmin):
     inlines = [AuditElementImagesInline]
 
-@admin.register(AgencyImage)
-class AgencyImage(admin.ModelAdmin):
+@admin.register(ImageLibrary)
+class ImageLibrary(admin.ModelAdmin):
     pass
+
