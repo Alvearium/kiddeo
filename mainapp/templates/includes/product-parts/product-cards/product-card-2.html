@@ -113,9 +113,10 @@
 
                     <div class="price">
                         {% if product.sale %}
-                        <span class="sale">{{ product.sale }}₽</span>
+                        <span class="sale">{{ product.price }}₽</span>
+                        <span>{{ product.sale }}₽</span>
                         {% endif %}
-                        <span>{{ product.price }}₽</span>
+                        <span class="sale">{{ product.price }}₽</span>
                     </div>
 
                 </div>

@@ -24,29 +24,35 @@ def cartView(request):
 def AddCart(request):
     responseData  = {}
     slug = request.POST.get('slug', None)
+    if not slug:
+        slug = 0
     parent = request.POST.get('parent', None)
-    model_name = request.POST.get('model_name', None)
+    if not parent:
+        parent = 0
     quantity = request.POST.get('quantity', None)
+    if not quantity:
+        quantity = 1
+    model_name = request.POST.get('model_name', None)
     product_id = request.POST.get('product_id', None)
     model = globals()[model_name.capitalize()]
+    product = get_object_or_404(model, id = product_id)
     # ------------------------------
     cart = Cart(request)
-    product = get_object_or_404(model, id = product_id)
 
-    if not parent:
-        cart.add(product=product, option=model_name, slug=slug, quantity=quantity)
-    else:
-        cart.add(product=product, option=model_name, parent=parent, slug=slug, quantity=quantity)
+    cart.add(product=product, option=model_name, parent=parent, slug=slug, quantity=quantity)
 
     return JsonResponse(responseData)
 
 def DeleteCart(request):
     responseData  = {}
     product = request.POST.get('product', None)
+    quantity = request.POST.get('quantity', None)
+    if not quantity:
+        quantity = 'all'
     # ------------------------------
     cart = Cart(request)
 
-    cart.remove(product=product)
+    cart.remove(product=product, quantity=quantity)
 
     return JsonResponse(responseData)
 
@@ -63,7 +69,12 @@ def OutputModalData(request):
         result += '<span>' + str(product.duration) +'ч</span>'
      elif model_name == 'food':
         result += '<span>' + str(product.duration) + 'г</span>'
-     result += '</div><div class="description"><ul>' + product.description + '</ul></div><div class="characteristics-block"><div class="characteristics"><p>' + product.structure + '</p></div><div class="feature"><i class="fas fa-shopping-cart"></i><p>' +  product.delivery + '</p></div></div></div><div class="img-container"><img src="' + product.image.url + '" alt="Image"></div></div><textarea name="order_comment" id="order_comment">Ваши пожелания и комментарии к заказу</textarea><div class="buttons-block"><button class="add_cart" data-product="' + str(product.id) + '" data-parent="' + parent + '" data-slug="' + slug + '" data-model="' + model_name + '" data-quantity="1" data-price="' + str(product.price) + '">Добавить в корзину <span>' + str(product.price) + '</span></button><button class="minus">-</button><button class="counter" disabled>1</button><button class="plus">+</button></div></div>'
+     result += '</div><div class="description"><ul>' + product.description + '</ul></div><div class="characteristics-block"><div class="characteristics"><p>' + product.structure + '</p></div><div class="feature"><i class="fas fa-shopping-cart"></i><p>' +  product.delivery + '</p></div></div></div><div class="img-container"><img src="' + product.image.url + '" alt="Image"></div></div><textarea name="order_comment" id="order_comment">Ваши пожелания и комментарии к заказу</textarea><div class="buttons-block">'
+     if product.sale:
+        result += '<button class="add_cart" data-product="' + str(product.id) + '" data-parent="' + parent + '" data-slug="' + slug + '" data-model="' + model_name + '" data-quantity="1" data-price="' + str(product.sale) + '">Добавить в корзину <span>' + str(product.sale) + '</span></button>'
+     else:
+        result += '<button class="add_cart" data-product="' + str(product.id) + '" data-parent="' + parent + '" data-slug="' + slug + '" data-model="' + model_name + '" data-quantity="1" data-price="' + str(product.price) + '">Добавить в корзину <span>' + str(product.price) + '</span></button>'
+     result += '<button class="minus">-</button><button class="counter" disabled>1</button><button class="plus">+</button></div></div>'
      responseData  = {
         'result': result,
      }
@@ -176,7 +187,10 @@ def MiniProductsCategoryFilter(request):
     for product in products:
         result += '<div class="product"><div class="product-block"><h3>' + product.name + '</h3><div class="product-desc"><div class="desc"><p>' + product.mini_description + '</p><span>' + str(product.duration)  + 'ч</span></div><div class="price">'
         if product.sale:
-            result += '<span class="sale">' + str(product.sale) + '₽</span><span>' + str(product.price) + '₽</span></div></div></div><div class="img-container"><img src="' + product.image.url + '" alt="Image"></div></div>'
+            result += '<span class="sale">' + str(product.price) + '₽</span><span>' + str(product.sale) + '₽</span>'
+        else:
+            result += '<span>' + str(product.price) + '₽</span>'
+        result += '</div></div></div><div class="img-container"><img src="' + product.image.url + '" alt="Image"></div></div>'
     responseData  = {
         'products': result,
     }

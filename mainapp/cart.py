@@ -16,12 +16,13 @@ class Cart(object):
             self.cart['info'] = {'count': 0, 'price': 0, 'sale': 0, 'total_price': 0}
             self.cart['products'] = {}
 
-    def add(self, product, option, slug, parent=0, quantity=1):
+    def add(self, product, option=0, slug=0, parent=0, quantity=1):
         product_id = str(product.id)
         str_key = option + product_id
         if str_key not in self.cart['products']:
             self.cart['products'][str_key] = {
                 'category': option,
+                'product_id': product_id,
                 'title': product.title,
                 'price': str(product.price),
                 'sale': str(product.sale),
@@ -49,23 +50,27 @@ class Cart(object):
         self.session.modified = True
 
     def remove(self, product, quantity='all'):
-        self.cart['info']['count'] -= 1
         if quantity == 'all':
+            self.cart['info']['count'] -= 1
             quantity = self.cart['products'][product]['quantity']
+            x = 0
+            for key in self.cart['products']:
+                if product == key:
+                    del self.cart['products'][key]
+                    self.save()
+                    return
+                x += 1
+        else:
+            self_quantity = self.cart['products'][product]['quantity']
+            self.cart['products'][product]['quantity'] = str(Decimal(self_quantity) - Decimal(quantity))
         self.prices_calculation_minus(product, Decimal(quantity))
-        x = 0
-        for key in self.cart['products']:
-            if product == key:
-                del self.cart['products'][key]
-                self.save()
-                return
-            x += 1
+        self.save()
 
     def prices_calculation_plus(self, product, quantity):
         price = Decimal(self.cart['info']['price'])
         total = Decimal(self.cart['info']['total_price'])
         self.cart['info']['price'] = str((product.price * quantity) + price)
-        if not product.sale:
+        if product.sale == 0:
             self.cart['info']['total_price'] = str((product.price * quantity) + total)
         else:
             sale = Decimal(self.cart['info']['sale'])

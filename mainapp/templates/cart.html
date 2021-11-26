@@ -61,7 +61,7 @@
             <div class="cart-products">
 
                 {% for key, product in cart_products %}
-                <div class="product">
+                <div class="product" data-model="{{product.category}}" data-product="{{product.product_id}}">
 
                     <div class="checkbox">
                         <input type="checkbox" name="product1">
@@ -113,21 +113,21 @@
 
                     <div class="price-block">
                         {% if product.sale == '0' %}
-                        <span class="price">{{product.price}}</span>
+                        <span class="price">{{product.price|mul:product.quantity}}</span>
                         {% else %}
-                        <span class="price">{{product.price}}</span>
-                        <span class="sale">{{product.sale}}</span>
+                        <span class="price">{{product.sale|mul:product.quantity}}</span>
+                        <span class="sale">{{product.price|mul:product.quantity}}</span>
                         {% endif %}
 
                         <div class="counter">
                             <button class="minus">-</button>
-                            <button disabled>{{product.quantity}}</button>
+                            <button class="counter_window" disabled>{{product.quantity}}</button>
                             <button class="plus">+</button>
                         </div>
                         {% if product.sale != '0' %}
-                        <h4>1 за {{product.price}}₽</h4>
+                        <h4>1 за <strong class="price_one">{{product.sale}}</strong>₽</h4>
                         {% else %}
-                        <h4>1 за {{product.sale}}₽</h4>
+                        <h4>1 за <strong class="price_one">{{product.price}}</strong>₽</h4>
                         {% endif %}
 
                     </div>
@@ -151,7 +151,7 @@
 
                             <h4>Услуги ({{cart_info.count}})</h4>
 
-                            <span><span class="item_price">{{ cart_info.sale }}</span>₽</span>
+                            <span><span class="item_price">{{ cart_info.price }}</span>₽</span>
 
                         </div>
 
@@ -159,7 +159,7 @@
 
                             <h4>Ваша экономия</h4>
 
-                            <span><span class="full_sale">{{  cart_info.price }}</span>₽</span>
+                            <span><span class="full_sale">{{ cart_info.price|sub:cart_info.sale }}</span>₽</span>
 
                         </div>
 
@@ -199,13 +199,12 @@
         $(document).on('click', '.delete', function () {
             let product = $(this).attr('data-key');
             let obj = $(this).parent().parent().parent();
-            let sale = Number(obj.find('.price'));
+            let sale = Number(obj.find('.price').text());
             let price = Number(obj.find('.sale').text());
             let item_price = Number($('.item_price').text());
             let item_sale = Number($('.full_sale').text());
             let final_price = Number($('.final_price').text());
             let data = {product: product, csrfmiddlewaretoken: '{{ csrf_token }}'}
-
             $.ajax({
                 url: '/ajax/delete-cart/',
                 data: data,
@@ -214,10 +213,69 @@
                 success: function(data){
                     obj.remove();
                     $('.item_price').text(item_price - price);
-                    $('.full_sale').text(item_sale - sale);
+                    $('.full_sale').text(item_sale - (price - sale));
                     $('.final_price').text(final_price - sale);
                 }
             });
+        });
+
+        $(document).on('click', '.plus', function () {
+            let obj = $(this).parent().parent();
+            let counter = Number(obj.find('.counter_window').text());
+            let price = Number(obj.find('.price').text());
+            let sale = Number(obj.find('.sale').text());
+            let price_one = Number(obj.find('.price_one').text());
+            let sale_one = (sale - price) / counter;
+            let item_price = Number($('.item_price').text());
+            let item_sale = Number($('.full_sale').text());
+            let final_price = Number($('.final_price').text());
+            if (counter <= 500) {
+                let data = {product_id: obj.parent().attr('data-product'), model_name: obj.parent().attr('data-model'),  csrfmiddlewaretoken: '{{ csrf_token }}'}
+                $.ajax({
+                    url: '/ajax/add-cart/',
+                    data: data,
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function(){
+                        obj.find('.counter_window').text(counter + 1);
+                        obj.find('.price').text(price + price_one);
+                        obj.find('.sale').text(price + price_one + (sale_one * (counter + 1)));
+                        $('.item_price').text(item_price + price_one + (sale_one));
+                        $('.full_sale').text(item_sale + (sale_one));
+                        $('.final_price').text(final_price + price_one);
+                    }
+                });
+            }
+        });
+
+        $(document).on('click', '.minus', function () {
+            let obj = $(this).parent().parent();
+            let product = obj.parent().find('.delete').attr('data-key');
+            let counter = Number(obj.find('.counter_window').text());
+            let price = Number(obj.find('.price').text());
+            let sale = Number(obj.find('.sale').text());
+            let price_one = Number(obj.find('.price_one').text());
+            let sale_one = (sale - price) / counter;
+            let item_price = Number($('.item_price').text());
+            let item_sale = Number($('.full_sale').text());
+            let final_price = Number($('.final_price').text());
+            if (counter > 1) {
+                let data = {product: product, quantity: 1,  csrfmiddlewaretoken: '{{ csrf_token }}'}
+                $.ajax({
+                    url: '/ajax/delete-cart/',
+                    data: data,
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function () {
+                        obj.find('.counter_window').text(counter - 1);
+                        obj.find('.price').text(price - price_one);
+                        obj.find('.sale').text(sale - price_one - (sale_one ));
+                        $('.item_price').text(item_price - price_one - (sale_one));
+                        $('.full_sale').text(item_sale - (sale_one));
+                        $('.final_price').text(final_price - price_one);
+                    }
+                });
+            }
         });
     });
 </script>
