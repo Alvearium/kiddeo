@@ -474,9 +474,8 @@ header .header-main .second-part .buttons-panel a i {
           justify-content: space-between;
 }
 #main .content .premises-card .wrap-thumbnail {
-  width: 60%;
-  height: 22vw;
-  background: red;
+  width: 87%;
+  height: 400px;
   overflow: hidden;
   position: relative;
 }
@@ -517,9 +516,10 @@ header .header-main .second-part .buttons-panel a i {
   z-index: 1;
 }
 #main .content .premises-card .wrap-thumbnail video {
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: 110%;
   z-index: 1;
+  margin-left: -1%;
 }
 #main .content .premises-card .wrap-thumbnail .blackout {
   width: 100%;
@@ -530,7 +530,8 @@ header .header-main .second-part .buttons-panel a i {
   z-index: 1;
 }
 #main .content .premises-card-content {
-  width: 39%;
+  width: 30%;
+  padding: 3%;
   margin-right: 0.3%;
   background: #ffffff;
   border-radius: 20px;
@@ -538,6 +539,60 @@ header .header-main .second-part .buttons-panel a i {
   -webkit-box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
           box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
 }
+#main .content .premises-card-content .title-block {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+#main .content .premises-card-content .title-block .part-one{
+  width: 80%;
+}
+
+#main .content .premises-card-content .title-block .part-two i{
+  font-size: 1.4vw;
+}
+#main .parameters {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+#main .parameters .element {
+  width: 40%;
+  display: flex;
+  text-align: right;
+  margin-bottom: 20px;
+}
+#main .parameters .element:nth-child(odd) {
+  margin-right: 10%;
+}
+#main .parameters .element i {
+  font-size: 1.3vw;
+  margin-right: 6px;
+}
+#main .parameters .element span {
+  font-weight: 600;
+}
+#main .content .premises-card-content .rating {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+}
+#main .content .premises-card-content .rating h4{
+  margin-right: 5px;
+}
+#main .content .premises-card-content .rating i{
+  margin-right: 5px;
+  font-size: 1.4vw;
+}
+
+#main .content .premises-card-content .map {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  background: #006cfa;
+}
+
 #main .content .advertisement-one {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -812,7 +867,7 @@ header .header-main .second-part .buttons-panel a i {
     font-size: 30px;
   }
   #main .content .premises-card .wrap-thumbnail {
-    height: 350px;
+    height: 370px;
   }
   .sidebar .sidebar-block .input-block .checkbox input[type=checkbox]:before {
     width: 17px;
@@ -822,8 +877,17 @@ header .header-main .second-part .buttons-panel a i {
   #main .content .advertisement-one .block-button span {
     font-size: 10px;
   }
+  #main .content .premises-card-content .rating i {
+    font-size: 20px;
+  }
   #more .more-container .more-box span:last-child {
     font-size: 12px;
+  }
+  #main .content .premises-card-content .title-block .part-two i {
+    font-size: 22px;
+  }
+  #main .parameters .element i {
+    font-size: 19px;
   }
   #services .services-container .service-box .handle {
     width: 30px;
@@ -916,7 +980,7 @@ header .header-main .second-part .buttons-panel a i {
     font-size: 20px;
   }
   #main .content .premises-card .wrap-thumbnail {
-    height: 250px;
+    height: 315px;
   }
   .sidebar .sidebar-block .input-block .checkbox input[type=checkbox]:before {
     width: 12px;
