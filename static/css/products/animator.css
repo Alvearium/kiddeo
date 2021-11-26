@@ -374,6 +374,9 @@ header .header-main .second-part .buttons-panel a i {
   width: 30%;
   position: relative;
 }
+.load_more {
+  cursor: pointer;
+}
 #product-card .products-slider .slide .product .product-block .product-desc .price span {
   font-size: 1.6vw;
 }

@@ -319,6 +319,9 @@ header .header-main .second-part .buttons-panel a i {
   display: flex;
   margin-bottom: 25px;
 }
+.load_more {
+  cursor: pointer;
+}
 #product-card .product-categories .category {
   padding: 0.5% 1.5%;
   margin-right: 1%;

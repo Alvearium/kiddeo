@@ -389,6 +389,9 @@ header .header-main .second-part .buttons-panel a i {
   overflow: hidden;
   position: relative;
 }
+.load_more {
+  cursor: pointer;
+}
 #product-card .products-slider .slide .product .img-container img {
   position: absolute;
   width: 100%;

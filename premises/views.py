@@ -38,6 +38,7 @@ def premiseView(request, premise_slug):
 
     return render(request, 'premise.html', {
         "premise": premise,
+        'name':'Premises',
         'min_price': min_price,
         'cheaper_slug': cheaper.slug,
         'audit_elements': audit_elements,

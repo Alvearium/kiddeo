@@ -22,6 +22,7 @@ urlpatterns = [
     path('product/decoration/<slug:decoration_slug>', decorationView, name = 'decorationProduct'),
     path('ajax/add-cart/', AddCart, name = 'AddCart'),
     path('ajax/delete-cart/', DeleteCart, name = 'DeleteCart'),
+    # path('ajax/load-more-tabs/', LoadMoreTabs, name = 'LoadMoreTabs'),
     path('ajax/data-output-to-modal/', OutputModalData, name = 'OutputModalData'),
     path('ajax/sidebar-filters/', SidebarFilters, name = 'SidebarFilters'),
     path('ajax/mini-products-category-filter/', MiniProductsCategoryFilter, name = 'MiniProductsCategoryFilter'),

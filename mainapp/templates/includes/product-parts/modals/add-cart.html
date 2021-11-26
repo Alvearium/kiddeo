@@ -23,7 +23,7 @@
             });
         });
 
-        $(document).on('click', '.product', function () {
+        $('#product-card').on('click', '.product', function () {
             data = {
                 model: $(this).attr('data-model'),
                 product_id: $(this).attr('data-product'),

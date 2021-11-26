@@ -35,6 +35,7 @@ class Premises(models.Model):
     saturday = models.CharField(max_length= 255, verbose_name='Суббота', null = True)
     sunday = models.CharField(max_length= 255, verbose_name='Воскресенье', null = True)
     district = models.CharField(max_length= 255, verbose_name='Район', null = True)
+    map_link = models.CharField(max_length= 255, verbose_name='Ссылка на картку', null = True)
     description_1 = models.TextField(verbose_name = 'Описание помещения', null = True)
     description_2 = models.TextField(verbose_name = 'Описание звукового оборудования', null = True)
     description_3 = models.TextField(verbose_name = 'Описание светового и шоу оборудования', null = True)

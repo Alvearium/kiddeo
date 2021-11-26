@@ -73,7 +73,7 @@
                     </div>
                 </div>
                 {% if forloop.counter|divisibleby:"2" %}
-                <div class="load_more"><h3>Показать ещё</h3></div>
+                <div class="load_more" data-model="Reviews" data-offset="2" data-parent="{{parent.title}}" data-noparent="{{name}}" data-product="{{product.id}}"><h3>Показать ещё</h3></div>
                 {% endif %}
                 {% endfor %}
             </div>
@@ -94,7 +94,7 @@
                     </div>
                 </div>
                 {% if forloop.counter|divisibleby:"2" %}
-                <div class="load_more"><h3>Показать ещё</h3></div>
+                <div class="load_more" data-model="Questions" data-offset="2" data-parent="{{parent.title}}" data-noparent="{{name}}" data-product="{{product.id}}"><h3>Показать ещё</h3></div>
                 {% endif %}
                 {% endfor %}
             </div>
@@ -115,7 +115,7 @@
                     </div>
                 </div>
                 {% if forloop.counter|divisibleby:"2" %}
-                <div class="load_more"><h3>Показать ещё</h3></div>
+                <div class="load_more" data-model="Audits" data-offset="2" data-parent="{{parent.title}}" data-noparent="{{name}}" data-product="{{product.id}}"><h3>Показать ещё</h3></div>
                 {% endif %}
                 {% endfor %}
             </div>
@@ -134,6 +134,33 @@
         } else if (tabs.length == 1) {
             $('body .container label').css('width', '100%');
         }
+
+        // $(document).on('click', '.load_more', function () {
+        //     let model = $(this).attr('data-model');
+        //     let offset = $(this).attr('data-offset');
+        //     let parent = $(this).attr('data-parent');
+        //     let noparent = $(this).attr('data-noparent');
+        //     let product = $(this).attr('data-product');
+        //     if (noparent == "Premises") {
+        //         parent = "Premises";
+        //     }
+        //     let data = {
+        //         model: model,
+        //         offset: offset,
+        //         parent: parent,
+        //         product: product,
+        //         csrfmiddlewaretoken: '{{ csrf_token }}'
+        //     }
+        //     $.ajax({
+        //         url: '/ajax/load-more-tabs/',
+        //         data: data,
+        //         type: 'POST',
+        //         dataType: 'json',
+        //         success: function(data){
+        //             alert();
+        //         }
+        //     });
+        // });
     });
 </script>
 

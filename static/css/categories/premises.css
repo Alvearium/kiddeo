@@ -476,6 +476,7 @@ header .header-main .second-part .buttons-panel a i {
 #main .content .premises-card .wrap-thumbnail {
   width: 87%;
   height: 400px;
+  height: 400px;
   overflow: hidden;
   position: relative;
 }
@@ -588,9 +589,12 @@ header .header-main .second-part .buttons-panel a i {
 
 #main .content .premises-card-content .map {
   width: 100%;
-  height: 70px;
+  height: 100px;
   display: flex;
-  background: #006cfa;
+}
+#main .content .premises-card-content .map iframe {
+  width: 100%;
+  height: 100%;
 }
 
 #main .content .advertisement-one {
