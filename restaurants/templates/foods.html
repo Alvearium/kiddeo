@@ -85,7 +85,88 @@
             </div>
             {% endif %}
             <div class="foods-card">
-                <a href="/product/food/{{restaurant.slug}}" style="width: 100%; height: 100%;">f</a>
+                <div class="title-block">
+
+                    <div class="part-one">
+
+                        <h3><a href="/product/food/{{restaurant.slug}}" style="width: 100%; height: 100%;">{{restaurant.title}}</a></h3>
+
+                        <div class="discount">
+                            <h4>Подарок</h4>
+                        </div>
+
+                        <h4>x2 бонусов</h4>
+
+                    </div>
+
+                    <div class="part-two">
+
+                        <a href="#">Скачать полное меню</a>
+                        <i class="far fa-heart"></i>
+
+                    </div>
+
+                </div>
+
+                <div class="parameters-panel">
+
+                    <div class="rating">
+                        <h3>4.8</h3>
+                        <div class="rating-block">
+                            <h4>147 оценок 54 отзыва</h4>
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="element">
+                        <h4>Мин. стоимость заказа</h4>
+                        <h3>{{restaurant.price}}₽</h3>
+                    </div>
+                    <div class="element">
+                        <h4>Принимает заказы</h4>
+                        <h3>за <span>{{restaurant.booking_time}}</span> ч.</h3>
+                    </div>
+                    <div class="element">
+                        <h4>Доставка</h4>
+                        <h3><span>{{restaurant.price_departure}}</span>₽</h3>
+                    </div>
+                    <div class="element">
+                        <h4>Последний заказ</h4>
+                        <h3>{{restaurant.last_order}}</h3>
+                    </div>
+                    <div class="element">
+                        <h4>Обслуживание</h4>
+                        {% if restaurant.service %}
+                        <h3>Включено</h3>
+                        {% else %}
+                        <h3>Не включено</h3>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="list-images">
+                    {% for food in restaurant.additional_data %}
+                    <div class="slide">
+
+                        <div class="img-wrapper">
+                            <img src="{{food.image.url}}" alt="Images">
+                        </div>
+                        <h4>{{food.title}}</h4>
+                        <div class="price-block">
+                            {% if food.sale %}
+                            <span class="price">{{food.price}}</span>
+                            <span class="sale">{{food.sale}}₽</span>
+                            {% else %}
+                            <span class="price">{{food.price}}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
             {% endfor %}
         </div>

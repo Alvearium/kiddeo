@@ -10,6 +10,10 @@ from animators.models import Agency, Animator, ImageLibrary, Reviews, Questions,
 def animatorsView(request):
     agencies = Agency.objects.all()[:20]
     agencies_count = Agency.objects.all().count()
+    for agency in agencies:
+        agency.additional_data = Animator.objects.filter(agency=agency)[:4]
+
+
     return render(request, 'animators.html', {"agencies": agencies, "agencies_count": agencies_count})
 
 def animatorView(request, animator_slug):

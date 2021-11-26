@@ -85,7 +85,84 @@
             </div>
             {% endif %}
             <div class="foods-card">
-                <a href="/product/decoration/{{agency.slug}}" style="width: 100%; height: 100%;">f</a>
+                <div class="title-block">
+
+                    <div class="part-one">
+
+                        <h3><a href="/product/decoration/{{agency.slug}}" style="width: 100%; height: 100%;">{{agency.title}}</a></h3>
+
+                        <div class="discount">
+                            <h4>Подарок</h4>
+                        </div>
+
+                        <h4>x2 бонусов</h4>
+
+                    </div>
+
+                    <div class="part-two">
+
+                        <a href="#">Скачать полный прайс</a>
+                        <i class="far fa-heart"></i>
+
+                    </div>
+
+                </div>
+
+                <div class="parameters-panel">
+
+                    <div class="rating">
+                        <h3>4.8</h3>
+                        <div class="rating-block">
+                            <h4>147 оценок 54 отзыва</h4>
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="element">
+                        <h4>Мин. стоимость заказа</h4>
+                        <h3>{{agency.price}}₽</h3>
+                    </div>
+                    <div class="element">
+                        <h4>Принимает заказы</h4>
+                        <h3>за <span>{{agency.booking_time}}</span> часа</h3>
+                    </div>
+                    <div class="element">
+                        <h4>Доставка</h4>
+                        <h3>от <span>{{agency.price_delivery}}</span>₽</h3>
+                    </div>
+                    <div class="element">
+                        <h4>Последний заказ</h4>
+                        <h3>{{agency.last_order}}</h3>
+                    </div>
+                    <div class="element">
+                        <h4>Цена за выезд</h4>
+                        <h3><span>{{agency.price_departure}}</span>₽</h3>
+                    </div>
+                </div>
+                <div class="list-images">
+                    {% for decoration in agency.additional_data %}
+                    <div class="slide">
+
+                        <div class="img-wrapper">
+                            <img src="{{decoration.image.url}}" alt="Images">
+                        </div>
+                        <h4>{{decoration.title}}</h4>
+                        <div class="price-block">
+                            {% if decoration.sale %}
+                            <span class="price">{{decoration.price}}</span>
+                            <span class="sale">{{decoration.sale}}₽</span>
+                            {% else %}
+                            <span class="price">{{decoration.price}}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
             {% endfor %}
         </div>

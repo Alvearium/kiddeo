@@ -10,6 +10,8 @@ from restaurants.models import Restaurant, Food, ImageLibrary, Reviews, Question
 def foodsView(request):
     restaurants = Restaurant.objects.all()[:20]
     restaurants_count = Restaurant.objects.all().count()
+    for restaurant in restaurants:
+        restaurant.additional_data = Food.objects.filter(restaurant=restaurant)[:4]
     return render(request, 'foods.html', {"restaurants": restaurants, "restaurants_count": restaurants_count})
 
 def foodView(request, food_slug):

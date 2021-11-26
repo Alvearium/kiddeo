@@ -10,6 +10,8 @@ from decorations.models import Decoration, AgencyDecoration, ImageLibrary, Revie
 def decorationsView(request):
     agencies = AgencyDecoration.objects.all()[:20]
     agencies_count = AgencyDecoration.objects.all().count()
+    for agency in agencies:
+        agency.additional_data = Decoration.objects.filter(agency=agency)[:4]
     return render(request, 'decorations.html', {"agencies": agencies, "agencies_count": agencies_count})
 
 def decorationView(request, decoration_slug):
