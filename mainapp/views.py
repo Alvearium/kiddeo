@@ -1,4 +1,5 @@
 from .cart import Cart
+from kiddeo.settings import CART_SESSION_ID
 from django.http import JsonResponse
 from django.shortcuts import render
 from premises.models import Premises
@@ -12,19 +13,40 @@ def indexView(request):
     return render(request, 'index.html', {})
 
 def cartView(request):
-    return render(request, 'cart.html', {})
+    cart_products = request.session[CART_SESSION_ID]['products'].items()
+    cart_info = request.session[CART_SESSION_ID]['info']
+    return render(request, 'cart.html',
+        {
+            'cart_products': cart_products,
+            'cart_info': cart_info,
+        })
 
 def AddCart(request):
     responseData  = {}
-    slug = str(request.POST.get('slug', None))
-    model_name = str(request.POST.get('model_name', None))
+    slug = request.POST.get('slug', None)
+    parent = request.POST.get('parent', None)
+    model_name = request.POST.get('model_name', None)
     quantity = request.POST.get('quantity', None)
     product_id = request.POST.get('product_id', None)
     model = globals()[model_name.capitalize()]
     # ------------------------------
     cart = Cart(request)
     product = get_object_or_404(model, id = product_id)
-    cart.add(product=product, option=model_name, slug=slug, quantity=quantity)
+
+    if not parent:
+        cart.add(product=product, option=model_name, slug=slug, quantity=quantity)
+    else:
+        cart.add(product=product, option=model_name, parent=parent, slug=slug, quantity=quantity)
+
+    return JsonResponse(responseData)
+
+def DeleteCart(request):
+    responseData  = {}
+    product = request.POST.get('product', None)
+    # ------------------------------
+    cart = Cart(request)
+
+    cart.remove(product=product)
 
     return JsonResponse(responseData)
 
@@ -32,6 +54,7 @@ def OutputModalData(request):
      result = ''
      model_name = request.POST.get('model', None)
      slug = request.POST.get('slug', None)
+     parent = request.POST.get('parent', None)
      product_id = request.POST.get('product_id', None)
      model = globals()[model_name.capitalize()]
      product = get_object_or_404(model, id = product_id)
@@ -40,7 +63,7 @@ def OutputModalData(request):
         result += '<span>' + str(product.duration) +'ч</span>'
      elif model_name == 'food':
         result += '<span>' + str(product.duration) + 'г</span>'
-     result += '</div><div class="description"><ul>' + product.description + '</ul></div><div class="characteristics-block"><div class="characteristics"><p>' + product.structure + '</p></div><div class="feature"><i class="fas fa-shopping-cart"></i><p>' +  product.delivery + '</p></div></div></div><div class="img-container"><img src="' + product.image.url + '" alt="Image"></div></div><textarea name="order_comment" id="order_comment">Ваши пожелания и комментарии к заказу</textarea><div class="buttons-block"><button class="add_cart" data-product="' + str(product.id) + '" data-slug="' + slug + '" data-model="' + model_name + '" data-quantity="1" data-price="' + str(product.price) + '">Добавить в корзину <span>' + str(product.price) + '</span></button><button class="minus">-</button><button class="counter" disabled>1</button><button class="plus">+</button></div></div>'
+     result += '</div><div class="description"><ul>' + product.description + '</ul></div><div class="characteristics-block"><div class="characteristics"><p>' + product.structure + '</p></div><div class="feature"><i class="fas fa-shopping-cart"></i><p>' +  product.delivery + '</p></div></div></div><div class="img-container"><img src="' + product.image.url + '" alt="Image"></div></div><textarea name="order_comment" id="order_comment">Ваши пожелания и комментарии к заказу</textarea><div class="buttons-block"><button class="add_cart" data-product="' + str(product.id) + '" data-parent="' + parent + '" data-slug="' + slug + '" data-model="' + model_name + '" data-quantity="1" data-price="' + str(product.price) + '">Добавить в корзину <span>' + str(product.price) + '</span></button><button class="minus">-</button><button class="counter" disabled>1</button><button class="plus">+</button></div></div>'
      responseData  = {
         'result': result,
      }

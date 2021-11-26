@@ -1,4 +1,6 @@
 {% load static %}
+{% load mathfilters %}
+
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -36,173 +38,152 @@
 
 <div class="container-sm container-md container-lg container-xl container-xxl">
 
-{% include 'includes/header.html' %}
+    {% include 'includes/header.html' %}
 
-{% include 'includes/product-parts/mini-panel.html' %}
+    {% include 'includes/product-parts/mini-panel.html' %}
 
-<section id="cart">
+    <section id="cart">
 
-    <div class="top-bar">
+        <div class="top-bar">
 
-        <h2>Корзина</h2>
+            <h2>Корзина</h2>
 
-        <div class="checkbox">
-            <input type="checkbox" name="choose_all" id="choose_all">
-            <label for="choose_all">Выбрать все</label>
+            <div class="checkbox">
+                <input type="checkbox" name="choose_all" id="choose_all">
+                <label for="choose_all">Выбрать все</label>
+            </div>
+
+            <h5 class="delete_choose">Удалить выбранные</h5>
         </div>
 
-        <h5 class="delete_choose">Удалить выбранные</h5>
-    </div>
+        <div class="main">
 
-    <div class="main">
+            <div class="cart-products">
 
-        <div class="cart-products">
+                {% for key, product in cart_products %}
+                <div class="product">
 
-            <div class="product">
+                    <div class="checkbox">
+                        <input type="checkbox" name="product1">
+                    </div>
 
-                <div class="checkbox">
-                    <input type="checkbox" name="product1">
-                </div>
+                    <div class="img-container">
 
-                <div class="img-container">
-
-                    <img src="{% static 'images/slide1.png' %}" alt="Image">
-
-                </div>
-
-                <div class="product-block">
-
-                    <div class="product-info">
-
-                        <h4>Помещение для праздника Ивента Лофт</h4>
-
-                        <h4>Московский пр. 183-185</h4>
-
-                        <h4>22.02.2022 c 12 : 00 до 14 : 00</h4>
+                        <img src="{{product.image}}" alt="Image">
 
                     </div>
 
-                    <div class="product-actions">
+                    <div class="product-block">
 
-                        <h5 class="in_likes">В избранное</h5>
+                        <div class="product-info">
 
-                        <h5 class="delete">Удалить</h5>
+                            {% if product.category == "premises" %}
+                            <h4>Помещение для праздника {{product.title}}</h4>
+                            {% elif product.category == "food" %}
+                            <h4>Еда — {{product.title}}</h4>
+                            {% elif product.category == "animator" %}
+                            <h4>Развлечения — {{product.title}}</h4>
+                            {% else %}
+                            <h4>Оформление — {{product.title}}</h4>
+                            {% endif %}
+
+                            {% if product.category != 'premises'%}
+                            <h4>{{product.parent}}</h4>
+                            {% else %}
+                            <h4>{{product.address}}</h4>
+                            {% endif %}
+
+                            {% if product.category != 'premises'%}
+                            <h4>{{product.address}}</h4>
+                            {% else %}
+                            <h4>22.02.2022 c 12 : 00 до 14 : 00</h4>
+                            {% endif %}
+
+                        </div>
+
+                        <div class="product-actions">
+
+                            <h5 class="in_likes">В избранное</h5>
+
+                            <h5 class="delete" data-key="{{key}}">Удалить</h5>
+
+                        </div>
+
+                    </div>
+
+                    <div class="price-block">
+                        {% if product.sale == '0' %}
+                        <span class="price">{{product.price}}</span>
+                        {% else %}
+                        <span class="price">{{product.price}}</span>
+                        <span class="sale">{{product.sale}}</span>
+                        {% endif %}
+
+                        <div class="counter">
+                            <button class="minus">-</button>
+                            <button disabled>{{product.quantity}}</button>
+                            <button class="plus">+</button>
+                        </div>
+                        {% if product.sale != '0' %}
+                        <h4>1 за {{product.price}}₽</h4>
+                        {% else %}
+                        <h4>1 за {{product.sale}}₽</h4>
+                        {% endif %}
 
                     </div>
 
                 </div>
-
-                <div class="price-block">
-
-                    <span class="price">4200</span>
-                    <span class="sale">5600</span>
-
-                    <div class="counter">
-                        <button class="minus">-</button>
-                        <button disabled>2</button>
-                        <button class="plus">+</button>
-                    </div>
-
-                    <h4>1 за 2100₽</h4>
-
-                </div>
+                {% endfor %}
 
             </div>
 
-            <div class="product">
+            <div class="end-cart">
 
-                <div class="checkbox">
-                    <input type="checkbox" name="product1">
-                </div>
+                <h5>Дату и время выезда и/или доставкки можно выбрать при оформлении заказа</h5>
 
-                <div class="img-container">
+                <div class="cart-info">
 
-                    <img src="{% static 'images/slide1.png' %}" alt="Image">
+                    <h4 class="cart-info-title">Ваша корзина</h4>
 
-                </div>
+                    <div class="cart-info-body">
 
-                <div class="product-block">
+                        <div class="cart-info-body-row">
 
-                    <div class="product-info">
+                            <h4>Услуги ({{cart_info.count}})</h4>
 
-                        <h4>Помещение для праздника Ивента Лофт</h4>
+                            <span><span class="item_price">{{ cart_info.sale }}</span>₽</span>
 
-                        <h4>Московский пр. 183-185</h4>
+                        </div>
 
-                        <h4>Доставка бесплатно</h4>
+                        <div class="cart-info-body-row">
 
-                    </div>
+                            <h4>Ваша экономия</h4>
 
-                    <div class="product-actions">
+                            <span><span class="full_sale">{{  cart_info.price }}</span>₽</span>
 
-                        <h5 class="in_likes">В избранное</h5>
-
-                        <h5 class="delete">Удалить</h5>
+                        </div>
 
                     </div>
 
-                </div>
+                    <div class="cart-info-result">
 
-                <div class="price-block">
+                        <div class="cart-info-result-row">
 
-                    <span class="price">4990</span>
+                            <h3>Итого</h3>
 
-                    <div class="counter">
-                        <button class="minus">-</button>
-                        <button disabled>1</button>
-                        <button class="plus">+</button>
-                    </div>
+                            <span><span class="final_price">{{ cart_info.total_price }}</span>₽</span>
 
-                </div>
+                        </div>
 
-            </div>
-
-            <div class="product">
-
-                <div class="checkbox">
-                    <input type="checkbox" name="product3">
-                </div>
-
-                <div class="img-container">
-
-                    <img src="{% static 'images/slide1.png' %}" alt="Image">
-
-                </div>
-
-                <div class="product-block">
-
-                    <div class="product-info">
-
-                        <h4>Помещение для праздника Ивента Лофт</h4>
-
-                        <h4>Московский пр. 183-185</h4>
-
-                        <h4>Праздник на 2 часа</h4>
+                        <h5>Чтобы получить подтверждение от партнёров, нужно оформить заказ</h5>
 
                     </div>
 
-                    <div class="product-actions">
+                    <div class="go-checkout">
 
-                        <h5 class="in_likes">В избранное</h5>
-
-                        <h5 class="delete">Удалить</h5>
-
+                        <button>Перейти к оформлению</button>
+                        <span>Пока вы ни за что не платите</span>
                     </div>
-
-                </div>
-
-                <div class="price-block">
-
-                    <span class="price">4200</span>
-                    <span class="sale">5600</span>
-
-                    <div class="counter">
-                        <button class="minus">-</button>
-                        <button disabled>2</button>
-                        <button class="plus">+</button>
-                    </div>
-
-                    <h4>1 за 2100₽</h4>
 
                 </div>
 
@@ -210,63 +191,35 @@
 
         </div>
 
-        <div class="end-cart">
-
-            <h5>Дату и время выезда и/или доставкки можно выбрать при оформлении заказа</h5>
-
-            <div class="cart-info">
-
-                <h4 class="cart-info-title">Ваша корзина</h4>
-
-                <div class="cart-info-body">
-
-                    <div class="cart-info-body-row">
-
-                        <h4>Услуги (3)</h4>
-
-                        <span class="item_price">15 390 ₽</span>
-
-                    </div>
-
-                    <div class="cart-info-body-row">
-
-                        <h4>Ваша экономия</h4>
-
-                        <span class="full_sale">2 600₽</span>
-
-                    </div>
-
-                </div>
-
-                <div class="cart-info-result">
-
-                    <div class="cart-info-result-row">
-
-                        <h3>Итого</h3>
-
-                        <span class="final_price">12 790₽</span>
-
-                    </div>
-
-                    <h5>Чтобы получить подтверждение от партнёров, нужно оформить заказ</h5>
-
-                </div>
-
-                <div class="go-checkout">
-
-                    <button>Перейти к оформлению</button>
-                    <span>Пока вы ни за что не платите</span>
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
+    </section>
 
 </div>
+<script>
+    $(document).ready(function() {
+        $(document).on('click', '.delete', function () {
+            let product = $(this).attr('data-key');
+            let obj = $(this).parent().parent().parent();
+            let sale = Number(obj.find('.price'));
+            let price = Number(obj.find('.sale').text());
+            let item_price = Number($('.item_price').text());
+            let item_sale = Number($('.full_sale').text());
+            let final_price = Number($('.final_price').text());
+            let data = {product: product, csrfmiddlewaretoken: '{{ csrf_token }}'}
 
+            $.ajax({
+                url: '/ajax/delete-cart/',
+                data: data,
+                type: 'POST',
+                dataType: 'json',
+                success: function(data){
+                    obj.remove();
+                    $('.item_price').text(item_price - price);
+                    $('.full_sale').text(item_sale - sale);
+                    $('.final_price').text(final_price - sale);
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>

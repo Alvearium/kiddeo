@@ -16,10 +16,11 @@ class Cart(object):
             self.cart['info'] = {'count': 0, 'price': 0, 'sale': 0, 'total_price': 0}
             self.cart['products'] = {}
 
-    def add(self, product, option, slug, quantity=1):
+    def add(self, product, option, slug, parent=0, quantity=1):
         product_id = str(product.id)
-        if product_id not in self.cart['products']:
-            self.cart['products'][product_id] = {
+        str_key = option + product_id
+        if str_key not in self.cart['products']:
+            self.cart['products'][str_key] = {
                 'category': option,
                 'title': product.title,
                 'price': str(product.price),
@@ -28,22 +29,18 @@ class Cart(object):
                 'image': product.image.url,
                 'quantity': quantity,
             }
+            if parent:
+               self.cart['products'][str_key]['parent'] = parent
+
+            if option == 'premises':
+               self.cart['products'][str_key]['address'] = product.address
+            else:
+               self.cart['products'][str_key]['address'] = product.delivery
+
             self.cart['info']['count'] += 1
-            self.prices_calculation_plus(product, Decimal(quantity))
-        elif option in self.cart['products'][product_id]['category']:
-            self.cart['products'][product_id]['quantity'] += Decimal(quantity)
             self.prices_calculation_plus(product, Decimal(quantity))
         else:
-            self.cart['products'][product_id] = {
-                'category': option,
-                'title': product.title,
-                'price': str(product.price),
-                'sale': str(product.sale),
-                'link': '/product/' + option + '/' + slug,
-                'image': product.image.url,
-                'quantity': quantity,
-            }
-            self.cart['info']['count'] += 1
+            self.cart['products'][str_key]['quantity'] = str(Decimal(quantity) + Decimal(self.cart['products'][str_key]['quantity']))
             self.prices_calculation_plus(product, Decimal(quantity))
         self.save()
 
@@ -51,17 +48,17 @@ class Cart(object):
         self.session[settings.CART_SESSION_ID] = self.cart
         self.session.modified = True
 
-    def remove(self, product, option):
-        product_id = str(product.id)
+    def remove(self, product, quantity='all'):
         self.cart['info']['count'] -= 1
-        self.prices_calculation_minus(product)
+        if quantity == 'all':
+            quantity = self.cart['products'][product]['quantity']
+        self.prices_calculation_minus(product, Decimal(quantity))
         x = 0
         for key in self.cart['products']:
-            if product_id == key:
-                if option in self.cart['products'][key]['category']:
-                    del self.cart['products'][key]
-                    self.save()
-                    return
+            if product == key:
+                del self.cart['products'][key]
+                self.save()
+                return
             x += 1
 
     def prices_calculation_plus(self, product, quantity):
@@ -78,13 +75,15 @@ class Cart(object):
     def prices_calculation_minus(self, product, quantity):
         price = Decimal(self.cart['info']['price'])
         total = Decimal(self.cart['info']['total_price'])
-        self.cart['info']['price'] = str(price - product.price)
-        if not product.sale:
-            self.cart['info']['total_price'] = str(total - product.price)
+        product_sale = Decimal(self.cart['products'][product]['sale'])
+        product_price = Decimal(self.cart['products'][product]['price'])
+        self.cart['info']['price'] = str(price - (product_price * quantity))
+        if product_sale == 0:
+            self.cart['info']['total_price'] = str(total - (product_price * quantity))
         else:
             sale = Decimal(self.cart['info']['sale'])
-            self.cart['info']['sale'] = str(sale - product.sale)
-            self.cart['info']['total_price'] = str(total - product.sale)
+            self.cart['info']['sale'] = str(sale - (product_sale * quantity))
+            self.cart['info']['total_price'] = str(total - (product_sale * quantity))
 
     def clear(self):
         del self.session[settings.CART_SESSION_ID]

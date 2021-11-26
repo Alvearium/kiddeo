@@ -94,7 +94,7 @@
     <div class="products-slider">
 
         {% for product in products reversed %}
-        <div class="product" category="{{product.subcategory}}" data-slug="{{parent.slug}}" data-model="{{name}}" data-product="{{product.id}}">
+        <div class="product" category="{{product.subcategory}}" data-parent="{{parent.title}}" data-slug="{{parent.slug}}" data-model="{{name}}"  data-product="{{product.id}}">
 
             <div class="product-block">
 
@@ -107,7 +107,7 @@
                         {% if name == 'animator' %}
                         <span>{{ product.duration }} ч</span>
                         {% elif name == 'food' %}
-                        <span>{{ product.duration }} кг</span>
+                        <span>{{ product.duration }} г</span>
                         {% endif %}
                     </div>
 
