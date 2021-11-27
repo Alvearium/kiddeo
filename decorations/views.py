@@ -22,6 +22,7 @@ def decorationView(request, decoration_slug):
     reviews = Reviews.objects.filter(agency_id=agency.id)[:2]
     questions = Questions.objects.filter(agency_id=agency.id)[:2]
     recommendations = productRecommendation()
+    listPurchasesViewed = request.session['viewed_products']
     for decoration in decorations:
         if not decoration.subcategory in subcategories:
             subcategories.append(decoration.subcategory)
@@ -46,4 +47,5 @@ def decorationView(request, decoration_slug):
         'reviews': reviews,
         'questions': questions,
         'recommendations': recommendations,
+        'listPurchasesViewed': listPurchasesViewed
     })

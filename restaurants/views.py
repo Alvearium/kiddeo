@@ -22,6 +22,7 @@ def foodView(request, food_slug):
     reviews = Reviews.objects.filter(restaurant_id=restaurant.id)[:2]
     questions = Questions.objects.filter(restaurant_id=restaurant.id)[:2]
     recommendations = productRecommendation()
+    listPurchasesViewed = request.session['viewed_products']
     for food in foods:
         if not food.subcategory in subcategories:
             subcategories.append(food.subcategory)
@@ -46,4 +47,5 @@ def foodView(request, food_slug):
         'reviews': reviews,
         'questions': questions,
         'recommendations': recommendations,
+        'listPurchasesViewed': listPurchasesViewed
     })

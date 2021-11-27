@@ -24,6 +24,7 @@ def animatorView(request, animator_slug):
     reviews = Reviews.objects.filter(agency_id=agency.id)[:2]
     questions = Questions.objects.filter(agency_id=agency.id)[:2]
     recommendations = productRecommendation()
+    listPurchasesViewed = request.session['viewed_products']
     for animator in animators:
         if not animator.subcategory in subcategories:
             subcategories.append(animator.subcategory)
@@ -48,4 +49,5 @@ def animatorView(request, animator_slug):
         'reviews': reviews,
         'questions': questions,
         'recommendations': recommendations,
+        'listPurchasesViewed': listPurchasesViewed
     })

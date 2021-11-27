@@ -1,6 +1,6 @@
 from .cart import Cart
 from kiddeo.settings import CART_SESSION_ID
-from django.http import JsonResponse
+from django.http import JsonResponse, request
 from django.shortcuts import render
 from premises.models import Premises
 from animators.models import Agency, Animator
@@ -69,15 +69,16 @@ def OutputModalData(request):
         result += '<span>' + str(product.duration) +'ч</span>'
      elif model_name == 'food':
         result += '<span>' + str(product.duration) + 'г</span>'
-     result += '</div><div class="description"><ul>' + product.description + '</ul></div><div class="characteristics-block"><div class="characteristics"><p>' + product.structure + '</p></div><div class="feature"><i class="fas fa-shopping-cart"></i><p>' +  product.delivery + '</p></div></div></div><div class="img-container"><img src="' + product.image.url + '" alt="Image"></div></div><textarea name="order_comment" id="order_comment">Ваши пожелания и комментарии к заказу</textarea><div class="buttons-block">'
-     if product.sale:
-        result += '<button class="add_cart" data-product="' + str(product.id) + '" data-parent="' + parent + '" data-slug="' + slug + '" data-model="' + model_name + '" data-quantity="1" data-price="' + str(product.sale) + '">Добавить в корзину <span>' + str(product.sale) + '</span></button>'
-     else:
-        result += '<button class="add_cart" data-product="' + str(product.id) + '" data-parent="' + parent + '" data-slug="' + slug + '" data-model="' + model_name + '" data-quantity="1" data-price="' + str(product.price) + '">Добавить в корзину <span>' + str(product.price) + '</span></button>'
-     result += '<button class="minus">-</button><button class="counter" disabled>1</button><button class="plus">+</button></div></div>'
+     result += '</div><div class="description"><ul>' + product.description + '</ul></div><div class="characteristics-block"><div class="characteristics"><p>' + product.structure + '</p></div><div class="feature"><i class="fas fa-shopping-cart"></i><p>' +  product.delivery + '</p></div></div></div><div class="img-container"><img src="' + product.image.url + '" alt="Image"></div></div><textarea name="order_comment" id="order_comment">Ваши пожелания и комментарии к заказу</textarea><div class="buttons-block"><button class="add_cart" data-product="' + str(product.id) + '" data-parent="' + parent + '" data-slug="' + slug + '" data-model="' + model_name + '" data-quantity="1" data-price="' + str(product.price) + '">Добавить в корзину <span>' + str(product.price) + '</span></button><button class="minus">-</button><button class="counter" disabled>1</button><button class="plus">+</button></div></div>'
      responseData  = {
         'result': result,
      }
+     if model_name == 'food':     
+        listPurchasesViewed = addPurchasesViewed(request, product, 'food', slug)
+     elif model_name == 'decoration':
+        listPurchasesViewed = addPurchasesViewed(request, product, 'decoration', slug)
+     else:
+        listPurchasesViewed = addPurchasesViewed(request, product, 'animator', slug)
      return JsonResponse(responseData)
 
 # def LoadMoreTabs(request):
@@ -99,21 +100,24 @@ def checkPurchasesViewedItem(request, name, id):
     return True
 
 # Processing sessions for output purchases viewed
-def addPurchasesViewed(request, product, model):
+def addPurchasesViewed(request, product, model, slug = ''):
     if not request.session.get('viewed_products'):
         request.session['viewed_products'] = list()
     else:
         request.session['viewed_products'] = list(request.session['viewed_products'])
+    
+    if model == 'food' or model == 'animator' or model == 'decoration':
+        product.slug = slug
 
     item_exist = checkPurchasesViewedItem(request, product.title, product.id)
+    
     add_product = {
         'title': product.title,
         'id': product.id,
         'mini_desc': product.mini_desc,
         'link': '/product/' + model + '/' + product.slug,
-        'image': product.image.url,
+        'image': str(product.image.url),
         }
-
     if item_exist and len(request.session['viewed_products']) < 10:
         request.session['viewed_products'].append(add_product)
         request.session.modified = True
@@ -130,9 +134,8 @@ def productRecommendation():
 
     result_list.append(Premises.objects.order_by('?').first())
     result_list.append(Food.objects.order_by('?').first())
-    result_list.append(AgencyDecoration.objects.order_by('?').first())
-    result_list.append(Agency.objects.order_by('?').first())
-
+    result_list.append(Animator.objects.order_by('?').first())
+    result_list.append(Decoration.objects.order_by('?').first())
     return(result_list)
 #AJAX functions
 def SplitStringAndFilteringWithoutOrder(string, model):

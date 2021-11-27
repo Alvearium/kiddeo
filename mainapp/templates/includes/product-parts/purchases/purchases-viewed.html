@@ -10,7 +10,7 @@
             {% for product in listPurchasesViewed %}
 
             <div>
-                <a href="/product/{{product.link}}">
+                <a href="{{product.link}}">
                     <div class="product">
                         <div class="img-container" style="background: url({{ product.image }});background-size: cover;background-position: center"></div>
                         <h3>{{product.title}}</h3>

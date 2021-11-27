@@ -56,7 +56,7 @@ class Decoration(models.Model):
     image = models.ImageField(verbose_name = 'Изображение')
     price = models.DecimalField(max_digits=9, decimal_places=0, verbose_name='Цена без скидки', null = True)
     sale = models.DecimalField(max_digits=9, decimal_places=0, verbose_name='Цена со скидкой', null = True)
-    mini_description = models.CharField(max_length=255, verbose_name='Мини описание', null = True)
+    mini_desc = models.CharField(max_length=255, verbose_name='Мини описание', null = True)
     description = models.TextField(verbose_name = 'Описание')
     duration = models.IntegerField(verbose_name='Количество', null = True)
     structure = models.TextField(verbose_name = 'Cостав')
