@@ -7,7 +7,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" id="metaViewport">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+          id="metaViewport">
     <title>Title</title>
     <meta name="twitter:title" content="Title">
     <meta property="og:title" content="Title">
@@ -36,29 +37,40 @@
 
 <body>
 
+
+{% include 'includes/header.html' %}
+
 <div class="container-sm container-md container-lg container-xl container-xxl">
 
-    {% include 'includes/header.html' %}
+    <section id="mini-panel">
 
-    {% include 'includes/product-parts/mini-panel.html' %}
+        <ul class="breadcrumbs">
+
+            <li><a href="/">Главная</a></li>
+            <li>Корзина</li>
+
+        </ul>
+
+    </section>
+
 
     <section id="cart">
 
-        <div class="top-bar">
-
-            <h2>Корзина</h2>
-
-            <div class="checkbox">
-                <input type="checkbox" name="choose_all" id="choose_all">
-                <label for="choose_all">Выбрать все</label>
-            </div>
-
-            <h5 class="delete_choose">Удалить выбранные</h5>
-        </div>
+        <h2>Корзина</h2>
 
         <div class="main">
 
             <div class="cart-products">
+
+                <div class="top-bar">
+
+                    <div class="checkbox">
+                        <input type="checkbox" name="choose_all" id="choose_all">
+                        <label for="choose_all">Выбрать все</label>
+                    </div>
+
+                    <h5 class="delete_choose">Удалить выбранные</h5>
+                </div>
 
                 {% for key, product in cart_products %}
                 <div class="product" data-model="{{product.category}}" data-product="{{product.product_id}}">
@@ -115,8 +127,8 @@
                         {% if product.sale == '0' %}
                         <span class="price">{{product.price|mul:product.quantity}}</span>
                         {% else %}
-                        <span class="price">{{product.sale|mul:product.quantity}}</span>
                         <span class="sale">{{product.price|mul:product.quantity}}</span>
+                        <span class="price">{{product.sale|mul:product.quantity}}</span>
                         {% endif %}
 
                         <div class="counter">
@@ -139,11 +151,11 @@
 
             <div class="end-cart">
 
-                <h5>Дату и время выезда и/или доставкки можно выбрать при оформлении заказа</h5>
+                <h5>Дату и время выезда и/или доставки можно выбрать при оформлении заказа</h5>
 
                 <div class="cart-info">
 
-                    <h4 class="cart-info-title">Ваша корзина</h4>
+                    <h3 class="cart-info-title">Ваша корзина</h3>
 
                     <div class="cart-info-body">
 
@@ -181,7 +193,7 @@
 
                     <div class="go-checkout">
 
-                        <button>Перейти к оформлению</button>
+                        <button><a href="/checkout">Перейти к оформлению</a></button>
                         <span>Пока вы ни за что не платите</span>
                     </div>
 
@@ -193,9 +205,27 @@
 
     </section>
 
-</div>
+    {% include 'includes/product-parts/purchases/purchases-viewed.html' %}
+
+    {% include 'includes/product-parts/purchases/purchases-recommendations.html' %}
+
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
+        if ($(window).width() >= 1801) {
+            $('.purchases-slider').slick({
+                slidesToShow: 6,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2000,
+            });
+        }else {
+            $('.purchases-slider').slick({
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2000,
+            });
+        }
         $(document).on('click', '.delete', function () {
             let product = $(this).attr('data-key');
             let obj = $(this).parent().parent().parent();
@@ -210,7 +240,7 @@
                 data: data,
                 type: 'POST',
                 dataType: 'json',
-                success: function(data){
+                success: function (data) {
                     obj.remove();
                     $('.item_price').text(item_price - price);
                     $('.full_sale').text(item_sale - (price - sale));
@@ -230,13 +260,17 @@
             let item_sale = Number($('.full_sale').text());
             let final_price = Number($('.final_price').text());
             if (counter <= 500) {
-                let data = {product_id: obj.parent().attr('data-product'), model_name: obj.parent().attr('data-model'),  csrfmiddlewaretoken: '{{ csrf_token }}'}
+                let data = {
+                    product_id: obj.parent().attr('data-product'),
+                    model_name: obj.parent().attr('data-model'),
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                }
                 $.ajax({
                     url: '/ajax/add-cart/',
                     data: data,
                     type: 'POST',
                     dataType: 'json',
-                    success: function(){
+                    success: function () {
                         obj.find('.counter_window').text(counter + 1);
                         obj.find('.price').text(price + price_one);
                         obj.find('.sale').text(price + price_one + (sale_one * (counter + 1)));
@@ -260,7 +294,7 @@
             let item_sale = Number($('.full_sale').text());
             let final_price = Number($('.final_price').text());
             if (counter > 1) {
-                let data = {product: product, quantity: 1,  csrfmiddlewaretoken: '{{ csrf_token }}'}
+                let data = {product: product, quantity: 1, csrfmiddlewaretoken: '{{ csrf_token }}'}
                 $.ajax({
                     url: '/ajax/delete-cart/',
                     data: data,
@@ -269,7 +303,7 @@
                     success: function () {
                         obj.find('.counter_window').text(counter - 1);
                         obj.find('.price').text(price - price_one);
-                        obj.find('.sale').text(sale - price_one - (sale_one ));
+                        obj.find('.sale').text(sale - price_one - (sale_one));
                         $('.item_price').text(item_price - price_one - (sale_one));
                         $('.full_sale').text(item_sale - (sale_one));
                         $('.final_price').text(final_price - price_one);
@@ -279,5 +313,7 @@
         });
     });
 </script>
-</body>
-</html>
+
+</div>
+
+{% include 'includes/footer.html' %}

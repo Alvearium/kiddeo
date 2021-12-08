@@ -5,7 +5,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" id="metaViewport">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+          id="metaViewport">
     <title>Title</title>
     <meta name="twitter:title" content="Title">
     <meta property="og:title" content="Title">
@@ -33,221 +34,262 @@
 
 <body>
 
-<div class="container-sm container-md container-lg container-xl container-xxl">
 
 {% include 'includes/header.html' %}
 
-<section id="insert-panel">
+<div class="container-sm container-md container-lg container-xl container-xxl">
 
-    <h3>
-        Только <span>самые комфортные помещения города с адекватной ценой.</span><br>
-        Мы <span>все проверили сами и подготовили для вас видеообзоры.</span>
-    </h3>
+    <section id="mini-panel">
 
-    <div class="list-button">
-        <i class="fas fa-list-ul"></i>
-        <span>списки</span>
-    </div>
+        <ul class="breadcrumbs">
 
-    <a href="#">
-        <h6>
-            Посмотреть все
-            варианты на
-            карте
-        </h6>
-        <i class="fas fa-map-marker-alt"></i>
-    </a>
+            <li><a href="/">Главная</a></li>
+            <li><a href="{{ SITE_URL }}/categories/premises/">Где праздновать</a></li>
 
-</section>
+        </ul>
 
-<section id="main">
+    </section>
 
-    {% include 'includes/sidebars/sidebar-premises.html' %}
 
-    <div class="content">
+    <section id="insert-panel">
 
-        <div class="content-top-panel">
-            <div class="notification">
-                <h4>Более 100 проверенных мест для праздника - выбирай на свой вкус</h4>
+        <div class="insert-block" style="background-image: url({% static 'images/premises_main.png' %}); background-size: cover;background-position: center;">
+
+            <div class="text-block">
+                <h3>
+                    Только самые комфортные помещения города с адекватной ценой.<br>
+                </h3>
+                <h4>Мы все проверили сами и подготовили для вас видеообзоры.</h4>
+
             </div>
-            <div class="sorting">
-                <select id="sorting">
-                    <option value="-views">По популярности</option>
-                    <option value="-raiting">По рейтингу</option>
-                    <option value="-price">Сначала дорогие</option>
-                    <option value="price">Сначала дешёвые</option>
-                </select>
+
+            <div class="list-button">
+                <img src="{% static 'icons/list.png' %}" alt="Icon">
+                <span>Список</span>
             </div>
+
         </div>
+        <a href="https://yandex.ru/maps/?um=constructor%3Ad51ba19d14e36029c34cff888ed39fa78c48dc3fb6a3e5e8f31a797003f3d875&source=constructorLink">
+            <img src="{% static 'icons/map_white.png' %}" alt="Icon">
+            <h6>
+                Посмотреть все
+                варианты на
+                карте
+            </h6>
+        </a>
 
-        <div class="products">
-            {% for premise in premises reversed %}
-            {% if forloop.counter|divisibleby:"3" %}
-            <div class="advertisement-one">
+    </section>
 
-                <i class="fas fa-headset"></i>
+    <section id="top-panel">
+        <div class="notification">
+            <h2>Более 100 проверенных мест для праздника - <br> выбирай на свой вкус</h2>
+        </div>
+        <div class="sorting">
+            <h4>Сортировка</h4>
+            <select id="sorting">
+                <option value="-views">По популярности</option>
+                <option value="-raiting">По рейтингу</option>
+                <option value="-price">Сначала дорогие</option>
+                <option value="price">Сначала дешёвые</option>
+            </select>
+        </div>
+    </section>
 
-                <h3>Трудно выбрать? Оставьте заявку, мы подберём подходящие варианты</h3>
+    <section id="main">
 
-                <div class="block-button">
-                    <button>Оставить заявку</button>
-                    <span>Консьерж-сервис бесплатно</span>
+        {% include 'includes/sidebars/sidebar-premises.html' %}
+
+        <div class="content">
+
+            <div class="products">
+                {% for premise in premises %}
+                {% if forloop.counter|divisibleby:"3" and not forloop.counter|divisibleby:"6" %}
+                <div class="advertisement-one">
+
+                    <img src="{% static 'icons/telephone.png' %}" alt="Icon">
+
+                    <h3>Трудно выбрать? <span>Оставьте заявку,</span> мы подберём подходящие варианты</h3>
+
+                    <div class="block-button">
+                        <button>Оставить заявку</button>
+                        <span>Консьерж-сервис бесплатно</span>
+                    </div>
+
                 </div>
+                {% endif %}
+                {% if forloop.counter|divisibleby:"6" %}
+                <div class="advertisement-two">
 
-            </div>
-            {% endif %}
-            <div class="premises-card">
-
-                <div class="wrap-thumbnail">
-
-                    <div class="discount">
-                        <h4>Подарок</h4>
+                    <img src="{% static 'images/girl_avatar.png' %}" alt="Icon">
+                    
+                    <div class="content-block">
+                    
+                        <a href="#">Как правильно выбрать помещение для праздника, чтобы не было мучительно больно?</a>
+                        <h3>Рассказывает наш эксперт Юлия Степанова</h3>
+                    
                     </div>
 
-                    <div class="tap">
-                        <i class="fas fa-hand-pointer"></i>
+                </div>                
+                {% endif %}
+                <div class="premises-card">
+
+                    <div class="wrap-thumbnail">
+
+                        <div class="discount">
+                            <h4>Подарок</h4>
+                        </div>
+                        
+                        {% if not premise.video %}
+                        <img src="{{premise.image.url}}" alt="Image">
+                        {% else %}
+                        <div class="tap">
+                            <i class="fas fa-hand-pointer"></i>
+                        </div>
+                        <video controls="false" src="{{premise.video.url}}"></video>
+                        {% endif %}
+
                     </div>
 
-                    <div class="camera">
-                        <i class="fas fa-video"></i>
+                    <div class="premises-card-content">
+                        <div class="title-block">
+                            <div class="part-one">
+                                <h6>x2 бонусы</h6>
+                                <span><a href="/product/premise/{{premise.slug}}" style="width: 100%; height: 100%;">{{premise.title}}</a></span>
+                                <h6>147 оценок 54 отзыва</h6>
+                            </div>
+                            <div class="part-two">
+                                <i class="far fa-heart"></i>
+                            </div>
+                        </div>
+                        <div class="rating">
+                            <h3>4.8</h3>
+                            <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                            <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                            <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                            <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                            <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                        </div>
+                        <div class="parameters">
+                            <div class="element">
+                                <img src="{% static 'icons/clock.png' %}" alt="Icon">
+                                <h6><span>2</span> часа</h6>
+                            </div>
+                            <div class="element">
+                                <img src="{% static 'icons/ruble.png' %}" alt="Icon">
+                                {% if premise.sale %}
+                                <h6>от <span>{{premise.sale}}</span> за час</h6>
+                                {% else %}
+                                <h6>от <span>{{premise.price}}</span> за час</h6>
+                                {% endif %}
+                            </div>
+                            <div class="element">
+                                <img src="{% static 'icons/square.png' %}" alt="Icon">
+                                <h6><span>{{premise.square}}</span> кв. м.</h6>
+                            </div>
+                            <div class="element">
+                                <img src="{% static 'icons/people.png' %}" alt="Icon">
+                                <h6>{{premise.count_peoples}}</h6>
+                            </div>
+                        </div>
+                        <h5>{{premise.address}}</h5>
+                        <div class="map">
+                            <iframe src="{{premise.map_link}}" frameborder="0"></iframe>
+                        </div>
                     </div>
-
-                    <video controls="false" src="/static/video/video.mp4"></video>
-
-                    <div class="blackout"></div>
 
                 </div>
-
-                <div class="premises-card-content">
-                    <div class="title-block">
-                        <div class="part-one">
-                            <h5>x2 бонусы</h5>
-                            <h3><a href="/product/premise/{{premise.slug}}" style="width: 100%; height: 100%;">{{premise.title}}</a></h3>
-                            <h4>147 оценок 54 отзыва</h4>
-                        </div>
-                        <div class="part-two">
-                            <i class="far fa-heart"></i>
-                        </div>
-                    </div>
-                    <div class="rating">
-                        <h4>4.8</h4>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="parameters">
-                        <div class="element">
-                            <i class="far fa-clock"></i>
-                            <h4><span>2</span> часа</h4>
-                        </div>
-                        <div class="element">
-                            <i class="fas fa-ruble-sign"></i>
-                            {% if premise.sale %}
-                            <h4>от <span>{{premise.sale}}</span> за час</h4>
-                            {% else %}
-                            <h4>от <span>{{premise.price}}</span> за час</h4>
-                            {% endif %}
-                        </div>
-                        <div class="element">
-                            <i class="fas fa-th-large"></i>
-                            <h4><span>{{premise.square}}</span> кв. м.</h4>
-                        </div>
-                        <div class="element">
-                            <i class="fas fa-user-friends"></i>
-                            <h4>{{premise.count_peoples}}</h4>
-                        </div>
-                    </div>
-                    <h5>{{premise.address}}</h5>
-                    <div class="map">
-                        <iframe src="{{premise.map_link}}" frameborder="0"></iframe>
-                    </div>
-                </div>
+                {% endfor %}
 
             </div>
-            {% endfor %}
+            {% include 'includes/pagination.html' with product_count=premises_count  %}
 
         </div>
-        {% include 'includes/pagination.html' with product_count=premises_count%}
 
-    </div>
+    </section>
 
-</section>
+    <section id="more">
 
-<section id="more">
+        <div class="more-container">
 
-    <div class="more-container">
+            <div class="more-box arrow">
+                <h3>
+                    Сохраняем ваше время <br>
+                    и дарим <br>
+                    скидки
+                </h3>
+            </div>
 
-        <div class="more-box chief">
-            <h3>
-                Сохраняем ваше время и дарим скидки
-            </h3>
+            <div class="more-box chief">
+                <span>Более 100 вариантов</span>
+                <h4><a href="#">Праздник "под ключ"</a></h4>
+                <span>Выбирайте, чем порадовать именинника</span>
+            </div>
+
+            <div class="more-box arrow">
+                <h3>
+                    Праздник на любой <br>
+                    вкус и бюджет
+                </h3>
+            </div>
+
+            <div class="more-box chief">
+                <span>Вау-эффект обеспечен</span>
+                <h4><a href="#">Конструктор праздника</a></h4>
+                <span>Не ограничивайте фантазию</span>
+            </div>
         </div>
 
-        <div class="more-box">
-            <span>Более 100 вариантов</span>
-            <h3><a href="#">Праздник "под ключ"</a></h3>
-            <span>Выбирайте, чем порадовать именинника</span>
+    </section>
+
+    <section id="choose">
+
+        <h2>
+            <span>Вот что мы ещё подготовили для вашего праздника</span>
+        </h2>
+
+        <div class="choose-container">
+
+            <div class="image-block one"
+                 style="background-image: url({% static 'images/choose1.png' %});background-size: cover;background-position: center;">
+                <span>Вкусная и полезная еда с доставкой</span>
+            </div>
+            <div class="image-block two"
+                 style="background-image: url({% static 'images/choose2.png' %});background-size: cover;background-position: center;">
+                <span>Самые смешные аниматоры</span>
+            </div>
+            <div class="image-block three"
+                 style="background-image: url({% static 'images/choose3.png' %});background-size: cover;background-position: center;">
+                <span>Крутые лофты</span>
+            </div>
+            <div class="image-block four"
+                 style="background-image: url({% static 'images/choose4.png' %});background-size: cover;background-position: center;">
+                <span>Стильные и необычные декорации</span>
+            </div>
+            <div class="image-block five"
+                 style="background-image: url({% static 'images/choose5.png' %});background-size: cover;background-position: center;">
+                <span>Видеографы, которые сохранят атмосферу счастья</span>
+            </div>
+
         </div>
 
-        <div class="more-box chief">
-            <h3>
-                Праздник на любой
-                вкус и бюджет
-            </h3>
-        </div>
-
-        <div class="more-box">
-            <span>Вау-эффект обеспечен</span>
-            <h3><a href="#">Конструктор праздника</a></h3>
-            <span>Не ограничивайте фантазию</span>
-        </div>
-    </div>
-
-</section>
-
-<section id="choose">
-
-    <h2>
-        <span>Вот что мы ещё подготовили для вашего праздника</span>
-    </h2>
-
-    <div class="choose-container">
-
-        <div class="image-block one" style="background: url({% static 'images/slide1.png' %});background-size: cover;background-position: center;">
-            <h3>Вкусная и полезная еда с доставкой</h3>
-        </div>
-        <div class="image-block two" style="background: url({% static 'images/slide1.png' %});background-size: cover;background-position: center;">
-            <h3>Самые смешные аниматоры</h3>
-        </div>
-        <div class="image-block three" style="background: url({% static 'images/slide1.png' %});background-size: cover;background-position: center;">
-            <h3>Захватывающие квесты</h3>
-        </div>
-        <div class="image-block four" style="background: url({% static 'images/slide1.png' %});background-size: cover;background-position: center;">
-            <h3>Стильные и необычные декорации</h3>
-        </div>
-        <div class="image-block five" style="background: url({% static 'images/slide1.png' %});background-size: cover;background-position: center;">
-            <h3>Видеографы, которые сохранят атмосферу счастья</h3>
-        </div>
-
-    </div>
-</section>
-
+    </section>
 </div>
-
 <script>
     function pagination_create(count, active) {
-        if (count >= 20) {
+        if (count >= 8) {
             let pagination = '';
-            let numbers = (Number(count) + 20) / 20;
+            let numbers = (Number(count) + 8) / 8;
             if (active === 1) {
                 pagination = '<button class="prev" style="display: none">Назад</button><ul><li class="prev" style="display: none"><</li>';
             } else {
                 pagination = '<button class="prev">Назад</button><ul><li class="prev"><</li>';
             }
             for (let i = 1; i < numbers; i++) {
-                pagination += '<li>' + i + '</li>';
+                if (i === active) {
+                    pagination += '<li class="active">' + i + '</li>';
+                } else {
+                    pagination += '<li>' + i + '</li>';
+                }
             }
             if (active === Math.floor(numbers)) {
                 pagination += '<li style="display: none">...</li><li class="next" style="display: none">></li></ul><button class="next" style="display: none">Вперёд</button>';
@@ -257,13 +299,81 @@
             $('.pagination').html(pagination);
         }
     }
-    $(document).ready(function() {
+    function prev_next_pagination_page(checker, filters, order_by) {
+        let offset = 0;
+        let active = $('.pagination li.active').text();
+        if (checker == 'next') {
+            offset = active * 8;
+        } else if (checker == 'prev'){
+            offset = (active - 2) * 8;
+        } else {
+            offset = (active - 1) * 8;
+        }
+        if (order_by === '' && filters === '') {
+            data = {model: 'Premises', offset: offset, csrfmiddlewaretoken: '{{ csrf_token }}'};
+        } else if (order_by === '') {
+            data = {model: 'Premises', offset: offset, filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
+        } else if (filters === '') {
+            data = {
+                model: 'Premises',
+                offset: offset,
+                order_by: order_by,
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+            };
+        } else {
+           data = {model: 'Premises', offset: offset,order_by: order_by, filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'}; 
+        }
+        
+        $.ajax({
+            url: '/ajax/sidebar-filters/',
+            data: data,
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                $('#main .products').html(data.objects);
+            }
+        });
+    }
+    $(document).ready(function () {
+        var filters_obj = {};
+        var additional_filters_obj = {};
         var filters = '';
+        var additional_filters = '';
         var order_by = '';
-        var data = '';
+        var data = {};
+        var day_week = '';
+        var switcher = '';
+        var start_time = '';
+        var end_time = '';    
         var post_count = $('.w-all').text();
         pagination_create(post_count, 1);
-
+        
+        $('.pagination').on('click','.next', function() {
+            let active = $('.pagination li.active').text();
+            active = Math.floor(active);
+            prev_next_pagination_page('next', filters);
+            pagination_create(post_count, active + 1);
+            setTimeout(function() {
+                window.scrollTo(0, 500);
+            }, 200);
+        });
+        $(document).on('click','.pagination ul li', function() {
+            let active = $(this).text();
+            active = Math.floor(active);
+            pagination_create(post_count, active);
+            prev_next_pagination_page('simple', filters);
+            setTimeout(function() {
+                window.scrollTo(0, 500);
+            }, 200);
+        });
+        $('.pagination').on('click','.prev', function() {
+            let active = $('.pagination li.active').text();
+            active = Math.floor(active);
+            prev_next_pagination_page('prev', filters);
+            pagination_create(post_count, active - 1);
+        });
+        
+        // Filters
         $(".rental_price").ionRangeSlider({
             skin: "round",
             type: "single",
@@ -271,28 +381,39 @@
             min: 1600,
             max: 3200,
             from: 2400,
-            step: 1,
+            step: 5,
             drag_interval: true,
             from_shadow: true,
             grid_num: 1,
             hide_min_max: true,
-            onFinish: function(data) {
-                if (filters == '') {
-                    filters += 'price=' + data.from;
-                } else {
-                    filters +=  ',price=' + data.from;
+            onFinish: function (data) {
+                filters_obj['sale'] = data.from;
+                filters = '';
+
+                for (var key in filters_obj) {
+                    if (filters === '') {
+                        filters += key + '=' + filters_obj[key];
+                    } else {
+                        filters += ',' + key + '=' + filters_obj[key];
+                    }
                 }
+
                 if (order_by === '') {
                     data = {model: 'Premises', filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
                 } else {
-                    data = {model: 'Premises', order_by: order_by, filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
+                    data = {
+                        model: 'Premises',
+                        order_by: order_by,
+                        filters: filters,
+                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                    };
                 }
                 $.ajax({
                     url: '/ajax/sidebar-filters/',
                     data: data,
                     type: 'POST',
                     dataType: 'json',
-                    success: function(data){
+                    success: function (data) {
                         $('#main .products').html(data.objects);
                     }
                 });
@@ -311,23 +432,34 @@
             from_shadow: true,
             grid_num: 1,
             hide_min_max: true,
-            onFinish: function(data) {
-                if (filters === '') {
-                    filters += 'square=' + data.from;
-                } else {
-                    filters +=  ',square=' + data.from;
+            onFinish: function (data) {
+                filters_obj['square'] = data.from;
+                filters = '';
+
+                for (var key in filters_obj) {
+                    if (filters === '') {
+                        filters += key + '=' + filters_obj[key];
+                    } else {
+                        filters += ',' + key + '=' + filters_obj[key];
+                    }
                 }
+                
                 if (order_by === '') {
                     data = {model: 'Premises', filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
                 } else {
-                    data = {model: 'Premises', order_by: order_by, filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
+                    data = {
+                        model: 'Premises',
+                        order_by: order_by,
+                        filters: filters,
+                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                    };
                 }
                 $.ajax({
                     url: '/ajax/sidebar-filters/',
                     data: data,
                     type: 'POST',
                     dataType: 'json',
-                    success: function(data){
+                    success: function (data) {
                         $('#main .products').html(data.objects);
                     }
                 });
@@ -339,34 +471,70 @@
             if ($(this).attr('type') === 'text' || $(this).attr('type') === 'date') {
                 var name = $(this).attr('data-name');
                 var val = $(this).val();
-            } else if ($(this).attr('type') === 'checkbox'){
-                if ($(this).prop('checked') === true) {
-                    var name = $(this).attr('data-name');
-                    var val = $(this).next().text();
-                } else {
-                    var name = $(this).attr('data-name');
-                    var val = '';
+                
+                if (name === 'event_date') {
+                    let days = [
+                        'sunday',
+                        'monday',
+                        'tuesday',
+                        'wednesday',
+                        'thursday',
+                        'friday',
+                        'saturday'
+                    ];
+                
+                    let choose_date = new Date($(this).val());
+                    day_week = days[choose_date.getDay()];
+                    
+                    if (day_week !== '' && start_time !== '' && end_time !== '') {
+                        additional_filters_obj[day_week] = 'c ' + start_time + ' до ' + end_time;
+                        additional_filters = day_week + '=' + 'c ' + start_time + ' до ' + end_time;
+                        switcher = 'filter';
+                    } else {
+                        additional_filters_obj[day_week] = 'Выходной';
+                        additional_filters = day_week + '=' + 'Выходной';
+                        switcher = 'exclude';
+                    }                    
                 }
+            } else if ($(this).attr('type') === 'checkbox') {
+                var name = $(this).attr('data-name');
+                var val = $(this).next().text();
+                $(this).prop('checked', true);
+                $(this).parent().parent().find('input').each(function() {
+                    if ($(this).next().text() !== val) {
+                        $(this).prop('checked', false);
+                    }
+                });
             } else {
                 return;
             }
 
-            if (filters === '') {
-                filters +=  name + '=' + val;
-            } else {
-                filters +=  ',' + name + '=' + val;
+            if (name !== 'event_date') {
+                filters_obj[name] = val;
+                filters = '';
+
+                for (var key in filters_obj) {
+                    if (filters === '') {
+                        filters += key + '=' + filters_obj[key];
+                    } else {
+                        filters += ',' + key + '=' + filters_obj[key];
+                    }
+                }
             }
-            if (order_by === '') {
-                data = {model: 'Premises', filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
-            } else {
-                data = {model: 'Premises', order_by: order_by, filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
-            }
+       
+            data["model"] = 'Premises';
+            if (order_by !== '') data["order_by"] = order_by;
+            if (filters !== '') data["filters"] = filters;
+            if (switcher !== '') data["switcher"] = switcher;
+            if (additional_filters !== '') data["additional_filters"] = additional_filters;
+            data["csrfmiddlewaretoken"] = '{{ csrf_token }}';
+
             $.ajax({
                 url: '/ajax/sidebar-filters/',
                 data: data,
                 type: 'POST',
                 dataType: 'json',
-                success: function(data){
+                success: function (data) {
                     $('#main .products').html(data.objects);
                 }
             });
@@ -376,34 +544,78 @@
             let name = $(this).attr('data-name');
             let val = $(this).val();
 
-            if (filters == '') {
-                filters +=  name + '=' + val;
-            } else {
-                filters +=  ',' + name + '=' + val;
+
+            if (name === 'start_time') {
+                start_time = $(this).val();
             }
-            if (order_by === '') {
-                data = {model: 'Premises', filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
-            } else {
-                data = {model: 'Premises', order_by: order_by, filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
+            if (name === 'end_time') {
+                end_time = $(this).val();
             }
-            $.ajax({
-                url: '/ajax/sidebar-filters/',
-                data: data,
-                type: 'POST',
-                dataType: 'json',
-                success: function(data){
-                    $('#main .products').html(data.objects);
+
+            if (day_week !== '' && start_time !== '' && end_time !== '' && name !== 'district') {
+                additional_filters_obj[day_week] = 'c ' + start_time + ' до ' + end_time;
+                additional_filters = day_week + '=' + 'c ' + start_time + ' до ' + end_time;
+                switcher = 'filter';
+
+                //Формируем дату запросов
+                data["model"] = 'Premises';
+                if (order_by !== '') data["order_by"] = order_by;
+                if (filters !== '') data["filters"] = filters;
+                if (switcher !== '') data["switcher"] = switcher;
+                if (additional_filters !== '') data["additional_filters"] = additional_filters;
+                data["csrfmiddlewaretoken"] = '{{ csrf_token }}';
+
+                $.ajax({
+                    url: '/ajax/sidebar-filters/',
+                    data: data,
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (data) {
+                        $('#main .products').html(data.objects);
+                    }
+                });
+                return false;
+            }
+
+            if (name === 'district') {
+                filters_obj[name] = val;
+                filters = '';
+
+                for (var key in filters_obj) {
+                    if (filters === '') {
+                        filters += key + '=' + filters_obj[key];
+                    } else {
+                        filters += ',' + key + '=' + filters_obj[key];
+                    }
                 }
-            });
-            return false;
+
+                //Формируем дату запросов
+                data["model"] = 'Premises';
+                if (order_by !== '') data["order_by"] = order_by;
+                if (filters !== '') data["filters"] = filters;
+                if (switcher !== '') data["switcher"] = switcher;
+                if (additional_filters !== '') data["additional_filters"] = additional_filters;
+                data["csrfmiddlewaretoken"] = '{{ csrf_token }}';
+
+                $.ajax({
+                    url: '/ajax/sidebar-filters/',
+                    data: data,
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (data) {
+                        $('#main .products').html(data.objects);
+                    }
+                });
+                return false;
+            }
         });
 
         $(document).on('click', '.tap', function () {
-            $(this).next().next().get(0).play();
+            $(this).next().get(0).play();
             $(this).fadeOut();
         });
         $(document).on('click', 'video', function () {
-            $(this).prev().prev().fadeIn();
+            $(this).prev().fadeIn();
         });
 
         $('#sorting').on('change', function () {
@@ -411,14 +623,19 @@
             if (filters === '') {
                 data = {model: 'Premises', order_by: order_by, csrfmiddlewaretoken: '{{ csrf_token }}'};
             } else {
-                data = {model: 'Premises', order_by: order_by, filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
+                data = {
+                    model: 'Premises',
+                    order_by: order_by,
+                    filters: filters,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                };
             }
             $.ajax({
                 url: '/ajax/sidebar-filters/',
                 data: data,
                 type: 'POST',
                 dataType: 'json',
-                success: function(data){
+                success: function (data) {
                     $('#main .products').html(data.objects);
                 }
             });
@@ -426,7 +643,7 @@
         });
     });
 </script>
-</body>
+{% include 'includes/footer.html' %}
 
 
 

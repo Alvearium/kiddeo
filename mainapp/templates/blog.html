@@ -1,0 +1,262 @@
+{% load static %}
+{% load mathfilters %}
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+          id="metaViewport">
+    <title>Title</title>
+    <meta name="twitter:title" content="Title">
+    <meta property="og:title" content="Title">
+    <meta name="description" content="">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="img/default.png">
+    <meta property="vk:image" content="img/default.png">
+    <meta name="twitter:image" content="img/default.png">
+    <link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+    <meta name="theme-color">
+    <meta name="msapplication-navbutton-color">
+    <meta name="apple-mobile-web-app-status-bar-style">
+
+    <link rel="stylesheet" href="{% static 'css/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slick-theme.css' %}">
+    <link rel="stylesheet" href="{% static 'css/reset.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+    <script src="https://kit.fontawesome.com/6c1cf59610.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'js/slick.js' %}"></script>
+</head>
+
+<body>
+
+
+{% include 'includes/header.html' %}
+
+<div class="container-sm container-md container-lg container-xl container-xxl">
+
+    <section id="blog">
+        <h1>Мы подготовили статьи и материалы, которые помогут вам создать идеальный праздник</h1>
+
+        <div class="category-panel">
+
+            <button data-rubric="rating">Рейтинг</button>
+            <button data-rubric="advice">Полезные советы</button>
+            <button data-rubric="overview">Обзор рынка</button>
+            <button data-rubric="base">База знаний</button>
+            <div class="block-search">
+                <input type="text" class="blog_search" placeholder="Поиск по блогу">
+            </div>
+        </div>
+
+        <div class="blog-content">
+
+            <div class="main-post">
+
+                <div class="main-post-container">
+                    <span>Рейтинг</span>
+
+                    <div class="img-container"
+                         style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+
+                    <h3><a href="#"></a>ТОП-20 способов отметить 10-летие</h3>
+                    <h4 class="mini-desc">
+                        Рейтинг от независимого эксперта с нашими комментариями
+                    </h4>
+                    <h4 class="post-link"><a href="#">Читать</a></h4>
+                    <h6 class="date">21 марта 2021</h6>
+                </div>
+            </div>
+
+            <div class="posts-list">
+
+                <div class="slide">
+                    <div class="post" data-rubric="advice">
+
+                        <div class="post-content">
+                            <h3>Как сделать праздник интересным для всех</h3>
+                            <h4 class="mini-desc">Краткое руководство</h4>
+                            <h4><a href="#">Читать</a></h4>
+                            <h6 class="date">4 декабря 2021</h6>
+                        </div>
+
+                        <div class="post-image">
+                            <span>Полезные советы</span>
+                            <div class="img-container"
+                                 style="background-image: url({% static 'images/slide1.png' %}); background-size: cover;background-position: center;"></div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="post" data-rubric="overview">
+
+                        <div class="post-content">
+                            <h3>ТОП-10 организаторов праздников месяца</h3>
+                            <h4 class="mini-desc">Подводим итоги месяца</h4>
+                            <h4><a href="#">Читать</a></h4>
+                            <h6 class="date">1 апреля 2021</h6>
+                        </div>
+
+                        <div class="post-image">
+                            <span>Обзор рынка</span>
+                            <div class="img-container"
+                                 style="background-image: url({% static 'images/slide1.png' %}); background-size: cover;background-position: center;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="post" data-rubric="base">
+
+                        <div class="post-content">
+                            <h3>Самые большие лофты города</h3>
+                            <h4 class="mini-desc">Называем по именам</h4>
+                            <h4><a href="#">Читать</a></h4>
+                            <h6 class="date">1 апреля 2021</h6>
+                        </div>
+
+                        <div class="post-image">
+                            <span>База знаний</span>
+                            <div class="img-container"
+                                 style="background-image: url({% static 'images/slide1.png' %}); background-size: cover;background-position: center;">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <div class="post" data-rubric="rating">
+
+                        <div class="post-content">
+                            <h3>Что чаще всего заказывают поесть</h3>
+                            <h4 class="mini-desc">Аналитика из 100 заказов</h4>
+                            <h4><a href="#">Читать</a></h4>
+                            <h6 class="date">1 декабря 2021</h6>
+                        </div>
+
+                        <div class="post-image">
+                            <span>Рейтинг</span>
+                            <div class="img-container"
+                                 style="background-image: url({% static 'images/slide1.png' %}); background-size: cover;background-position: center;"></div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="slide active">
+                    <div class="post" data-rubric="rating">
+
+                        <div class="post-content">
+                            <h3>ТОП-20 способов отметить 10-летие</h3>
+                            <h4 class="mini-desc">Рейтинг от независимого эксперта с нашими комментариями</h4>
+                            <h4><a href="#">Читать</a></h4>
+                            <h6 class="date">21 марта 2021</h6>
+                        </div>
+
+                        <div class="post-image">
+                            <span>Рейтинг</span>
+                            <div class="img-container"
+                                 style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </section>
+
+</div>
+<script>
+    function filter(rubric) {
+        $('.posts-list').slick('slickGoTo', 0);
+        $('.posts-list .slick-slide').each(function () {
+            if ($(this).find('.post').attr('data-rubric') !== rubric) {
+                $(this).fadeOut();
+            } else {
+                $(this).fadeIn();
+            }
+        });
+    }
+
+    function slider_height() {
+        let height = 0;
+        $('.posts-list .post').each(function (elem) {
+            if (elem < 3) {
+                height += $(this).height();
+            } else {
+                return false;
+            }
+        });
+
+        $('#blog').find('.slick-list').css('height', height + 10 + 'px');
+    }
+
+    function replacing_blocks() {
+        $('.main-post-container').fadeOut();
+        $('.posts-list .slide').each(function () {
+            if ($(this).hasClass('active')) {
+                let element = $(this).parent().parent().prev();
+                element.find('.slide').addClass('active');
+                $(this).removeClass('active');
+                $('.main-post h3').text(element.find('h3').text());
+                $('.main-post .mini-desc').text(element.find('.mini-desc').text());
+                $('.main-post .post-link a').attr('href', element.find('a').attr('href'));
+                $('.main-post .date').text(element.find('.date').text());
+                $('.main-post span').text(element.find('span').text());
+                $('.main-post .img-container').attr('style', element.find('.img-container').attr('style'));
+            }
+        });
+        setTimeout(function () {
+            $('.main-post-container').fadeIn();
+        }, 300);
+    }
+
+    $(document).ready(function () {
+        let switcher = 0;
+        $('.posts-list').slick({
+            timeout: 4000,
+            vertical: true,
+            infinite: false,
+            autoplay: true,
+            verticalSwiping: true,
+            slidesToShow: 3,
+        });
+        setTimeout(function () {
+            slider_height();
+        }, 750);
+        $('.blog_search').on('focus', function () {
+            $(this).parent().addClass('focus');
+        });
+        $('.blog_search').on('blur', function () {
+            $(this).parent().removeClass('focus');
+        });
+
+        $('.category-panel button').on('click', function () {
+            let rubric = $(this).attr('data-rubric');
+            $('.category-panel button').each(function () {
+                $(this).removeClass('active');
+            });
+            $(this).addClass('active');
+            $('.posts-list').slick('slickPause');
+            filter(rubric);
+            switcher = 1;
+        });
+
+        setInterval(function () {
+            if (switcher !== 1) {
+                replacing_blocks();
+            }
+        }, 4000)
+    });
+</script>
+
+{% include 'includes/footer.html' %}

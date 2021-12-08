@@ -1,0 +1,256 @@
+{% load static %}
+{% load mathfilters %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" id="metaViewport">
+    <title>Title</title>
+    <meta name="twitter:title" content="Title">
+    <meta property="og:title" content="Title">
+    <meta name="description" content="">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="img/default.png">
+    <meta property="vk:image" content="img/default.png">
+    <meta name="twitter:image" content="img/default.png">
+    <link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+    <meta name="theme-color">
+    <meta name="msapplication-navbutton-color">
+    <meta name="apple-mobile-web-app-status-bar-style">
+
+    <link rel="stylesheet" href="{% static 'css/reset.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;600;700;900&display=swap" rel="stylesheet">
+
+
+    <script src="https://kit.fontawesome.com/6c1cf59610.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+{% include 'includes/header.html' %}
+
+<div class="container-sm container-md container-lg container-xl container-xxl">
+
+    <section id="mini-panel">
+
+        <ul class="breadcrumbs">
+
+            <li><a href="/">Главная</a></li>
+            <li><a href="/cart/">Корзина</a></li>
+            <li>Оформление заказа</li>
+        </ul>
+
+    </section>
+
+    <section id="checkout">
+
+        <h1>Оформление заказа</h1>
+
+        <div class="top-bar">
+
+            <div class="explanation">
+                <h5>Чтобы отправить заказ на подтверждение партнёрам, нам нужно уточнить некоторые детали</h5>
+            </div>
+
+
+            <h4>Мой заказ точно выполнят?</h4>
+
+        </div>
+
+        <div class="checkout-products">
+
+            <div class="title-row">
+                <h2>1. Вы закзали</h2>
+                <span>Дата и время</span>
+                <span>Выезд/доставка</span>
+            </div>
+
+            {% for key, product in cart_products %}
+            <div class="product" data-model="{{product.category}}" data-product="{{product.product_id}}">
+
+                    <div class="checkbox">
+                        <input type="checkbox" name="product">
+                    </div>
+
+                    <div class="img-container">
+
+                        <img src="{{product.image}}" alt="Image">
+
+                    </div>
+
+                    <div class="product-block">
+
+                        <div class="product-info">
+
+                            {% if product.category == "premises" %}
+                            <h4>Помещение для праздника {{product.title}}</h4>
+                            {% elif product.category == "food" %}
+                            <h4>Еда — {{product.title}}</h4>
+                            {% elif product.category == "animator" %}
+                            <h4>Развлечения — {{product.title}}</h4>
+                            {% else %}
+                            <h4>Оформление — {{product.title}}</h4>
+                            {% endif %}
+
+                            {% if product.category != 'premises'%}
+                            <h4>{{product.parent}}</h4>
+                            {% else %}
+                            <h4>{{product.address}}</h4>
+                            {% endif %}
+
+                            {% if product.category != 'premises'%}
+                            <h4>{{product.address}}</h4>
+                            {% else %}
+                            <h4>22.02.2022 c 12 : 00 до 14 : 00</h4>
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                    <div class="price-block">
+
+                        {% if product.sale == '0' %}
+                        <span class="price">{{product.price|mul:product.quantity}}</span>
+                        {% else %}
+                        <span class="price">{{product.sale|mul:product.quantity}}</span>
+                        {% endif %}
+
+                    </div>
+
+                    <div class="date-time">
+
+                        <div class="row date-row">
+
+                            <h4>Дата</h4>
+
+                            <input type="text" name="date" placeholder="22.02.2022">
+
+                        </div>
+                        <div class="row time-row">
+
+                            <h4>Время</h4>
+
+                            <input type="text" name="date" placeholder="12.00 - 14.00">
+
+                        </div>
+
+                    </div>
+
+                    <div class="address">
+
+                        <div class="checkbox">
+                            <input type="checkbox" name="address">
+                            <label>Адрес</label>
+                        </div>
+
+                        <input type="text" placeholder="Московский пр.183-185">
+
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+
+        <div class="bar">
+
+            <h2>2. Давайте сверим контактные данные</h2>
+
+            <button>Изменить данные</button>
+
+        </div>
+
+        <div class="contacts">
+
+            <div class="contact-row">
+                <img src="{% static 'icons/user.png' %}" alt="Icon">
+                <h4>Аня иванова</h4>
+            </div>
+            <div class="contact-row">
+                <img src="{% static 'icons/phone.png' %}" alt="Icon">
+                <h4>+ 7 999 454 76 68</h4>
+            </div>
+            <div class="contact-row">
+                <img src="{% static 'icons/email.png' %}" alt="Icon">
+                <h4>Email: @email.com</h4>
+            </div>
+
+        </div>
+
+        <div class="bar">
+
+            <h2>3. Выберите удобный мессенджер для оперативной связи</h2>
+
+        </div>
+
+        <div class="social-network">
+
+            <img src="{% static 'icons/watsapp.png' %}" alt="Icon">
+            <img src="{% static 'icons/telegramm.png' %}" alt="Icon">
+            <img src="{% static 'icons/watsapp.png' %}" alt="Icon">
+            <img src="{% static 'icons/telegramm.png' %}" alt="Icon">
+            <img src="{% static 'icons/watsapp.png' %}" alt="Icon">
+
+        </div>
+
+        <div class="bar">
+
+            <h2>2. Ваши платёжные реквизиты</h2>
+
+            <button>Изменить реквизиты</button>
+
+        </div>
+
+        <div class="requisites">
+
+            <div class="card">
+
+                <input type="text" class="account" name="account" placeholder="∗∗∗∗ ∗∗∗∗ ∗∗∗∗ ∗∗∗∗">
+
+                <div class="req-block">
+
+                    <input type="text" class="end_date" name="end-date" placeholder="XX/XX">
+
+                    <input type="text" class="cvv" name="cvv" placeholder="XXX">
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="checkout-end-bar">
+
+            <h2>Сейчас вы ничего не платите</h2>
+
+            <a href="#"><h4>Подробнее о безопасной сделке</h4></a>
+
+        </div>
+
+        <div class="checkout-end">
+
+            <h4>
+                Мы резервируем на вашей карте средства для оплаты, только после подтверждения готовности к выполнению вашего заказа исполнителем <br><br>
+                Сумма заказа спишется только после вашего подтверждения успешного выполнения заказа. <br><br>
+                После оформления заказа, исполнители проверят свои графики и сообщат вам о возможности исполнения данного заказ.<br><br>
+                На рассмотрение заявки обычно уходит от 2 до 3 полных часов. <br><br>
+                Ответ поступит в ваш личный кабинет, а так же на электронную почту и в мессенджер.
+            </h4>
+
+            <button>Оформить заказ</button>
+
+        </div>
+
+  </section>
+
+</div>
+
+</body>
+</html>

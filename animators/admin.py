@@ -50,6 +50,7 @@ class ReviewsInline(admin.TabularInline):
 # Register Image Library
 class AgencyImageInline(admin.TabularInline):
     model = ImageLibrary
+    fields = ["image"]
     extra = 0
 
 @admin.register(Agency)

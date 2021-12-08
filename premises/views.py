@@ -9,7 +9,7 @@ from premises.models import Premises, ImageLibrary, Reviews, Questions, Audits, 
 
 # Create your views here.
 def premisesView(request):
-    premises = Premises.objects.all()[:20]
+    premises = Premises.objects.all()[:7]
     premises_count = Premises.objects.all().count()
     return render(request, 'premises.html', {"premises": premises, "premises_count": premises_count})
 

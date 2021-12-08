@@ -56,6 +56,7 @@ class Cart(object):
             x = 0
             for key in self.cart['products']:
                 if product == key:
+                    self.prices_calculation_minus(product, Decimal(quantity))
                     del self.cart['products'][key]
                     self.save()
                     return

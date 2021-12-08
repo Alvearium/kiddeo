@@ -33,15 +33,29 @@
 
 <body>
 
-<div class="container-sm container-md container-lg container-xl container-xxl">
-
 {% include 'includes/header.html' %}
 
-{% include 'includes/product-parts/mini-panel.html' with product=agency %}
+<div class="container-sm container-md container-lg container-xl container-xxl">
+
+<section id="mini-panel">
+
+    <ul class="breadcrumbs">
+        <li><a href="/">Главная</a></li>
+        <li><a href="{{ SITE_URL }}/categories/decorations/">Чем украсить</a></li>
+        <li>{{agency.title}}</li>
+
+    </ul>
+
+</section>
+
 
 {% include 'includes/product-parts/product-cards/product-card-2.html' with parent=agency products=decorations name=name subcategories=subcategories %}
 
+</div>
+
 {% include 'includes/product-parts/descriptions.html' with product=agency audit_elements=audit_elements questions=questions reviews=reviews %}
+
+<div class="container-sm container-md container-lg container-xl container-xxl">
 
 {% include 'includes/product-parts/reasons.html' with product=agency %}
 
@@ -65,7 +79,6 @@
 
 </div>
 
-</body>
 <script>
     $(document).ready(function() {
         let products = $('.products-slider');
@@ -79,19 +92,12 @@
 
         if ($(window).width() >= 1801) {
             $('.purchases-slider').slick({
-                slidesToShow: 6,
-                slidesToScroll: 1,
-                autoplay: true,
-                autoplaySpeed: 2000,
-            });
-        }else if ($(window).width() >= 1301) {
-            $('.purchases-slider').slick({
                 slidesToShow: 5,
                 slidesToScroll: 1,
                 autoplay: true,
                 autoplaySpeed: 2000,
             });
-        } else {
+        }else if ($(window).width() >= 1301) {
             $('.purchases-slider').slick({
                 slidesToShow: 4,
                 slidesToScroll: 1,
@@ -117,4 +123,5 @@
         });
     });
 </script>
-</html>
+
+{% include 'includes/footer.html' %}

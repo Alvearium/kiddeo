@@ -22,7 +22,13 @@ def decorationView(request, decoration_slug):
     reviews = Reviews.objects.filter(agency_id=agency.id)[:2]
     questions = Questions.objects.filter(agency_id=agency.id)[:2]
     recommendations = productRecommendation()
-    listPurchasesViewed = request.session['viewed_products']
+    
+    if not request.session.get('viewed_products'):
+        request.session['viewed_products'] = list()
+        listPurchasesViewed = False
+    else:
+       listPurchasesViewed = request.session['viewed_products']
+    
     for decoration in decorations:
         if not decoration.subcategory in subcategories:
             subcategories.append(decoration.subcategory)
@@ -37,7 +43,7 @@ def decorationView(request, decoration_slug):
 
     if not reviews:
         reviews = False
-
+        
     return render(request, 'decoration.html', {
         "agency": agency,
         "decorations": decorations,

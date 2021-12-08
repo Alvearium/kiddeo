@@ -1,5 +1,5 @@
 from .cart import Cart
-from kiddeo.settings import CART_SESSION_ID
+from kiddeo.settings import CART_SESSION_ID, STATIC_URL
 from django.http import JsonResponse, request
 from django.shortcuts import render
 from premises.models import Premises
@@ -12,15 +12,40 @@ from django.shortcuts import get_object_or_404
 def indexView(request):
     return render(request, 'index.html', {})
 
+# Blog
+def blogView(request):
+    return render(request, 'blog.html', {})
+
+def postView(request):
+    return render(request, 'post.html', {})
+
+
 def cartView(request):
+    cart = Cart(request)
     cart_products = request.session[CART_SESSION_ID]['products'].items()
     cart_info = request.session[CART_SESSION_ID]['info']
+    recommendations = productRecommendation()
+    listPurchasesViewed = request.session['viewed_products']
+    
+    if not listPurchasesViewed:
+        listPurchasesViewed = False
+        
     return render(request, 'cart.html',
         {
             'cart_products': cart_products,
             'cart_info': cart_info,
+            'recommendations': recommendations,
+            'listPurchasesViewed': listPurchasesViewed
         })
-
+        
+def checkoutView(request):
+    cart = Cart(request)
+    cart_products = request.session[CART_SESSION_ID]['products'].items()
+    return render(request, 'checkout.html',
+        {
+            'cart_products': cart_products
+        })
+        
 def AddCart(request):
     responseData  = {}
     slug = request.POST.get('slug', None)
@@ -69,7 +94,7 @@ def OutputModalData(request):
         result += '<span>' + str(product.duration) +'ч</span>'
      elif model_name == 'food':
         result += '<span>' + str(product.duration) + 'г</span>'
-     result += '</div><div class="description"><ul>' + product.description + '</ul></div><div class="characteristics-block"><div class="characteristics"><p>' + product.structure + '</p></div><div class="feature"><i class="fas fa-shopping-cart"></i><p>' +  product.delivery + '</p></div></div></div><div class="img-container"><img src="' + product.image.url + '" alt="Image"></div></div><textarea name="order_comment" id="order_comment">Ваши пожелания и комментарии к заказу</textarea><div class="buttons-block"><button class="add_cart" data-product="' + str(product.id) + '" data-parent="' + parent + '" data-slug="' + slug + '" data-model="' + model_name + '" data-quantity="1" data-price="' + str(product.price) + '">Добавить в корзину <span>' + str(product.price) + '</span></button><button class="minus">-</button><button class="counter" disabled>1</button><button class="plus">+</button></div></div>'
+     result += '</div><div class="description"><ul>' + product.description + '</ul></div><div class="characteristics-block"><div class="characteristics"><p>' + product.structure + '</p></div><div class="feature"><i class="fas fa-shopping-cart"></i><p>' +  product.delivery + '</p></div></div></div><div class="img-container" style="background-image: url(' + product.image.url + '); background-size: cover;background-position: center;"></div></div><textarea name="order_comment" id="order_comment">Ваши пожелания и комментарии к заказу</textarea><div class="buttons-block"><button class="add_cart" data-product="' + str(product.id) + '" data-parent="' + parent + '" data-slug="' + slug + '" data-model="' + model_name + '" data-quantity="1" data-price="' + str(product.price) + '">Добавить в корзину <span>' + str(product.sale) + '</span></button><button class="minus">-</button><button class="counter" disabled>1</button><button class="plus">+</button></div></div>'
      responseData  = {
         'result': result,
      }
@@ -137,75 +162,165 @@ def productRecommendation():
     result_list.append(Animator.objects.order_by('?').first())
     result_list.append(Decoration.objects.order_by('?').first())
     return(result_list)
+    
 #AJAX functions
-def SplitStringAndFilteringWithoutOrder(string, model):
+def SplitStringAndFilteringWithoutOrder(string, model, offset=0):
     if ',' in string:
         array = dict(e.split('=') for e in string.split(','))
-        products = model.objects.filter(**array)
+        products = model.objects.filter(**array)[offset:7]
         count = model.objects.filter(**array).count()
     else:
         array = string.split('=')
-        products = model.objects.filter(array)
+        products = model.objects.filter(array)[offset:7]
         count = model.objects.filter(array).count()
     return [products, count]
 
-def SplitStringAndFilteringWithOrder(string, order_by, model):
+def SplitStringAndFilteringWithOrder(string, order_by, model, offset=0):
     if ',' in string:
         array = dict(e.split('=') for e in string.split(','))
-        products = model.objects.filter(**array).order_by(order_by)
+        products = model.objects.filter(**array).order_by(order_by)[offset:7]
         count = model.objects.filter(**array).count()
     else:
         array = string.split('=')
-        products = model.objects.filter(array).order_by(order_by)
+        products = model.objects.filter(array).order_by(order_by)[offset:7]
         count = model.objects.filter(array).count()
     return [products, count]
 
 def SidebarFilters(request):
     result = ''
+    offset = request.POST.get('offset', None)
     model_name = request.POST.get('model', None)
     filters = request.POST.get('filters', None)
     order_by = request.POST.get('order_by', None)
+    switcher = request.POST.get('switcher', None)
+    additional_filters = request.POST.get('additional_filters', None)
     model = globals()[model_name]
+    
     if filters != None and order_by != None:
-       func_data = SplitStringAndFilteringWithOrder(filters, order_by, model)
-       products = func_data[0]
-       count = func_data[1]
+        if not offset:
+            func_data = SplitStringAndFilteringWithOrder(filters, order_by, model)
+        else:
+            func_data = SplitStringAndFilteringWithOrder(filters, order_by, model, int(offset))
+        products = func_data[0]
+        count = func_data[1]
     elif filters != None and order_by == None:
-       func_data = SplitStringAndFilteringWithoutOrder(filters, model)
-       products = func_data[0]
-       count = func_data[1]
+        if not offset:
+            func_data = SplitStringAndFilteringWithoutOrder(filters, model)
+        else:
+            func_data = SplitStringAndFilteringWithoutOrder(filters, model, int(offset))
+        products = func_data[0]
+        count = func_data[1]
+    elif filters == None and order_by == None:
+        if not offset:
+            products = model.objects.all()[:7]
+        else:
+            products = model.objects.all()[int(offset):int(offset) + 7]
+        count = model.objects.all().count()
     else:
-       products = model.objects.all().order_by(order_by)
-       count = model.objects.all().count()
+        if not offset:
+            products = model.objects.all().order_by(order_by)[:7]
+        else:  
+            products = model.objects.all().order_by(order_by)[int(offset):7]
+        count = model.objects.all().count()
+
+    #Дополнительный фильтр
+    if switcher != None:
+        if switcher == 'exclude':
+            additional_filters = additional_filters.split('=')
+        else:
+            additional_filters = additional_filters.split('=')
+            times = additional_filters[1].split(' ')
+            time_start = times[1]
+            time_start = time_start.split(':')
+            time_start = int(time_start[0])
+            time_end = times[3]
+            time_end = time_end.split(':')
+            time_end = int(time_end[0])    
 
     if model_name == 'Premises':
         for product in products:
-            result += '<div class="premises-card"><div class="wrap-thumbnail"><div class="discount"><h4>Подарок</h4></div><div class="tap"><i class="fas fa-hand-pointer"></i></div><div class="camera"><i class="fas fa-video"></i></div><video controls="false" src="/static/video/video.mp4"></video><div class="blackout"></div></div><div class="premises-card-content"><div class="title-block"><div class="part-one"><h5>x2 бонусы</h5><h3><a href="/product/premise/' + product.slug + '" style="width: 100%; height: 100%;">' + product.title + '</a></h3><h4>147 оценок 54 отзыва</h4></div><div class="part-two"><i class="far fa-heart"></i></div></div><div class="rating"><h4>4.8</h4><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><div class="parameters"><div class="element"><i class="far fa-clock"></i><h4><span>2</span> часа</h4></div><div class="element"><i class="fas fa-ruble-sign"></i>'
-            if product.sale:
-                result += '<h4>от <span>' + str(product.sale) + '</span> за час</h4>'
-            else:
-                result += '<h4>от <span>' + str(product.price) + '</span> за час</h4>'
-            result += '</div><div class="element"><i class="fas fa-th-large"></i><h4><span>' + str(product.square) + '</span> кв. м.</h4></div><div class="element"><i class="fas fa-user-friends"></i><h4>' + str(product.count_peoples) + '</h4></div></div><h5>' + product.address + '</h5><div class="map"><iframe src="' + product.map_link + '" frameborder="0"></iframe></div></div></div>'
+            if switcher != None:
+                #Дополнительный фильтр |
+                if switcher == 'exclude':
+                    # | Проверка на выходной день
+                    day = getattr(product, additional_filters[0])
+                    if day != additional_filters[1]:            
+                        result += '<div class="premises-card"><div class="wrap-thumbnail"><div class="discount"><h4>Подарок</h4></div>'
+                        if not product.video:
+                            result += '<img src="' + product.image.url + '" alt="Image">'
+                        else:
+                            result += '<div class="tap"><i class="fas fa-hand-pointer"></i></div><video controls="false" src="' + product.video.url + '"></video>'
+                        result +='</div><div class="premises-card-content"><div class="title-block"><div class="part-one"><h6>x2 бонусы</h6><span><a href="/product/premise/' + product.slug + '" style="width: 100%; height: 100%;">' + product.title + '</a></span><h6>147 оценок 54 отзыва</h6></div><div class="part-two"><i class="far fa-heart"></i></div></div><div class="rating"><h4>4.8</h4><img src="' + STATIC_URL + 'icons/star_red.png' + '"><img src="' + STATIC_URL + 'icons/star_red.png' + '"><img src="' + STATIC_URL + 'icons/star_red.png' + '"><img src="' + STATIC_URL + 'icons/star_red.png' + '"><img src="' + STATIC_URL + 'icons/star_red.png' + '"></div><div class="parameters"><div class="element"><img src="' + STATIC_URL + 'icons/clock.png' + '"><h4><span>2</span> часа</h4></div><div class="element"><img src="' + STATIC_URL + 'icons/ruble.png' + '">'
+                        if product.sale:
+                            result += '<h4>от <span>' + str(product.sale) + '</span> за час</h4>'
+                        else:
+                            result += '<h4>от <span>' + str(product.price) + '</span> за час</h4>'
+                        result += '</div><div class="element"><img src="' + STATIC_URL + 'icons/square.png' + '"><h4><span>' + str(product.square) + '</span> кв. м.</h4></div><div class="element"><img src="' + STATIC_URL + 'icons/people.png' + '"></i><h4>' + str(product.count_peoples) + '</h4></div></div><h5>' + product.address + '</h5><div class="map"><iframe src="' + product.map_link + '" frameborder="0"></iframe></div></div></div>'
+                    else:
+                        count = int(count) - 1
+                else:
+                    #| Проверка по расписанию
+                    day = getattr(product, additional_filters[0])
+                    if day != 'Выходной':
+                        day_time = day.split(' ')
+                        day_time_start = day_time[1].split(':')
+                        day_time_start = int(day_time_start[0])
+                        day_time_end = day_time[3].split(':')
+                        day_time_end = int(day_time_end[0])
+                        if time_start >= day_time_start and time_end <= day_time_end:    
+                            result += '<div class="premises-card"><div class="wrap-thumbnail"><div class="discount"><h4>Подарок</h4></div>'
+                            if not product.video:
+                                result += '<img src="' + product.image.url + '" alt="Image">'
+                            else:
+                                result += '<div class="tap"><i class="fas fa-hand-pointer"></i></div><video controls="false" src="' + product.video.url + '"></video>'
+                            result +='</div><div class="premises-card-content"><div class="title-block"><div class="part-one"><h6>x2 бонусы</h6><span><a href="/product/premise/' + product.slug + '" style="width: 100%; height: 100%;">' + product.title + '</a></span><h6>147 оценок 54 отзыва</h6></div><div class="part-two"><i class="far fa-heart"></i></div></div><div class="rating"><h4>4.8</h4><img src="' + STATIC_URL + 'icons/star_red.png' + '"><img src="' + STATIC_URL + 'icons/star_red.png' + '"><img src="' + STATIC_URL + 'icons/star_red.png' + '"><img src="' + STATIC_URL + 'icons/star_red.png' + '"><img src="' + STATIC_URL + 'icons/star_red.png' + '"></div><div class="parameters"><div class="element"><img src="' + STATIC_URL + 'icons/clock.png' + '"><h4><span>2</span> часа</h4></div><div class="element"><img src="' + STATIC_URL + 'icons/ruble.png' + '">'
+                            if product.sale:
+                                result += '<h4>от <span>' + str(product.sale) + '</span> за час</h4>'
+                            else:
+                                result += '<h4>от <span>' + str(product.price) + '</span> за час</h4>'
+                            result += '</div><div class="element"><img src="' + STATIC_URL + 'icons/square.png' + '"><h4><span>' + str(product.square) + '</span> кв. м.</h4></div><div class="element"><img src="' + STATIC_URL + 'icons/people.png' + '"></i><h4>' + str(product.count_peoples) + '</h4></div></div><h5>' + product.address + '</h5><div class="map"><iframe src="' + product.map_link + '" frameborder="0"></iframe></div></div></div>'
+                        else:
+                            count = int(count) - 1         
+            else: 
+                result += '<div class="premises-card"><div class="wrap-thumbnail"><div class="discount"><h4>Подарок</h4></div>'
+                if not product.video:
+                    result += '<img src="' + product.image.url + '" alt="Image">'
+                else:
+                    result += '<div class="tap"><i class="fas fa-hand-pointer"></i></div><video controls="false" src="' + product.video.url + '"></video>'
+                result +='</div><div class="premises-card-content"><div class="title-block"><div class="part-one"><h6>x2 бонусы</h6><span><a href="/product/premise/' + product.slug + '" style="width: 100%; height: 100%;">' + product.title + '</a></span><h6>147 оценок 54 отзыва</h6></div><div class="part-two"><i class="far fa-heart"></i></div></div><div class="rating"><h4>4.8</h4><img src="' + STATIC_URL + 'icons/star_red.png' + '"><img src="' + STATIC_URL + 'icons/star_red.png' + '"><img src="' + STATIC_URL + 'icons/star_red.png' + '"><img src="' + STATIC_URL + 'icons/star_red.png' + '"><img src="' + STATIC_URL + 'icons/star_red.png' + '"></div><div class="parameters"><div class="element"><img src="' + STATIC_URL + 'icons/clock.png' + '"><h4><span>2</span> часа</h4></div><div class="element"><img src="' + STATIC_URL + 'icons/ruble.png' + '">'
+                if product.sale:
+                    result += '<h4>от <span>' + str(product.sale) + '</span> за час</h4>'
+                else:
+                    result += '<h4>от <span>' + str(product.price) + '</span> за час</h4>'
+                result += '</div><div class="element"><img src="' + STATIC_URL + 'icons/square.png' + '"><h4><span>' + str(product.square) + '</span> кв. м.</h4></div><div class="element"><img src="' + STATIC_URL + 'icons/people.png' + '"></i><h4>' + str(product.count_peoples) + '</h4></div></div><h5>' + product.address + '</h5><div class="map"><iframe src="' + product.map_link + '" frameborder="0"></iframe></div></div></div>'
+                                      
     elif model_name == 'Restaurant':
         for product in products:
             product.additional_data = Food.objects.filter(restaurant=product)[:4]
-            result += '<div class="foods-card"><div class="title-block"><div class="part-one"><h3><a href="/product/food/' + product.slug + '" style="width: 100%; height: 100%;">' + product.title +  '</a></h3><div class="discount"><h4>Подарок</h4></div><h4>x2 бонусов</h4></div><div class="part-two"><a href="#">Скачать полное меню</a><i class="far fa-heart"></i></div></div><div class="parameters-panel"><div class="rating"> <h3>4.8</h3><div class="rating-block"><h4>147 оценок 54 отзыва</h4><div class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div></div><div class="element"><h4>Мин. стоимость заказа</h4><h3>' + str(product.price) + '₽</h3></div><div class="element"><h4>Принимает заказы</h4><h3>за <span>' + str(product.booking_time) +'</span> ч.</h3></div><div class="element"><h4>Доставка</h4><h3><span>' + str(product.price_departure) + '</span>₽</h3></div><div class="element"><h4>Последний заказ</h4><h3>' + product.last_order + '</h3></div><div class="element"><h4>Обслуживание</h4>'
+            result += '<div class="foods-card"><div class="title-block"><div class="part-one"><span><a href="/product/food/' + product.slug + '" style="width: 100%; height: 100%;">' + product.title +  '</a></span><div class="discount"><h4>Подарок</h4></div><h4>x2 бонусов</h4></div><div class="part-two"><a href="#">Скачать полное меню</a><i class="far fa-heart"></i></div></div><div class="parameters-panel"><div class="rating"> <h3>4.8</h3><div class="rating-block"><h4>147 оценок 54 отзыва</h4><div class="rating-stars"><img src="' + STATIC_URL + 'icons/star_red.png' + '"><img src="' + STATIC_URL + 'icons/star_red.png' + '"><img src="' + STATIC_URL + 'icons/star_red.png' + '"><img src="' + STATIC_URL + 'icons/star_red.png' + '"><img src="' + STATIC_URL + 'icons/star_red.png' + '"></div></div></div><div class="element"><h4>Мин. стоимость заказа</h4><h3>' + str(product.price) + '₽</h3></div><div class="element"><h4>Принимает заказы</h4><h3>за <span>' + str(product.booking_time) +'</span> ч.</h3></div><div class="element"><h4>Доставка</h4><h3><span>' + str(product.price_departure) + '</span>₽</h3></div><div class="element"><h4>Последний заказ</h4><h3>' + product.last_order + '</h3></div><div class="element"><h4>Обслуживание</h4>'
             if product.service:
                 result += '<h3>Включено</h3>'
             else:
                 result += '<h3>Не включено</h3>'
-            result += '</div></div><div class="list-images">'
+            result += '</div></div>'
+            if not product.additional_data:
+                result += '<div class="empty"><span>Мы скоро откроемся</span></div>'
+            result += '<div class="list-images">'
             for food in product.additional_data:
                 result += '<div class="slide"><div class="img-wrapper"><img src="' + food.image.url + '" alt="Images"></div><h4>' + food.title + '</h4><div class="price-block">'
                 if food.sale:
                     result += '<span class="price">' + str(food.price) + '</span><span class="sale">' + str(food.sale) + '₽</span>'
                 else:
                     result += '<span class="price">' + str(food.price) + '</span>'
-                result += '</div></div></div></div>'
+                result += '</div></div>'
+            result += '</div></div>'    
     elif model_name == 'Agency':
          for product in products:
             product.additional_data = Animator.objects.filter(agency=product)[:4]
-            result += '<div class="foods-card"><div class="title-block"><div class="part-one"><h3><a href="/product/animator/' + product.slug + '" style="width: 100%; height: 100%;">' + product.title + '</a></h3><div class="discount"><h4>Подарок</h4></div><h4>x2 бонусов</h4></div><div class="part-two"><a href="#">Скачать полный прайс</a><i class="far fa-heart"></i></div></div><div class="parameters-panel"><div class="rating"><h3>4.8</h3><div class="rating-block"><h4>147 оценок 54 отзыва</h4><div class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div></div><div class="element"><h4>Мин. длительность</h4><h3>' + str(product.price) + ' ч.</h3></div><div class="element"><h4>Принимает заказы</h4><h3>за <span>' + str(product.booking_time) + '</span> ч.</h3></div><div class="element"><h4>Последний заказ</h4><h3>' + product.last_order + '</h3></div><div class="element"><h4>Цена за выезд</h4><h3>' +  str(product.price_departure) + '</h3></div></div><div class="list-images">'
+            result += '<div class="foods-card"><div class="title-block"><div class="part-one"><span><a href="/product/animator/' + product.slug + '" style="width: 100%; height: 100%;">' + product.title + '</a></span><div class="discount"><h4>Подарок</h4></div><h4>x2 бонусов</h4></div><div class="part-two"><a href="#">Скачать полный прайс</a><i class="far fa-heart"></i></div></div><div class="parameters-panel"><div class="rating"><h3>4.8</h3><div class="rating-block"><h4>147 оценок 54 отзыва</h4><div class="rating-stars"><img src="' + STATIC_URL + 'icons/star_red.png' + '"><img src="' + STATIC_URL + 'icons/star_red.png' + '"><img src="' + STATIC_URL + 'icons/star_red.png' + '"><img src="' + STATIC_URL + 'icons/star_red.png' + '"><img src="' + STATIC_URL + 'icons/star_red.png' + '"></div></div></div><div class="element"><h4>Мин. длительность</h4><h3>' + str(product.price) + ' ч.</h3></div><div class="element"><h4>Принимает заказы</h4><h3>за <span>' + str(product.booking_time) + '</span> ч.</h3></div><div class="element"><h4>Последний заказ</h4><h3>' + product.last_order + '</h3></div><div class="element"><h4>Цена за выезд</h4><h3>' +  str(product.price_departure) + '</h3></div></div>'
+            if not product.additional_data:
+                result += '<div class="empty"><span>Мы скоро откроемся</span></div>'
+            result += '<div class="list-images">'
             for animator in product.additional_data:
                 result += '<div class="slide"><div class="img-wrapper"><img src="' + animator.image.url + '" alt="Images"></div><h4>' + animator.title + '</h4><div class="price-block">'
                 if animator.sale:
@@ -217,7 +332,10 @@ def SidebarFilters(request):
     else:
          for product in products:
             product.additional_data = Decoration.objects.filter(agency=product)[:4]
-            result +=  '<div class="foods-card"><div class="title-block"><div class="part-one"><h3><a href="/product/decoration/' + product.slug + '" style="width: 100%; height: 100%;">' + product.title + '</a></h3><div class="discount"><h4>Подарок</h4></div><h4>x2 бонусов</h4></div><div class="part-two"><a href="#">Скачать полный прайс</a><i class="far fa-heart"></i></div></div><div class="parameters-panel"><div class="rating"><h3>4.8</h3><div class="rating-block"><h4>147 оценок 54 отзыва</h4><div class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div></div><div class="element"><h4>Мин. стоимость заказа</h4> <h3>' + str(product.price) + '₽</h3></div><div class="element"><h4>Принимает заказы</h4><h3>за <span>' + str(product.booking_time) + '</span> часа</h3></div><div class="element"><h4>Доставка</h4><h3>от <span>' + str(product.price_delivery) + '</span>₽</h3></div><div class="element"><h4>Последний заказ</h4><h3>' + product.last_order + '</h3></div><div class="element"><h4>Цена за выезд</h4><h3><span>' + str(product.price_departure) + '</span>₽</h3></div></div><div class="list-images">'
+            result +=  '<div class="foods-card"><div class="title-block"><div class="part-one"><h3><a href="/product/decoration/' + product.slug + '" style="width: 100%; height: 100%;">' + product.title + '</a></h3><div class="discount"><h4>Подарок</h4></div><h4>x2 бонусов</h4></div><div class="part-two"><a href="#">Скачать полный прайс</a><i class="far fa-heart"></i></div></div><div class="parameters-panel"><div class="rating"><h3>4.8</h3><div class="rating-block"><h4>147 оценок 54 отзыва</h4><div class="rating-stars"><img src="' + STATIC_URL + 'icons/star_red.png' + '"><img src="' + STATIC_URL + 'icons/star_red.png' + '"><img src="' + STATIC_URL + 'icons/star_red.png' + '"><img src="' + STATIC_URL + 'icons/star_red.png' + '"><img src="' + STATIC_URL + 'icons/star_red.png' + '"></div></div></div><div class="element"><h4>Мин. стоимость заказа</h4> <h3>' + str(product.price) + '₽</h3></div><div class="element"><h4>Принимает заказы</h4><h3>за <span>' + str(product.booking_time) + '</span> часа</h3></div><div class="element"><h4>Доставка</h4><h3>от <span>' + str(product.price_delivery) + '</span>₽</h3></div><div class="element"><h4>Последний заказ</h4><h3>' + product.last_order + '</h3></div><div class="element"><h4>Цена за выезд</h4><h3><span>' + str(product.price_departure) + '</span>₽</h3></div></div>'
+            if not product.additional_data:
+                result += '<div class="empty"><span>Мы скоро откроемся</span></div>'
+            result += '<div class="list-images">'
             for decoration in product.additional_data:
                 result += '<div class="slide"><div class="img-wrapper"><img src="' + decoration.image.url + '" alt="Images"></div><h4>' + decoration.title + '</h4><div class="price-block">'
                 if decoration.sale:
@@ -239,7 +357,7 @@ def MiniProductsCategoryFilter(request):
     model = globals()[model_name]
     products = model.objects.filter(subcategory=category)
     for product in products:
-        result += '<div class="product"><div class="product-block"><h3>' + product.name + '</h3><div class="product-desc"><div class="desc"><p>' + product.mini_description + '</p><span>' + str(product.duration)  + 'ч</span></div><div class="price">'
+        result += '<div class="product"><div class="product-block"><h3>' + product.title + '</h3><div class="product-desc"><div class="desc"><p>' + product.mini_desc + '</p><span>' + str(product.duration)  + 'ч</span></div><div class="price">'
         if product.sale:
             result += '<span class="sale">' + str(product.price) + '₽</span><span>' + str(product.sale) + '₽</span>'
         else:

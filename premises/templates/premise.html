@@ -34,15 +34,28 @@
 
 <body>
 
-<div class="container-sm container-md container-lg container-xl container-xxl">
-
 {% include 'includes/header.html' %}
 
-{% include 'includes/product-parts/mini-panel.html' with product=premise %}
+<div class="container-sm container-md container-lg container-xl container-xxl">
+
+<section id="mini-panel">
+
+    <ul class="breadcrumbs">
+        <li><a href="/">Главная</a></li>
+        <li><a href="{{ SITE_URL }}/categories/premises/">Где праздновать</a></li>
+        <li>{{premise.title}}</li>
+
+    </ul>
+
+</section>
 
 {% include 'includes/product-parts/product-cards/product-card-1.html' with product=premise cheaper_price=min_price cheaper_slug=cheaper_slug  %}
 
+</div>
+
 {% include 'includes/product-parts/descriptions.html' with product=premise name=name audit_elements=audit_elements questions=questions reviews=reviews %}
+
+<div class="container-sm container-md container-lg container-xl container-xxl">
 
 {% include 'includes/product-parts/reasons.html' with product=premise %}
 
@@ -68,5 +81,4 @@
 
 </div>
 
-</body>
-</html>
+{% include 'includes/footer.html' %}

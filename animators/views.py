@@ -8,11 +8,11 @@ from animators.models import Agency, Animator, ImageLibrary, Reviews, Questions,
 
 # Create your views here.
 def animatorsView(request):
-    agencies = Agency.objects.all()[:20]
+    agencies = Agency.objects.all()[:7]
     agencies_count = Agency.objects.all().count()
+    
     for agency in agencies:
         agency.additional_data = Animator.objects.filter(agency=agency)[:4]
-
 
     return render(request, 'animators.html', {"agencies": agencies, "agencies_count": agencies_count})
 
@@ -24,7 +24,13 @@ def animatorView(request, animator_slug):
     reviews = Reviews.objects.filter(agency_id=agency.id)[:2]
     questions = Questions.objects.filter(agency_id=agency.id)[:2]
     recommendations = productRecommendation()
-    listPurchasesViewed = request.session['viewed_products']
+    
+    if not request.session.get('viewed_products'):
+        request.session['viewed_products'] = list()
+        listPurchasesViewed = False
+    else:
+       listPurchasesViewed = request.session['viewed_products']
+       
     for animator in animators:
         if not animator.subcategory in subcategories:
             subcategories.append(animator.subcategory)
@@ -39,7 +45,7 @@ def animatorView(request, animator_slug):
 
     if not reviews:
         reviews = False
-
+        
     return render(request, 'animator.html', {
         "agency": agency,
         "animators": animators,

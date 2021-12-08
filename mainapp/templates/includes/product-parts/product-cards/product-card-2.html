@@ -4,30 +4,24 @@
     <div class="card">
 
         <div class="title-block">
-            <h2>{{ parent.title}}</h2>
+            <h1>{{ parent.title}}</h1>
 
             <h3 class="present">Подарок</h3>
 
             <h4 class="xbonus">X2 бонусов</h4>
 
-            {% if name == 'animator' %}
-            <a href="#" class="menu-download"><h3>Скачать полный прайс</h3></a>
-            {% else %}
-            <a href="#" class="menu-download"><h3>Скачать полное меню</h3></a>
-            {% endif %}
-
             <div class="favourites">
-                <i class="far fa-heart"></i>
+                <img src="{% static 'icons/like.png' %}" alt="Icon">
                 <h4>В избранное</h4>
             </div>
 
             <div class="compare">
-                <i class="fas fa-cash-register"></i>
+                <img src="{% static 'icons/change.png' %}" alt="Icon">
                 <h4>Сравнить</h4>
             </div>
 
             <div class="share">
-                <i class="fas fa-share"></i>
+                <img src="{% static 'icons/repost.png' %}" alt="Icon">
                 <h4>Поделиться</h4>
             </div>
         </div>
@@ -35,18 +29,17 @@
         <div class="main-info">
 
             <div class="rating">
-
-                <div class="raiting-desc">
-                    <h4><span>147</span> оценок</h4>
-                    <h4><span>54</span> отзыва</h4>
-                    <h4><span>4</span> вопроса</h4>
+                <h3>4.8</h3>
+                <div class="rating-block">
+                    <div class="rating-stars">
+                        <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                        <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                        <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                        <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                        <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                    </div>
+                    <h4>147 оценок 54 отзыва</h4>
                 </div>
-
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
             </div>
 
             <div class="main-info-block price">
@@ -77,6 +70,14 @@
 
             </div>
 
+            {% if name == 'animator' %}
+            <a href="#" class="menu-download"><h3>Скачать полный прайс</h3></a>
+            {% elif name == 'decoration' %}
+            <a href="#" class="menu-download"><h3>Скачать полный прайс</h3></a>
+            {% else %}
+            <a href="#" class="menu-download"><h3>Скачать полное меню</h3></a>
+            {% endif %}
+
         </div>
 
     </div>
@@ -100,14 +101,17 @@
 
                 <h3>{{ product.title }}</h3>
 
+                <p>{{ product.mini_desc }}</p>
+
                 <div class="product-desc">
 
                     <div class="desc">
-                        <p>{{ product.mini_description }}</p>
                         {% if name == 'animator' %}
                         <span>{{ product.duration }} ч</span>
                         {% elif name == 'food' %}
                         <span>{{ product.duration }} г</span>
+                        {% elif name == 'decoration' %}
+                        <span>{{ product.duration }} шт.</span>
                         {% endif %}
                     </div>
 
@@ -115,17 +119,16 @@
                         {% if product.sale %}
                         <span class="sale">{{ product.price }}₽</span>
                         <span>{{ product.sale }}₽</span>
-                        {% endif %}
+                        {% else %}
                         <span class="sale">{{ product.price }}₽</span>
+                        {% endif %}
                     </div>
 
                 </div>
 
             </div>
 
-            <div class="img-container">
-                <img src="{{ product.image.url }}" alt="Image">
-            </div>
+            <div class="img-container" style="background-image: url({{ product.image.url }}); background-size: cover;background-position: center;"></div>
 
         </div>
         {% endfor %}
