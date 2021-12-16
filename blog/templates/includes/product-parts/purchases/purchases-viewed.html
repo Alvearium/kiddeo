@@ -1,0 +1,32 @@
+{% load static %}
+{% if listPurchasesViewed != False %}
+<section id="purchases" class="viewed">
+
+    <h2>Вы смотрели:</h2>
+
+    <div class="container-purchases">
+
+        <div class="purchases-slider">
+
+            {% for product in listPurchasesViewed %}
+
+            <div>
+                <a href="{{product.link}}">
+                    <div class="product">
+                        <div class="img-container" style="background: url({{ product.image }});background-size: cover;background-position: center"></div>
+                        <div class="text-container">
+                            <h3>{{product.title}}</h3>
+                            <h5>{{product.mini_desc}}</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+{% endif %}

@@ -1,3 +1,4 @@
+import json
 from .cart import Cart
 from kiddeo.settings import CART_SESSION_ID, STATIC_URL
 from django.http import JsonResponse, request
@@ -5,20 +6,26 @@ from django.shortcuts import render
 from premises.models import Premises
 from animators.models import Agency, Animator
 from restaurants.models import Restaurant, Food
+from blog.models import Blog, Comments
 from decorations.models import AgencyDecoration, Decoration
 from django.shortcuts import get_object_or_404
+from datetime import date
 
 # Create your views here.
 def indexView(request):
     return render(request, 'index.html', {})
 
-# Blog
-def blogView(request):
-    return render(request, 'blog.html', {})
+def ConciergeServiceView(request):
+    return render(request, 'concierge_service.html', {})
 
-def postView(request):
-    return render(request, 'post.html', {})
+def AddProductView(request):
+    return render(request, 'add_product.html', {})
+# Quiz
+def quizResultView(request):
+    return render(request, 'quiz/result.html', {})
 
+def quizView(request):
+    return render(request, 'quiz/quiz.html', {})
 
 def cartView(request):
     cart = Cart(request)
@@ -26,10 +33,10 @@ def cartView(request):
     cart_info = request.session[CART_SESSION_ID]['info']
     recommendations = productRecommendation()
     listPurchasesViewed = request.session['viewed_products']
-    
+
     if not listPurchasesViewed:
         listPurchasesViewed = False
-        
+
     return render(request, 'cart.html',
         {
             'cart_products': cart_products,
@@ -37,7 +44,7 @@ def cartView(request):
             'recommendations': recommendations,
             'listPurchasesViewed': listPurchasesViewed
         })
-        
+
 def checkoutView(request):
     cart = Cart(request)
     cart_products = request.session[CART_SESSION_ID]['products'].items()
@@ -45,7 +52,7 @@ def checkoutView(request):
         {
             'cart_products': cart_products
         })
-        
+
 def AddCart(request):
     responseData  = {}
     slug = request.POST.get('slug', None)
@@ -98,7 +105,7 @@ def OutputModalData(request):
      responseData  = {
         'result': result,
      }
-     if model_name == 'food':     
+     if model_name == 'food':
         listPurchasesViewed = addPurchasesViewed(request, product, 'food', slug)
      elif model_name == 'decoration':
         listPurchasesViewed = addPurchasesViewed(request, product, 'decoration', slug)
@@ -130,12 +137,12 @@ def addPurchasesViewed(request, product, model, slug = ''):
         request.session['viewed_products'] = list()
     else:
         request.session['viewed_products'] = list(request.session['viewed_products'])
-    
+
     if model == 'food' or model == 'animator' or model == 'decoration':
         product.slug = slug
 
     item_exist = checkPurchasesViewedItem(request, product.title, product.id)
-    
+
     add_product = {
         'title': product.title,
         'id': product.id,
@@ -162,30 +169,8 @@ def productRecommendation():
     result_list.append(Animator.objects.order_by('?').first())
     result_list.append(Decoration.objects.order_by('?').first())
     return(result_list)
-    
+
 #AJAX functions
-def SplitStringAndFilteringWithoutOrder(string, model, offset=0):
-    if ',' in string:
-        array = dict(e.split('=') for e in string.split(','))
-        products = model.objects.filter(**array)[offset:7]
-        count = model.objects.filter(**array).count()
-    else:
-        array = string.split('=')
-        products = model.objects.filter(array)[offset:7]
-        count = model.objects.filter(array).count()
-    return [products, count]
-
-def SplitStringAndFilteringWithOrder(string, order_by, model, offset=0):
-    if ',' in string:
-        array = dict(e.split('=') for e in string.split(','))
-        products = model.objects.filter(**array).order_by(order_by)[offset:7]
-        count = model.objects.filter(**array).count()
-    else:
-        array = string.split('=')
-        products = model.objects.filter(array).order_by(order_by)[offset:7]
-        count = model.objects.filter(array).count()
-    return [products, count]
-
 def SidebarFilters(request):
     result = ''
     offset = request.POST.get('offset', None)
@@ -195,21 +180,22 @@ def SidebarFilters(request):
     switcher = request.POST.get('switcher', None)
     additional_filters = request.POST.get('additional_filters', None)
     model = globals()[model_name]
-    
+
+    if filters != None:
+        filters = json.loads(filters)
+
     if filters != None and order_by != None:
         if not offset:
-            func_data = SplitStringAndFilteringWithOrder(filters, order_by, model)
+            products = model.objects.filter(**filters).order_by(order_by)[:7]
         else:
-            func_data = SplitStringAndFilteringWithOrder(filters, order_by, model, int(offset))
-        products = func_data[0]
-        count = func_data[1]
+            products = model.objects.filter(**filters).order_by(order_by)[int(offset):7]
+        count = model.objects.filter(**filters).count()
     elif filters != None and order_by == None:
         if not offset:
-            func_data = SplitStringAndFilteringWithoutOrder(filters, model)
+            products = model.objects.filter(**filters)[:7]
         else:
-            func_data = SplitStringAndFilteringWithoutOrder(filters, model, int(offset))
-        products = func_data[0]
-        count = func_data[1]
+            products = model.objects.filter(**filters)[int(offset):7]
+        count = model.objects.filter(**filters).count()
     elif filters == None and order_by == None:
         if not offset:
             products = model.objects.all()[:7]
@@ -366,4 +352,19 @@ def MiniProductsCategoryFilter(request):
     responseData  = {
         'products': result,
     }
+    return JsonResponse(responseData)
+
+def AddComment(request):
+    name = request.POST.get('name', None)
+    title = request.POST.get('title', None)
+    blog = get_object_or_404(Blog, title = title)
+    content = request.POST.get('comment', None)
+    date_today = date.today()
+    comment = Comments.objects.create(
+        status = False,
+        title_post = blog,
+        name = name,
+        content = content,
+        date = date_today
+    )
     return JsonResponse(responseData)

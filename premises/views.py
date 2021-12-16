@@ -48,7 +48,3 @@ def premiseView(request, premise_slug):
         'recommendations': recommendations,
         'listPurchasesViewed': listPurchasesViewed
     })
-
-
-
-# print(request.session['cart'])

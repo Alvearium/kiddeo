@@ -1,0 +1,515 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+          id="metaViewport">
+    <title>Title</title>
+    <meta name="twitter:title" content="Title">
+    <meta property="og:title" content="Title">
+    <meta name="description" content="">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="img/default.png">
+    <meta property="vk:image" content="img/default.png">
+    <meta name="twitter:image" content="img/default.png">
+    <link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+    <meta name="theme-color">
+    <meta name="msapplication-navbutton-color">
+    <meta name="apple-mobile-web-app-status-bar-style">
+
+    <link rel="stylesheet" href="{% static 'css/reset.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'css/categories/animators.css' %}">
+    <link rel="stylesheet" href="{% static 'css/ion.rangeSlider.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+
+    <script src="https://kit.fontawesome.com/6c1cf59610.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'js/ion.rangeSlider.min.js' %}"></script>
+</head>
+
+<body>
+
+{% include 'includes/header.html' %}
+
+<div class="container-sm container-md container-lg container-xl container-xxl">
+
+    <section id="mini-panel">
+
+        <ul class="breadcrumbs">
+
+            <li><a href="/">Главная</a></li>
+            <li><a href="{{ SITE_URL }}/categories/photos/">Как запомнить</a></li>
+
+        </ul>
+
+    </section>
+
+    <section id="insert-panel">
+
+        <div class="text-block">
+
+            <h2>
+                Только самые крутые и добрый детские фотографы и видеографы.<br>
+            </h2>
+            <h3>Мы все попробовали сами и подготовили видеообзоры для вас.</h3>
+
+        </div>
+
+    </section>
+
+    <section id="top-panel">
+        <div class="notification">
+            <h2>Более 100 проверенных фото и видеографов - <br> выбирай на свой вкус</h2>
+        </div>
+        <div class="sorting">
+            <h4>Сортировка</h4>
+            <select id="sorting">
+                <option value="-views">По популярности</option>
+                <option value="-raiting">По рейтингу</option>
+                <option value="-price">Сначала дорогие</option>
+                <option value="price">Сначала дешёвые</option>
+            </select>
+        </div>
+    </section>
+
+    <section id="main">
+
+        {% include 'includes/sidebars/sidebar-photos.html' %}
+
+        <div class="content">
+
+            <div class="products">
+            {% for agency in agencies %}
+                 {% if forloop.counter|divisibleby:"3" and not forloop.counter|divisibleby:"6" %}
+                <div class="advertisement-one">
+
+                    <img src="{% static 'icons/telephone.png' %}" alt="Icon">
+
+                    <h3>Трудно выбрать? <span>Оставьте заявку,</span> мы подберём подходящие варианты</h3>
+
+                    <div class="block-button">
+                        <button>Оставить заявку</button>
+                        <span>Консьерж-сервис бесплатно</span>
+                    </div>
+
+                </div>
+                {% endif %}
+                {% if forloop.counter|divisibleby:"6" %}
+                <div class="advertisement-two">
+
+                    <img src="{% static 'images/girl_avatar.png' %}" alt="Icon">
+                    
+                    <div class="content-block">
+                    
+                        <a href="#">Как правильно выбрать помещение для праздника, чтобы не было мучительно больно?</a>
+                        <h3>Рассказывает наш эксперт Юлия Степанова</h3>
+                    
+                    </div>
+
+                </div>                
+                {% endif %}
+                <div class="foods-card">
+                    <div class="title-block">
+
+                        <div class="part-one">
+
+                            <span><a href="/product/service/{{agency.slug}}" style="width: 100%; height: 100%;">{{agency.title}}</a>
+                            </span>
+
+                            <div class="discount">
+                                <h4>Подарок</h4>
+                            </div>
+
+                            <h4>x2 бонусов</h4>
+
+                        </div>
+
+                        <div class="part-two">
+
+                            <a href="#">Скачать полный прайс</a>
+                            <i class="far fa-heart"></i>
+
+                        </div>
+
+                    </div>
+
+                    <div class="parameters-panel">
+
+                        <div class="rating">
+                            <h3>4.8</h3>
+                            <div class="rating-block">
+                                <h4>147 оценок 54 отзыва</h4>
+                                <div class="rating-stars">
+                                    <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                                    <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                                    <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                                    <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                                    <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="element">
+                            <h4>Мин. стоимость часа</h4>
+                            <h3><span>{{agency.price}} </span>₽</h3>
+                        </div>
+                        <div class="element">
+                            <h4>Принимает заказы</h4>
+                            <h3>за <span>{{agency.booking_time}}</span> ч.</h3>
+                        </div>
+                        <div class="element">
+                            <h4>Выезд</h4>
+                            <h3>от {{agency.price_departure}}₽</h3>
+                        </div>
+                        <div class="element">
+                            <h4>Последний заказ</h4>
+                            <h3>{{agency.last_order}}</h3>
+                        </div>
+                    </div>
+                    {% if not agency.additional_data %}
+                        <div class="empty">
+                            <span>Мы скоро откроемся</span>
+                        </div>
+                    {% endif %}
+                    <div class="list-images">
+                        {% for service in agency.additional_data %}
+                        <div class="slide">
+
+                            <div class="img-wrapper">
+                                <img src="{{service.image.url}}" alt="Images">
+                            </div>
+                            <h4>{{service.title}}</h4>
+                            <div class="price-block">
+                                {% if service.sale %}
+                                <span class="price">{{service.price}}</span>
+                                <span class="sale"><strong>{{service.sale}}</strong>₽</span>
+                                {% else %}
+                                <span class="price"><strong>{{service.price}}</strong>₽</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            {% include 'includes/pagination.html' with product_count=agencies_count %}
+
+        </div>
+
+    </section>
+
+    <section id="more">
+
+        <div class="more-container">
+
+            <div class="more-box arrow">
+                <h3>
+                    Сохраняем ваше время <br>
+                    и дарим <br>
+                    скидки
+                </h3>
+            </div>
+
+            <div class="more-box chief">
+                <span>Более 100 вариантов</span>
+                <h4><a href="#">Праздник "под ключ"</a></h4>
+                <span>Выбирайте, чем порадовать именинника</span>
+            </div>
+
+            <div class="more-box arrow">
+                <h3>
+                    Праздник на любой <br>
+                    вкус и бюджет
+                </h3>
+            </div>
+
+            <div class="more-box chief">
+                <span>Вау-эффект обеспечен</span>
+                <h4><a href="#">Конструктор праздника</a></h4>
+                <span>Не ограничивайте фантазию</span>
+            </div>
+        </div>
+
+    </section>
+
+    <section id="choose">
+
+        <h2>
+            <span>Вот что мы ещё подготовили для вашего праздника</span>
+        </h2>
+
+        <div class="choose-container">
+
+            <div class="image-block one" style="background-image: url({% static 'images/choose1.png' %});background-size: cover;background-position: center;">
+                <span>Вкусная и полезная еда с доставкой</span>
+            </div>
+            <div class="image-block two" style="background-image: url({% static 'images/choose2.png' %});background-size: cover;background-position: center;">
+                <span>Самые смешные аниматоры</span>
+            </div>
+            <div class="image-block three" style="background-image: url({% static 'images/choose3.png' %});background-size: cover;background-position: center;">
+                <span>Крутые лофты</span>
+            </div>
+            <div class="image-block four" style="background-image: url({% static 'images/choose4.png' %});background-size: cover;background-position: center;">
+                <span>Стильные и необычные декорации</span>
+            </div>
+            <div class="image-block five" style="background-image: url({% static 'images/choose5.png' %});background-size: cover;background-position: center;">
+                <span>Видеографы, которые сохранят атмосферу счастья</span>
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+<script>
+    function pagination_create(count, active) {
+        if (count >= 8) {
+            let pagination = '';
+            let numbers = (Number(count) + 8) / 8;
+            if (active === 1) {
+                pagination = '<button class="prev" style="display: none">Назад</button><ul><li class="prev" style="display: none"><</li>';
+            } else {
+                pagination = '<button class="prev">Назад</button><ul><li class="prev"><</li>';
+            }
+            for (let i = 1; i < numbers; i++) {
+                if (i === active) {
+                    pagination += '<li class="active">' + i + '</li>';
+                } else {
+                    pagination += '<li>' + i + '</li>';
+                }
+            }
+            if (active === Math.floor(numbers)) {
+                pagination += '<li style="display: none">...</li><li class="next" style="display: none">></li></ul><button class="next" style="display: none">Вперёд</button>';
+            } else {
+                pagination += '<li>...</li><li class="next">></li></ul><button class="next">Вперёд</button>';
+            }
+            $('.pagination').html(pagination);
+        }
+    }
+    function prev_next_pagination_page(checker, filters, order_by) {
+        let offset = 0;
+        let active = $('.pagination li.active').text();
+        if (checker == 'next') {
+            offset = active * 8;
+        } else if (checker == 'prev'){
+            offset = (active - 2) * 8;
+        } else {
+            offset = (active - 1) * 8;
+        }
+        if (order_by === '' && filters === '') {
+            data = {model: 'AgencyPhotos', offset: offset, csrfmiddlewaretoken: '{{ csrf_token }}'};
+        } else if (order_by === '') {
+            data = {model: 'AgencyPhotos', offset: offset, filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
+        } else if (filters === '') {
+            data = {
+                model: 'AgencyPhotos',
+                offset: offset,
+                order_by: order_by,
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+            };
+        } else {
+           data = {model: 'AgencyPhotos', offset: offset,order_by: order_by, filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
+        }
+        
+        $.ajax({
+            url: '/ajax/sidebar-filters/',
+            data: data,
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                $('#main .products').html(data.objects);
+            }
+        });
+    }
+    $(document).ready(function () {
+        var filters_obj = {};
+        var filters = '';
+        var order_by = '';
+        var data = '';
+        var post_count = $('.w-all').text();
+        pagination_create(post_count, 1);
+        
+        $('.pagination').on('click','.next', function() {
+            let active = $('.pagination li.active').text();
+            active = Math.floor(active);
+            prev_next_pagination_page('next', filters);
+            pagination_create(post_count, active + 1);
+            setTimeout(function() {
+                window.scrollTo(0, 500);
+            }, 200);
+        });
+        $(document).on('click','.pagination ul li', function() {
+            let active = $(this).text();
+            active = Math.floor(active);
+            pagination_create(post_count, active);
+            prev_next_pagination_page('simple', filters);
+            setTimeout(function() {
+                window.scrollTo(0, 500);
+            }, 200);
+        });
+        $('.pagination').on('click','.prev', function() {
+            let active = $('.pagination li.active').text();
+            active = Math.floor(active);
+            prev_next_pagination_page('prev', filters);
+            pagination_create(post_count, active - 1);
+        });
+
+        $(".quest_time").ionRangeSlider({
+            skin: "round",
+            type: "single",
+            grid: true,
+            min: 1,
+            max: 10,
+            from: 5,
+            step: 1,
+            drag_interval: true,
+            from_shadow: true,
+            grid_num: 1,
+            hide_min_max: true,
+            onFinish: function (data) {
+                filters_obj['price'] = data.from;
+                filters = '';
+
+                for (var key in filters_obj) {
+                    if (filters === '') {
+                        filters += key + '=' + filters_obj[key];
+                    } else {
+                        filters += ',' + key + '=' + filters_obj[key];
+                    }
+                }
+
+                if (order_by === '') {
+                    data = {model: 'AgencyPhotos', filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
+                } else {
+                    data = {
+                        model: 'AgencyPhotos',
+                        order_by: order_by,
+                        filters: filters,
+                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                    };
+                }
+                $.ajax({
+                    url: '/ajax/sidebar-filters/',
+                    data: data,
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (data) {
+                        $('#main .products').html(data.objects);
+                    }
+                });
+                return false;
+            },
+        });
+        
+        $('.input-block').on('change', 'input', function () {
+            if ($(this).attr('type') === 'text' || $(this).attr('type') === 'date') {
+                var name = $(this).attr('data-name');
+                var val = $(this).val();
+            } else if ($(this).attr('type') === 'checkbox') {
+                var name = $(this).attr('data-name');
+                var val = $(this).next().text();
+                $(this).prop('checked', true);
+                $(this).parent().parent().find('input').each(function() {
+                    if ($(this).next().text() !== val) {
+                        $(this).prop('checked', false);
+                    }
+                });
+            } else {
+                return;
+            }
+
+            filters_obj[name] = val;
+            filters = '';
+
+            for (var key in filters_obj) {
+                if (filters === '') {
+                    filters += key + '=' + filters_obj[key];
+                } else {
+                    filters += ',' + key + '=' + filters_obj[key];
+                }
+            }
+
+            if (order_by === '') {
+                data = {model: 'AgencyPhotos', filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
+            } else {
+                data = {model: 'AgencyPhotos', order_by: order_by, filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
+            }
+            $.ajax({
+                url: '/ajax/sidebar-filters/',
+                data: data,
+                type: 'POST',
+                dataType: 'json',
+                success: function (data) {
+                    $('#main .products').html(data.objects);
+                }
+            });
+            return false;
+        });
+        $('.input-block').on('change', 'select', function () {
+            let name = $(this).attr('data-name');
+            let val = $(this).val();
+            filters_obj[name] = val;
+            filters = '';
+
+            for (var key in filters_obj) {
+                if (filters === '') {
+                    filters += key + '=' + filters_obj[key];
+                } else {
+                    filters += ',' + key + '=' + filters_obj[key];
+                }
+            }
+
+            if (order_by === '') {
+                data = {model: 'AgencyPhotos', filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
+            } else {
+                data = {model: 'AgencyPhotos', order_by: order_by, filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
+            }
+            $.ajax({
+                url: '/ajax/sidebar-filters/',
+                data: data,
+                type: 'POST',
+                dataType: 'json',
+                success: function (data) {
+                    $('#main .products').html(data.objects);
+                }
+            });
+            return false;
+        });
+
+        $(document).on('click', '.tap', function () {
+            $(this).next().next().get(0).play();
+            $(this).fadeOut();
+        });
+        $(document).on('click', 'video', function () {
+            $(this).prev().prev().fadeIn();
+        });
+
+        $('#sorting').on('change', function () {
+            order_by = $(this).val();
+            if (filters === '') {
+                data = {model: 'AgencyPhotos', order_by: order_by, csrfmiddlewaretoken: '{{ csrf_token }}'};
+            } else {
+                data = {model: 'AgencyPhotos', order_by: order_by, filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
+            }
+            $.ajax({
+                url: '/ajax/sidebar-filters/',
+                data: data,
+                type: 'POST',
+                dataType: 'json',
+                success: function (data) {
+                    $('#main .products').html(data.objects);
+                }
+            });
+            return false;
+        });
+    });
+</script>
+
+{% include 'includes/footer.html' %}

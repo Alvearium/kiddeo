@@ -1,0 +1,32 @@
+{% load static %}
+<section id="purchases" class="similar">
+
+    <h2>Похожие помещения в этом районе:</h2>
+
+    <div class="container-purchases">
+
+        <div class="purchases-slider">
+
+            {% for district_premise in district_list %}
+            {% if premise != district_premise %}
+
+            <div>
+                <a href="/product/premise/{{district_premise.slug}}">
+                    <div class="product">
+                        <div class="img-container" style="background: url({{ district_premise.image.url }});background-size: cover;background-position: center"></div>
+                        <div class="text-container">
+                            <h3>{{ district_premise }}</h3>
+                            <h5>{{ district_premise.mini_desc }}</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            {% endif %}
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>

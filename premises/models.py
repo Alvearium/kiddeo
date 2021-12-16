@@ -1,15 +1,58 @@
 from django.db import models
-from django.urls.base import reverse
 from mainapp.models import Category
+from django.urls.base import reverse
+from multiselectfield import MultiSelectField
 
-
-# Create your models here.
 class Premises(models.Model):
 
     class Meta:
         verbose_name = 'Помещение'
         verbose_name_plural = 'Помещения'
 
+    # Варианты для select полей
+    COUNT_PEOPLES_CHOICES = [
+        ('До 20 человек', 'До 20 человек'),
+        ('От 20 до 50', 'От 20 до 50'),
+        ('Больше 50', 'Больше 50'),
+    ]
+    ZONING_CHOICES = [
+        ('Нет зонирования', 'Нет зонирования'),
+        ('Место для игр', 'Место для игр'),
+        ('Место для переодевания', 'Место для переодевания'),
+        ('Место для красивых фото', 'Место для красивых фото'),
+        ('Тихий уголокдля взрослых', 'Тихий уголокдля взрослых'),
+    ]
+    ADDITIONALLY_CHOICES = [
+        ('Нет дополнений', 'Нет дополнений'),
+        ('Оборудованная кузня', 'Оборудованная кузня'),
+        ('Посуда', 'Посуда'),
+        ('Музоборудование', 'Музоборудование'),
+        ('Кондиционер', 'Кондиционер'),
+        ('Стол для малышей', 'Стол для малышей'),
+        ('Парковка', 'Парковка'),
+    ]
+    CONDITIONS_CHOICES = [
+        ('Нет условий', 'Нет условий'),
+        ('Закрывается под нас', 'Закрывается под нас'),
+        ('Отдельный вход', 'Отдельный вход'),
+        ('Можно со своей едой', 'Можно со своей едой'),
+        ('Можно со своим фотогрофом/аниматором', 'Можно со своим фотогрофом/аниматором'),
+        ('Можно украсить самим', 'Можно украсить самим'),
+        ('Уборка после включена', 'Уборка после включена'),
+    ]
+    DISTRICT_CHOICES = [
+        ('Адмиралтейский', 'Адмиралтейский'),
+        ('Василеостровский', 'Василеостровский'),
+        ('Выборгский', 'Выборгский'),
+        ('Калининский', 'Калининский'),
+        ('Кировский', 'Кировский'),
+        ('Коллинский', 'Коллинский'),
+        ('Красногвардейский', 'Красногвардейский'),
+        ('Красносельский', 'Красносельский'),
+        ('Кронштадский', 'Кронштадский'),
+    ]
+
+    # Поля базы данных
     category = models.ForeignKey(Category, verbose_name='Категория', on_delete=models.CASCADE)
     title = models.CharField(max_length= 255, verbose_name='Название')
     slug = models.SlugField(unique=True,db_index=True)
@@ -17,16 +60,36 @@ class Premises(models.Model):
     video = models.FileField(verbose_name = 'Видео', null = True, blank = True)
     price = models.DecimalField(max_digits=9, decimal_places=0, verbose_name='Цена без скидки')
     sale = models.DecimalField(max_digits=9, decimal_places=0, verbose_name='Цена со скидкой')
-    mini_desc = models.TextField(verbose_name = 'Короткое описание', null = True)
-    count_peoples = models.CharField(max_length= 255, verbose_name='Вместимость')
-    square = models.DecimalField(max_digits=9, decimal_places=0, verbose_name='Площадь')
+    square = models.DecimalField(max_digits=5, decimal_places=0, verbose_name='Площадь')
     floor =  models.IntegerField(verbose_name='Этаж')
-    address = models.CharField(max_length = 255, verbose_name = 'Адрес')
     parking = models.BooleanField(verbose_name = 'Парковка')
-    zoning = models.CharField(max_length= 255, verbose_name='Зонирование', null = True)
-    additionally = models.CharField(max_length= 255, verbose_name='Дополнительно', null = True)
-    conditions = models.CharField(max_length= 255, verbose_name='Условия', null = True)
-    extensions = models.TextField(verbose_name = 'Дополнения')
+    count_peoples = MultiSelectField(
+        max_length= 255,
+        verbose_name='Вместимость',
+        choices=COUNT_PEOPLES_CHOICES,
+        default='До 20 человек',
+    )
+    zoning = MultiSelectField(
+        max_length= 255,
+        verbose_name='Зонирование',
+        choices=ZONING_CHOICES,
+        default='Нет зонирования',
+        null = True
+    )
+    additionally = MultiSelectField(
+        max_length= 255,
+        verbose_name='Дополнительно',
+        choices=ADDITIONALLY_CHOICES,
+        default='Нет дополнений',
+        null = True
+    )
+    conditions = MultiSelectField(
+        max_length= 255,
+        verbose_name='Условия',
+        choices=CONDITIONS_CHOICES,
+        default='Нет условий',
+        null = True
+    )
     monday = models.CharField(max_length= 255, verbose_name='Понедельник', null = True)
     tuesday = models.CharField(max_length= 255, verbose_name='Вторник', null = True)
     wednesday = models.CharField(max_length= 255, verbose_name='Среда', null = True)
@@ -34,8 +97,16 @@ class Premises(models.Model):
     friday = models.CharField(max_length= 255, verbose_name='Пятница', null = True)
     saturday = models.CharField(max_length= 255, verbose_name='Суббота', null = True)
     sunday = models.CharField(max_length= 255, verbose_name='Воскресенье', null = True)
-    district = models.CharField(max_length= 255, verbose_name='Район', null = True)
+    district = models.CharField(
+        max_length= 255,
+        verbose_name='Район',
+        choices=DISTRICT_CHOICES,
+        default='Адмиралтейский',
+        null = True
+    )
+    address = models.CharField(max_length = 255, verbose_name = 'Адрес')
     map_link = models.CharField(max_length= 255, verbose_name='Ссылка на картку', null = True)
+    mini_desc = models.TextField(verbose_name = 'Короткое описание', null = True)
     description_1 = models.TextField(verbose_name = 'Описание помещения', null = True)
     description_2 = models.TextField(verbose_name = 'Описание звукового оборудования', null = True)
     description_3 = models.TextField(verbose_name = 'Описание светового и шоу оборудования', null = True)

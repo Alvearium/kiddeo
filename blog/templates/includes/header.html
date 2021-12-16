@@ -1,0 +1,110 @@
+{% load static %}
+<header>
+    <div class="top-bar">
+
+        <div class="container-sm container-md container-lg container-xl container-xxl">
+
+            <div class="user-location">
+                <img src="{% static 'icons/map.png' %}" alt="Icon">
+                <h5>Ваш город: <a href="#" id="user-city"></a></h5>
+            </div>
+            <nav>
+                <li><a href="#">О компании</a></li>
+                <li><a href="#">Как заказать</a></li>
+                <li><button><a href="#">Разместить услуги</a></button></li>
+                <li><a href="#">Безопасная <br> сделка</a></li>
+                <li><a href="#">Гарантия <br> качества</a></li>
+                <li><a href="#">Служба <br> поддержки</a></li>
+            </nav>
+            <div class="social-network">
+                <a href="#">
+                    <img src="{% static 'icons/watsapp.png' %}" alt="Icon">
+                </a>
+                <a href="#">
+                    <img src="{% static 'icons/telegramm.png' %}" alt="Icon">
+                </a>
+            </div>
+            <a class="contact-phone">
+                <h3>+7 999 454 76 68</h3>
+                <span>Работаем ежедневно с 9-00 до 21-00</span>
+            </a>
+
+        </div>
+
+    </div>
+    <div class="container-sm container-md container-lg container-xl container-xxl">
+        <div class="header-main">
+            <div class="first-part">
+                <div class="menu">
+                    <img src="{% static 'icons/burger.png' %}" alt="Icon">
+                </div>
+                <div class="logo">
+                    <a href="/">
+                        <img src="{% static 'icons/logo.png' %}" alt="Logo">
+                    </a>
+                </div>
+                <div class="search">
+                    <input type="text" id="search" name="s" placeholder="Чего не хватает вашему празднику? например: торт, аниматор, квест">
+                    <button><img src="{% static 'icons/search.png' %}" alt="Icon"></button>
+                </div>
+            </div>
+            <div class="second-part">
+                <div class="buttons-panel">
+                    <a href="#">
+                        <img src="{% static 'icons/user.png' %}" alt="Icon">
+                        <span>Аня Иванова</span>
+                    </a>
+                    <a href="#">
+                        <img src="{% static 'icons/heart.png' %}" alt="Icon">
+                    </a>
+                    <a href="#">
+                        <img src="{% static 'icons/bell.png' %}" alt="Icon">
+                    </a>
+                    <a href="/cart/">
+                        <img src="{% static 'icons/cart.png' %}" alt="Icon">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="menu-block">
+            <ul>
+                <li><a href="/categories/premises/">Помещения</a></li>
+                <li><a href="/categories/animators/">Аниматоры</a></li>
+                <li><a href="/categories/foods/">Еда</a></li>
+                <li><a href="/categories/decorations/">Оформление</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+<script src="http://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU" type="text/javascript"></script>
+<script type="text/javascript">
+    window.onload = function () {
+        jQuery("#user-city").text(ymaps.geolocation.city);
+    }
+</script>
+<style>
+    .menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-right: 2%;
+        cursor: pointer;
+    }
+    .menu-block {
+        width: 8%;
+        padding: 2%;
+        display: none;
+        background: #ffffff;
+        position: absolute;
+        z-index: 999;
+        border: 1px solid #000000;
+    }
+    .menu-block li{
+        margin-top: 5px;
+    }
+</style>
+<script>
+    $('.menu').on('click', function () {
+        $('.menu-block').slideToggle();
+    });
+</script>

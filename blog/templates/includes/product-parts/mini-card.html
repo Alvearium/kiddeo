@@ -1,0 +1,62 @@
+{% load static %}
+<section id="mini-product-card">
+    <div class="title-container">
+
+        <div class="title-block">
+            <h2>{{product.title}}</h2>
+            <div class="rating">
+                <div class="rating-stars">
+                    <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                    <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                    <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                    <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                    <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                </div>
+                <h4>147 оценок 54 отзыва</h4>
+            </div>
+
+            <div class="questions">
+                <img src="{% static 'icons/comment.png' %}" alt="Icon">
+                <h4><span>4</span> вопроса</h4>
+            </div>
+
+            <div class="favourites">
+                <img src="{% static 'icons/like.png' %}" alt="Icon">
+                <h4>В избранное</h4>
+            </div>
+
+            <div class="compare">
+                <img src="{% static 'icons/change.png' %}" alt="Icon">
+                <h4>Сравнить</h4>
+            </div>
+
+            <div class="share">
+                <img src="{% static 'icons/repost.png' %}" alt="Icon">
+                <h4>Поделиться</h4>
+            </div>
+        </div>
+
+    </div>
+    <div class="add-to-cart-block">
+
+        <div class="row-price">
+            {% if not product.sale %}
+            <span class="price">{{product.price}}₽</span>
+            {% else %}
+            <span class="sale_price">{{product.sale}}₽</span>
+            {% endif %}
+            <h4>за час</h4>
+        </div>
+
+        <button class="add_cart">Добавить в корзину</button>
+
+        <a href="#"><h4>Задать вопрос</h4></a>
+
+    </div>
+
+    <div class="description-block">
+
+        <h5>{{product.mini_desc}}</h5>
+
+    </div>
+</section>

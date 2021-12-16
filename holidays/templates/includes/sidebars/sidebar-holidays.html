@@ -1,0 +1,236 @@
+{% load static %}
+<div class="sidebar">
+
+    <h3>Параметры подбора</h3>
+
+    <div class="sidebar-block">
+
+    <div class="input-block">
+        <h4>Дата и время праздника</h4>
+        <input type="date" data-name="event_date" value="{% now 'Y-m-d' %}" min="{% now 'Y-m-d' %}">
+    </div>
+
+    <div class="input-block-group">
+        <div class="input-block">
+            <h4>Начнём в</h4>
+            <select data-name="start_time">
+                <option value="00:00">00:00</option>
+                <option value="01:00">01:00</option>
+                <option value="02:00">02:00</option>
+                <option value="03:00">03:00</option>
+                <option value="04:00">04:00</option>
+                <option value="05:00">05:00</option>
+                <option value="06:00">06:00</option>
+                <option value="07:00">07:00</option>
+                <option value="08:00">08:00</option>
+                <option value="09:00">09:00</option>
+                <option value="10:00">10:00</option>
+                <option value="11:00">11:00</option>
+                <option value="12:00">12:00</option>
+                <option value="13:00">13:00</option>
+                <option value="14:00">14:00</option>
+                <option value="15:00">15:00</option>
+                <option value="16:00">16:00</option>
+                <option value="17:00">17:00</option>
+                <option value="18:00">18:00</option>
+                <option value="19:00">19:00</option>
+                <option value="20:00">20:00</option>
+                <option value="21:00">21:00</option>
+                <option value="22:00">22:00</option>
+                <option value="23:00">23:00</option>
+            </select>
+        </div>
+        <div class="input-block">
+            <h4>Закончим в</h4>
+            <select data-name="end_time">
+                <option value="00:00">00:00</option>
+                <option value="01:00">01:00</option>
+                <option value="02:00">02:00</option>
+                <option value="03:00">03:00</option>
+                <option value="04:00">04:00</option>
+                <option value="05:00">05:00</option>
+                <option value="06:00">06:00</option>
+                <option value="07:00">07:00</option>
+                <option value="08:00">08:00</option>
+                <option value="09:00">09:00</option>
+                <option value="10:00">10:00</option>
+                <option value="11:00">11:00</option>
+                <option value="12:00">12:00</option>
+                <option value="13:00">13:00</option>
+                <option value="14:00">14:00</option>
+                <option value="15:00">15:00</option>
+                <option value="16:00">16:00</option>
+                <option value="17:00">17:00</option>
+                <option value="18:00">18:00</option>
+                <option value="19:00">19:00</option>
+                <option value="20:00">20:00</option>
+                <option value="21:00">21:00</option>
+                <option value="22:00">22:00</option>
+                <option value="23:00">23:00</option>
+            </select>
+        </div>
+    </div>
+    
+        <div class="input-block">
+            <h4>Район</h4>
+            <select data-name="district">
+                <option value="">Любой</option>
+                <option value="Адмиралтейский">Адмиралтейский</option>
+                <option value="Василеостровский">Василеостровский</option>
+                <option value="Выборгский">Выборгский</option>
+                <option value="Калининский">Калининский</option>
+                <option value="Кировский">Кировский</option>
+                <option value="Колпинский">Колпинский</option>
+                <option value="Красногвардейский">Красногвардейский</option>
+                <option value="Красносельский">Красносельский</option>
+                <option value="Кронштадский">Кронштадский</option>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="sidebar-block">
+
+        <div class="input-block">
+            <h4>Сколько будет гостей</h4>
+            <input type="hidden" class="rental_price"/>
+        </div>
+
+        <div class="input-block">
+            <h4>Для кого праздник</h4>
+            <div class="checkbox">
+                <input type="checkbox" data-name="guests_gender" id="checkbox1">
+                <label for="checkbox1">Для мальчика</label>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" data-name="guests_gender" id="checkbox2">
+                <label for="checkbox2">Для девочки</label>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" data-name="guests_gender" id="checkbox3">
+                <label for="checkbox3">Для всех сразу</label>
+            </div>
+        </div>
+
+        <div class="input-block">
+            <h4>Возраст гостей</h4>
+            <div class="checkbox">
+                <input type="checkbox" data-name="guests_age" id="checkbox4">
+                <label for="checkbox4">От 1 года до 3 лет</label>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" data-name="guests_age" id="checkbox5">
+                <label for="checkbox5">От 3 до 7 лет</label>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" data-name="guests_age" id="checkbox6">
+                <label for="checkbox6">От 8 до 12 лет</label>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" data-name="guests_age" id="checkbox7">
+                <label for="checkbox7">12+ лет</label>
+            </div>
+        </div>
+
+        <div class="input-block">
+            <h4>Что включено</h4>
+            <div class="checkbox">
+                <input type="checkbox" data-name="structure" id="checkbox8">
+                <label for="checkbox8">Аренда помещения</label>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" data-name="structure" id="checkbox9">
+                <label for="checkbox9">Угощения</label>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" data-name="structure" id="checkbox10">
+                <label for="checkbox10">Праздничное оформление</label>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" data-name="structure" id="checkbox11">
+                <label for="checkbox11">Фото и видеосъёмка</label>
+            </div>
+        </div>
+
+        <div class="input-block">
+            <h4>Рейтинг по отзывам</h4>
+            <div class="checkbox">
+                <input type="checkbox" data-name="rating" id="checkbox12">
+                <label for="checkbox12">
+                    <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                    <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                    <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                </label>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" data-name="rating" id="checkbox13">
+                <label for="checkbox13">
+                    <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                    <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                    <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                    <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                </label>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" data-name="rating" id="checkbox14">
+                <label for="checkbox14">
+                    <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                    <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                    <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                    <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                    <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                </label>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="sidebar-block">
+
+        <div class="text-block">
+            <h4>
+                Самый удобный и
+                честный агрегатор
+                детских праздников
+            </h4>
+            <p>
+                Давно выяснено, что при оценке
+                дизайна и композиции читаемый
+                текст мешает сосредоточиться.
+            <p>
+                Lorem Ipsum используют потому,
+                что тот обеспечивает более или
+                менее стандартное заполнение
+            </p>
+            <p>
+                Многие программы
+                электронной вёрстки и редакторы
+                HTML используют Lorem Ipsum в
+                качестве текста по умолчанию,
+                так что поиск по ключевым
+            </p>
+            <p>
+                За прошедшие годы текст
+                Lorem Ipsum получил много версий.
+                Некоторые версии появились по ошибке,
+                некоторые - намеренно
+            </p>
+        </div>
+    </div>
+
+    <div class="sidebar-block">
+
+        <div class="text-block">
+            <p>Есть вопросы?</p>
+            <h3>+7 XXX XXX XX XX</h3>
+            <p>
+                Давно выяснено, что при оценке
+                дизайна и композиции читаемый
+                текст мешает сосредоточиться.
+            </p>
+            <button>Оставить заявку</button>
+        </div>
+
+    </div>
+
+</div>

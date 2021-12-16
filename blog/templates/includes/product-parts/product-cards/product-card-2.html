@@ -1,0 +1,138 @@
+{% load static %}
+<section id="product-card">
+
+    <div class="card">
+
+        <div class="title-block">
+            <h1>{{ parent.title}}</h1>
+
+            <h3 class="present">Подарок</h3>
+
+            <h4 class="xbonus">X2 бонусов</h4>
+
+            <div class="favourites">
+                <img src="{% static 'icons/like.png' %}" alt="Icon">
+                <h4>В избранное</h4>
+            </div>
+
+            <div class="compare">
+                <img src="{% static 'icons/change.png' %}" alt="Icon">
+                <h4>Сравнить</h4>
+            </div>
+
+            <div class="share">
+                <img src="{% static 'icons/repost.png' %}" alt="Icon">
+                <h4>Поделиться</h4>
+            </div>
+        </div>
+
+        <div class="main-info">
+
+            <div class="rating">
+                <h3>4.8</h3>
+                <div class="rating-block">
+                    <div class="rating-stars">
+                        <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                        <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                        <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                        <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                        <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                    </div>
+                    <h4>147 оценок 54 отзыва</h4>
+                </div>
+            </div>
+
+            <div class="main-info-block price">
+
+                {% if name == 'animator' %}
+                <h6>Мин. длительность</h6>
+                <span>{{ parent.price}} ч</span>
+                {% else %}
+                <h6>Мин. стоимость заказа</h6>
+                <span>{{ parent.price}}₽</span>
+                {% endif %}
+
+            </div>
+
+            <div class="main-info-block delay">
+                <h6>Принимает заказы</h6>
+                <h3>за <span>{{ parent.booking_time}}</span> ч</h3>
+            </div>
+
+            <div class="main-info-block delivery">
+
+                {% if name == 'food' %}
+                <h6>Доставка</h6>
+                {% else %}
+                <h6>Выезд</h6>
+                {% endif %}
+                <h3>от <span>{{parent.price_departure}}₽</span></h3>
+
+            </div>
+
+            {% if name == 'animator' %}
+            <a href="#" class="menu-download"><h3>Скачать полный прайс</h3></a>
+            {% elif name == 'decoration' %}
+            <a href="#" class="menu-download"><h3>Скачать полный прайс</h3></a>
+            {% else %}
+            <a href="#" class="menu-download"><h3>Скачать полное меню</h3></a>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    <div class="product-categories">
+
+        {% for subcategory in subcategories %}
+        <div class="category">
+            <h3>{{ subcategory }}</h3>
+        </div>
+        {% endfor %}
+
+    </div>
+
+    <div class="products-slider">
+
+        {% for product in products reversed %}
+        <div class="product" category="{{product.subcategory}}" data-parent="{{parent.title}}" data-slug="{{parent.slug}}" data-model="{{name}}"  data-product="{{product.id}}">
+
+            <div class="product-block">
+
+                <h3>{{ product.title }}</h3>
+
+                <p>{{ product.mini_desc }}</p>
+
+                <div class="product-desc">
+
+                    <div class="desc">
+                        {% if name == 'animator' %}
+                        <span>{{ product.duration }} ч</span>
+                        {% elif name == 'food' %}
+                        <span>{{ product.duration }} г</span>
+                        {% elif name == 'decoration' %}
+                        <span>{{ product.duration }} шт.</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="price">
+                        {% if product.sale %}
+                        <span class="sale">{{ product.price }}₽</span>
+                        <span>{{ product.sale }}₽</span>
+                        {% else %}
+                        <span class="sale">{{ product.price }}₽</span>
+                        {% endif %}
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="img-container" style="background-image: url({{ product.image.url }}); background-size: cover;background-position: center;"></div>
+
+        </div>
+        {% endfor %}
+
+    </div>
+
+</section>

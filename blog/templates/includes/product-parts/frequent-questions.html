@@ -1,0 +1,37 @@
+{% load static %}
+<section id="frequent-questions">
+
+    <h2>Вопросы, которые нам часто задают про {{product.title}}</h2>
+
+    <div class="accordion-wrapper">
+        <div class="accordion">
+            <input type="checkbox" name="radio-a" id="check1">
+            <label class="accordion-label" for="check1"><h3>{{product.question_1}}</h3><img src="{% static 'icons/arrow_down.png' %}" alt="Icon"></label>
+            <div class="accordion-content">
+                <p>{{product.answer_1}}</p>
+            </div>
+        </div>
+        <div class="accordion">
+            <input type="checkbox" name="radio-a" id="check2">
+            <label class="accordion-label" for="check2"><h3>{{product.question_2}}</h3><img src="{% static 'icons/arrow_down.png' %}" alt="Icon"></label>
+            <div class="accordion-content">
+                <p>{{product.answer_2}}</p>
+            </div>
+        </div>
+        <div class="accordion">
+            <input type="checkbox" name="radio-a" id="check3">
+            <label class="accordion-label" for="check3"><h3>{{product.question_3}}</h3><img src="{% static 'icons/arrow_down.png' %}" alt="Icon"></label>
+            <div class="accordion-content">
+                <p>{{product.answer_3}}</p>
+            </div>
+        </div>
+        <div class="accordion">
+            <input type="checkbox" name="radio-a" id="check4">
+            <label class="accordion-label" for="check4"><h3>{{product.question_4}}</h3><img src="{% static 'icons/arrow_down.png' %}" alt="Icon"></label>
+            <div class="accordion-content">
+                <p>{{product.answer_4}}</p>
+            </div>
+        </div>
+    </div>
+
+</section>

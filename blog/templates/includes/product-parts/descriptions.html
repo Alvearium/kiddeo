@@ -1,0 +1,199 @@
+{% load static %}
+<section id="tabs">
+
+    <div class="tabs-buttons">
+
+        <div class="container-sm container-md container-lg container-xl container-xxl">
+            {% if product.description_1 != Null %}
+            <label id="tab1" class="active"><div>Описание</div></label>
+            {% endif %}
+            {% if reviews != False %}
+            <label id="tab2"><div>Отзывы</div></label>
+            {% endif %}
+            {% if questions != False %}
+            <label id="tab3"><div>Вопросы</div></label>
+            {% endif %}
+            {% if audit_elements != False %}
+            <label id="tab4"><div>Наш аудит</div></label>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="container-sm container-md container-lg container-xl container-xxl">
+
+        {% if product.description_1 != Null %}
+        <div class="content" id="c1">
+            <h3 class="first-title">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            </h3>
+            <p>
+                {{product.description_1}}
+            </p>
+            <div class="desc-blocks">
+
+                <div class="desc-block">
+                    <h3>Звуковое оборудование</h3>
+                    <h5>{{product.description_2}}</h5>
+                </div>
+                <div class="desc-block">
+                    <h3>Световое и шоу оборудование</h3>
+                    <h5>{{product.description_3}}</h5>
+                </div>
+                <div class="desc-block">
+                    <h3>Техническое оборудование</h3>
+                    <h5>{{product.description_4}}</h5>
+                </div>
+                <div class="desc-block">
+                    <h3>Мебель</h3>
+                    <h5>{{product.description_5}}</h5>
+                </div>
+                <div class="desc-block">
+                    <h3>Наши правила</h3>
+                    <h5>{{product.description_6}}</h5>
+                </div>
+                <div class="desc-block">
+                    <h3>Кухня и посуда</h3>
+                    <h5>{{product.description_7}}</h5>
+                </div>
+
+            </div>
+        </div>
+        {% endif %}
+        {% if reviews != False %}
+        <div class="content" id="c2">
+            {% for review in reviews %}
+            <div class="review">
+                <div class="review-title">
+                    <i class="far fa-user-circle"></i>
+                    <h3>{{ review.title }}</h3>
+                </div>
+                <p>{{ review.content }}</p>
+                <div class="review-images">
+                    {% for review_image in review.imagelibrary_set.all %}
+                    <img src="{{ review_image.image.url }}" alt="Image">
+                    {% endfor %}
+                </div>
+            </div>
+            {% if forloop.counter|divisibleby:"2" %}
+            <div class="load_more" data-model="Reviews" data-offset="2" data-parent="{{parent.title}}"
+                 data-noparent="{{name}}" data-product="{{product.id}}"><h3>Показать ещё</h3></div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% if questions != False %}
+        <div class="content" id="c3">
+            {% for question in questions %}
+            <div class="question">
+                <div class="question-title">
+                    <i class="far fa-question-circle"></i>
+                    <h3>{{ question.title }}</h3>
+                </div>
+                <p>{{ question.content }}</p>
+                <div class="question-images">
+                    {% for question_image in question.imagelibrary_set.all %}
+                    <img src="{{ question_image.image.url }}" alt="Image">
+                    {% endfor %}
+                </div>
+            </div>
+            {% if forloop.counter|divisibleby:"2" %}
+            <div class="load_more" data-model="Questions" data-offset="2" data-parent="{{parent.title}}"
+                 data-noparent="{{name}}" data-product="{{product.id}}"><h3>Показать ещё</h3></div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% if audit_elements != False %}
+        <div class="content" id="c4">
+            {% for audit_element in audit_elements %}
+            <div class="audit">
+                <div class="audit-title">
+                    <h3>{{ audit_element.title }}</h3>
+                </div>
+                <p>{{ audit_element.content }}</p>
+                <div class="audit-images">
+                    {% for audit_element_image in audit_element.imagelibrary_set.all %}
+                    <img src="{{ audit_element_image.image.url }}" alt="Image">
+                    {% endfor %}
+                </div>
+            </div>
+            {% if forloop.counter|divisibleby:"2" %}
+            <div class="load_more" data-model="Audits" data-offset="2" data-parent="{{parent.title}}"
+                 data-noparent="{{name}}" data-product="{{product.id}}"><h3>Показать ещё</h3></div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+    </div>
+
+</section>
+<script>
+    function each_tabs() {
+        $('.tabs-buttons label').each(function () {
+            $(this).removeClass('active');
+        });
+        $('#tabs .content').each(function () {
+            $(this).css('display', 'none');
+        });
+    }
+    function first_active() {
+        $('.tabs-buttons label').each(function (index) {
+            if ($(this).hasClass('active')) {
+                $('#tabs .content').each(function (index_two) {
+                    if (index == index_two) {
+                        $(this).css('display', 'block');
+                    }
+                });
+            }
+        });
+    }
+    $(document).ready(function () {
+        let tabs = $('#tabs label');
+
+        if (tabs.length == 3) {
+            $('#tabs .container-xxl label').css('width', '33.333333%');
+        } else if (tabs.length == 2) {
+            $('#tabs .container-xxl label').css('width', '50%');
+        } else if (tabs.length == 1) {
+            $('#tabs .container-xxl label').css('width', '100%');
+        }
+
+        first_active();
+        $('#tabs label').on('click', function () {
+            each_tabs();
+            $(this).addClass('active');
+            first_active();
+        });
+
+
+        // $(document).on('click', '.load_more', function () {
+        //     let model = $(this).attr('data-model');
+        //     let offset = $(this).attr('data-offset');
+        //     let parent = $(this).attr('data-parent');
+        //     let noparent = $(this).attr('data-noparent');
+        //     let product = $(this).attr('data-product');
+        //     if (noparent == "Premises") {
+        //         parent = "Premises";
+        //     }
+        //     let data = {
+        //         model: model,
+        //         offset: offset,
+        //         parent: parent,
+        //         product: product,
+        //         csrfmiddlewaretoken: '{{ csrf_token }}'
+        //     }
+        //     $.ajax({
+        //         url: '/ajax/load-more-tabs/',
+        //         data: data,
+        //         type: 'POST',
+        //         dataType: 'json',
+        //         success: function(data){
+        //             alert();
+        //         }
+        //     });
+        // });
+    });
+</script>
+

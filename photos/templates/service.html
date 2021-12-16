@@ -1,0 +1,127 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" id="metaViewport">
+    <title>Title</title>
+    <meta name="twitter:title" content="Title">
+    <meta property="og:title" content="Title">
+    <meta name="description" content="">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="img/default.png">
+    <meta property="vk:image" content="img/default.png">
+    <meta name="twitter:image" content="img/default.png">
+    <link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+    <meta name="theme-color">
+    <meta name="msapplication-navbutton-color">
+    <meta name="apple-mobile-web-app-status-bar-style">
+
+    <link rel="stylesheet" href="{% static 'css/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slick-theme.css' %}">
+    <link rel="stylesheet" href="{% static 'css/reset.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'css/products/animator.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+    <script src="https://kit.fontawesome.com/6c1cf59610.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'js/slick.js' %}" ></script>
+</head>
+
+<body>
+
+{% include 'includes/header.html' %}
+
+<div class="container-sm container-md container-lg container-xl container-xxl">
+
+<section id="mini-panel">
+
+    <ul class="breadcrumbs">
+        <li><a href="/">Главная</a></li>
+        <li><a href="{{ SITE_URL }}/categories/photos/">Как запомнить</a></li>
+        <li>{{agency.title}}</li>
+
+    </ul>
+
+</section>
+
+{% include 'includes/product-parts/product-cards/product-card-2.html' with parent=agency products=services name=name subcategories=subcategories %}
+
+</div>
+
+{% include 'includes/product-parts/descriptions.html' with product=agency audit_elements=audit_elements questions=questions reviews=reviews %}
+
+<div class="container-sm container-md container-lg container-xl container-xxl">
+
+{% include 'includes/product-parts/reasons.html' with product=agency %}
+
+{% include 'includes/product-parts/frequent-questions.html' with product=agency %}
+
+{% include 'includes/product-parts/advertisements/advertisement-1.html' %}
+
+{% include 'includes/product-parts/safe-deal.html' %}
+
+{% include 'includes/product-parts/purchases/purchases-additional.html' %}
+
+{% include 'includes/product-parts/advertisements/advertisement-2.html' %}
+
+{% include 'includes/product-parts/purchases/purchases-recommendations.html' %}
+
+{% include 'includes/product-parts/advertisements/advertisement-1.html' %}
+
+{% include 'includes/product-parts/purchases/purchases-viewed.html' %}
+
+{% include 'includes/product-parts/modals/add-cart.html' with product=agency  %}
+
+</div>
+
+<script>
+    $(document).ready(function() {
+        let products = $('.products-slider');
+
+        while(products.children('div:not(.slide)').length)
+            products.children('div:not(.slide):lt(6)').wrapAll('<div class="slide">');
+
+
+        $('.products-slider').slick({
+            infinite: false,
+        });
+
+        if ($(window).width() >= 1801) {
+            $('.purchases-slider').slick({
+                slidesToShow: 6,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2000,
+            });
+        }else {
+            $('.purchases-slider').slick({
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2000,
+            });
+        }
+        $(document).on('click', '.category', function () {
+            let select_cat = $('h3', this).text();
+            let data = {model: 'Services', category: select_cat, csrfmiddlewaretoken: '{{ csrf_token }}'};
+            $.ajax({
+                url: '/ajax/mini-products-category-filter/',
+                data: data,
+                type: 'POST',
+                dataType: 'json',
+                success: function (data) {
+                    $('.products-slider').html(data.products);
+                    while(products.children('div:not(.slide)').length)
+                        products.children('div:not(.slide):lt(6)').wrapAll('<div class="slide">');
+                }
+        });
+        return false;
+        });
+    });
+</script>
+
+{% include 'includes/footer.html' %}

@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="{% static 'css/slick-theme.css' %}">
     <link rel="stylesheet" href="{% static 'css/reset.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
-    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <link rel="stylesheet" href="{% static 'css/blog/blog.css' %}">
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
 
     <script src="https://kit.fontawesome.com/6c1cf59610.js"></script>
@@ -46,10 +46,10 @@
 
         <div class="category-panel">
 
-            <button data-rubric="rating">Рейтинг</button>
-            <button data-rubric="advice">Полезные советы</button>
-            <button data-rubric="overview">Обзор рынка</button>
-            <button data-rubric="base">База знаний</button>
+            <button data-rubric="Рейтинг">Рейтинг</button>
+            <button data-rubric="Полезные советы">Полезные советы</button>
+            <button data-rubric="Обзор рынка">Обзор рынка</button>
+            <button data-rubric="База знаний">База знаний</button>
             <div class="block-search">
                 <input type="text" class="blog_search" placeholder="Поиск по блогу">
             </div>
@@ -63,92 +63,40 @@
                     <span>Рейтинг</span>
 
                     <div class="img-container"
-                         style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+                         style="background-image: url({{posts.0.image.url}}); background-size: cover;background-position: center;"></div>
 
-                    <h3><a href="#"></a>ТОП-20 способов отметить 10-летие</h3>
-                    <h4 class="mini-desc">
-                        Рейтинг от независимого эксперта с нашими комментариями
-                    </h4>
+                    <h3><a href="/blog/post/{{posts.0.slug}}">{{posts.0.title}}</a></h3>
+                    
+                    <h4 class="mini-desc">{{posts.0.mini_desc}}</h4>
                     <h4 class="post-link"><a href="#">Читать</a></h4>
-                    <h6 class="date">21 марта 2021</h6>
+                    <h6 class="date">{{posts.0.date}}</h6>
                 </div>
             </div>
 
             <div class="posts-list">
-
+                {% for post in posts %}
+                    {% if post.status != True %}
                 <div class="slide">
-                    <div class="post" data-rubric="advice">
+                    <div class="post" data-rubric="{{post.rubric}}">
 
                         <div class="post-content">
-                            <h3>Как сделать праздник интересным для всех</h3>
-                            <h4 class="mini-desc">Краткое руководство</h4>
-                            <h4><a href="#">Читать</a></h4>
-                            <h6 class="date">4 декабря 2021</h6>
+                            <h3>{{post.title}}</h3>
+                            <h4 class="mini-desc">{{post.mini_desc}}</h4>
+                            <h4><a href="/blog/post/{{post.slug}}">Читать</a></h4>
+                            <h6 class="date">{{post.date}}</h6>
                         </div>
 
                         <div class="post-image">
-                            <span>Полезные советы</span>
+                            <span>{{post.rubric}}</span>
                             <div class="img-container"
-                                 style="background-image: url({% static 'images/slide1.png' %}); background-size: cover;background-position: center;"></div>
+                                 style="background-image: url({{post.image.url}}); background-size: cover;background-position: center;"></div>
                         </div>
 
                     </div>
                 </div>
-                <div class="slide">
-                    <div class="post" data-rubric="overview">
+                    {% endif %}
+                {% endfor %}
 
-                        <div class="post-content">
-                            <h3>ТОП-10 организаторов праздников месяца</h3>
-                            <h4 class="mini-desc">Подводим итоги месяца</h4>
-                            <h4><a href="#">Читать</a></h4>
-                            <h6 class="date">1 апреля 2021</h6>
-                        </div>
-
-                        <div class="post-image">
-                            <span>Обзор рынка</span>
-                            <div class="img-container"
-                                 style="background-image: url({% static 'images/slide1.png' %}); background-size: cover;background-position: center;"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide">
-                    <div class="post" data-rubric="base">
-
-                        <div class="post-content">
-                            <h3>Самые большие лофты города</h3>
-                            <h4 class="mini-desc">Называем по именам</h4>
-                            <h4><a href="#">Читать</a></h4>
-                            <h6 class="date">1 апреля 2021</h6>
-                        </div>
-
-                        <div class="post-image">
-                            <span>База знаний</span>
-                            <div class="img-container"
-                                 style="background-image: url({% static 'images/slide1.png' %}); background-size: cover;background-position: center;">
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="slide">
-                    <div class="post" data-rubric="rating">
-
-                        <div class="post-content">
-                            <h3>Что чаще всего заказывают поесть</h3>
-                            <h4 class="mini-desc">Аналитика из 100 заказов</h4>
-                            <h4><a href="#">Читать</a></h4>
-                            <h6 class="date">1 декабря 2021</h6>
-                        </div>
-
-                        <div class="post-image">
-                            <span>Рейтинг</span>
-                            <div class="img-container"
-                                 style="background-image: url({% static 'images/slide1.png' %}); background-size: cover;background-position: center;"></div>
-                        </div>
-
-                    </div>
-                </div>
                 <div class="slide active">
                     <div class="post" data-rubric="rating">
 

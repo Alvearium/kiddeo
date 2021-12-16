@@ -121,15 +121,15 @@
                 <div class="advertisement-two">
 
                     <img src="{% static 'images/girl_avatar.png' %}" alt="Icon">
-                    
+
                     <div class="content-block">
-                    
+
                         <a href="#">Как правильно выбрать помещение для праздника, чтобы не было мучительно больно?</a>
                         <h3>Рассказывает наш эксперт Юлия Степанова</h3>
-                    
+
                     </div>
 
-                </div>                
+                </div>
                 {% endif %}
                 <div class="premises-card">
 
@@ -138,7 +138,7 @@
                         <div class="discount">
                             <h4>Подарок</h4>
                         </div>
-                        
+
                         {% if not premise.video %}
                         <img src="{{premise.image.url}}" alt="Image">
                         {% else %}
@@ -275,6 +275,50 @@
     </section>
 </div>
 <script>
+    function building_data(name, val, filters_obj, order_by, switcher, additional_filters, checked=true) {
+        var data = {};
+
+        if (checked == true) {
+            if (name !== '') {
+                if (!filters_obj[name]) {
+                    filters_obj[name] = [];
+                }
+                filters_obj[name].push(val);
+            }
+        } else {
+            for (var key in filters_obj[name]) {
+                if (filters_obj[name][key] === val) {
+                    filters_obj[name].splice(key);
+                }
+            }
+        }
+
+        for (var for_name in filters_obj) {
+            filters_obj[for_name] = filters_obj[for_name].join(',');
+        }
+
+        data["model"] = 'Premises';
+        if (order_by !== '') data["order_by"] = order_by;
+        if (filters_obj !== '') data["filters"] = JSON.stringify(filters_obj);
+        if (switcher !== '') data["switcher"] = switcher;
+        if (additional_filters !== '') data["additional_filters"] = additional_filters;
+        data["csrfmiddlewaretoken"] = '{{ csrf_token }}';
+
+        for (var for_name in filters_obj) {
+            filters_obj[for_name] = filters_obj[for_name].split(',');
+        }
+
+        $.ajax({
+            url: '/ajax/sidebar-filters/',
+            data: data,
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                $('#main .products').html(data.objects);
+            }
+        });
+        return false;
+    }
     function pagination_create(count, active) {
         if (count >= 8) {
             let pagination = '';
@@ -321,9 +365,9 @@
                 csrfmiddlewaretoken: '{{ csrf_token }}'
             };
         } else {
-           data = {model: 'Premises', offset: offset,order_by: order_by, filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'}; 
+            data = {model: 'Premises', offset: offset,order_by: order_by, filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
         }
-        
+
         $.ajax({
             url: '/ajax/sidebar-filters/',
             data: data,
@@ -344,10 +388,10 @@
         var day_week = '';
         var switcher = '';
         var start_time = '';
-        var end_time = '';    
+        var end_time = '';
         var post_count = $('.w-all').text();
         pagination_create(post_count, 1);
-        
+
         $('.pagination').on('click','.next', function() {
             let active = $('.pagination li.active').text();
             active = Math.floor(active);
@@ -372,7 +416,7 @@
             prev_next_pagination_page('prev', filters);
             pagination_create(post_count, active - 1);
         });
-        
+
         // Filters
         $(".rental_price").ionRangeSlider({
             skin: "round",
@@ -387,37 +431,7 @@
             grid_num: 1,
             hide_min_max: true,
             onFinish: function (data) {
-                filters_obj['sale'] = data.from;
-                filters = '';
-
-                for (var key in filters_obj) {
-                    if (filters === '') {
-                        filters += key + '=' + filters_obj[key];
-                    } else {
-                        filters += ',' + key + '=' + filters_obj[key];
-                    }
-                }
-
-                if (order_by === '') {
-                    data = {model: 'Premises', filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
-                } else {
-                    data = {
-                        model: 'Premises',
-                        order_by: order_by,
-                        filters: filters,
-                        csrfmiddlewaretoken: '{{ csrf_token }}'
-                    };
-                }
-                $.ajax({
-                    url: '/ajax/sidebar-filters/',
-                    data: data,
-                    type: 'POST',
-                    dataType: 'json',
-                    success: function (data) {
-                        $('#main .products').html(data.objects);
-                    }
-                });
-                return false;
+                building_data('sale__in', data.from, filters_obj, order_by, switcher, additional_filters);
             },
         });
         $(".square").ionRangeSlider({
@@ -433,45 +447,15 @@
             grid_num: 1,
             hide_min_max: true,
             onFinish: function (data) {
-                filters_obj['square'] = data.from;
-                filters = '';
-
-                for (var key in filters_obj) {
-                    if (filters === '') {
-                        filters += key + '=' + filters_obj[key];
-                    } else {
-                        filters += ',' + key + '=' + filters_obj[key];
-                    }
-                }
-                
-                if (order_by === '') {
-                    data = {model: 'Premises', filters: filters, csrfmiddlewaretoken: '{{ csrf_token }}'};
-                } else {
-                    data = {
-                        model: 'Premises',
-                        order_by: order_by,
-                        filters: filters,
-                        csrfmiddlewaretoken: '{{ csrf_token }}'
-                    };
-                }
-                $.ajax({
-                    url: '/ajax/sidebar-filters/',
-                    data: data,
-                    type: 'POST',
-                    dataType: 'json',
-                    success: function (data) {
-                        $('#main .products').html(data.objects);
-                    }
-                });
-                return false;
+                building_data('square__in', data.from, filters_obj, order_by, switcher, additional_filters);
             },
         });
 
         $('.input-block').on('change', 'input', function () {
-            if ($(this).attr('type') === 'text' || $(this).attr('type') === 'date') {
+            if ($(this).attr('type') === 'date') {
                 var name = $(this).attr('data-name');
                 var val = $(this).val();
-                
+
                 if (name === 'event_date') {
                     let days = [
                         'sunday',
@@ -482,10 +466,10 @@
                         'friday',
                         'saturday'
                     ];
-                
+
                     let choose_date = new Date($(this).val());
                     day_week = days[choose_date.getDay()];
-                    
+
                     if (day_week !== '' && start_time !== '' && end_time !== '') {
                         additional_filters_obj[day_week] = 'c ' + start_time + ' до ' + end_time;
                         additional_filters = day_week + '=' + 'c ' + start_time + ' до ' + end_time;
@@ -494,51 +478,30 @@
                         additional_filters_obj[day_week] = 'Выходной';
                         additional_filters = day_week + '=' + 'Выходной';
                         switcher = 'exclude';
-                    }                    
+                    }
+
+                    building_data('', '', filters_obj, order_by, switcher, additional_filters);
                 }
             } else if ($(this).attr('type') === 'checkbox') {
+                var type = $(this).attr('data-type');
                 var name = $(this).attr('data-name');
                 var val = $(this).next().text();
-                $(this).prop('checked', true);
-                $(this).parent().parent().find('input').each(function() {
-                    if ($(this).next().text() !== val) {
-                        $(this).prop('checked', false);
-                    }
-                });
-            } else {
-                return;
-            }
-
-            if (name !== 'event_date') {
-                filters_obj[name] = val;
-                filters = '';
-
-                for (var key in filters_obj) {
-                    if (filters === '') {
-                        filters += key + '=' + filters_obj[key];
+                if (type == 'one_select') {
+                    $(this).prop('checked', true);
+                    $(this).parent().parent().find('input').each(function () {
+                        if ($(this).next().text() !== val) {
+                            $(this).prop('checked', false);
+                        }
+                    });
+                } else {
+                    if ($(this).is(':checked')){
+                        var checked = true;
                     } else {
-                        filters += ',' + key + '=' + filters_obj[key];
+                        var checked = false;
                     }
                 }
+                building_data(name, val, filters_obj, order_by, switcher, additional_filters, checked);
             }
-       
-            data["model"] = 'Premises';
-            if (order_by !== '') data["order_by"] = order_by;
-            if (filters !== '') data["filters"] = filters;
-            if (switcher !== '') data["switcher"] = switcher;
-            if (additional_filters !== '') data["additional_filters"] = additional_filters;
-            data["csrfmiddlewaretoken"] = '{{ csrf_token }}';
-
-            $.ajax({
-                url: '/ajax/sidebar-filters/',
-                data: data,
-                type: 'POST',
-                dataType: 'json',
-                success: function (data) {
-                    $('#main .products').html(data.objects);
-                }
-            });
-            return false;
         });
         $('.input-block').on('change', 'select', function () {
             let name = $(this).attr('data-name');
@@ -557,56 +520,11 @@
                 additional_filters = day_week + '=' + 'c ' + start_time + ' до ' + end_time;
                 switcher = 'filter';
 
-                //Формируем дату запросов
-                data["model"] = 'Premises';
-                if (order_by !== '') data["order_by"] = order_by;
-                if (filters !== '') data["filters"] = filters;
-                if (switcher !== '') data["switcher"] = switcher;
-                if (additional_filters !== '') data["additional_filters"] = additional_filters;
-                data["csrfmiddlewaretoken"] = '{{ csrf_token }}';
-
-                $.ajax({
-                    url: '/ajax/sidebar-filters/',
-                    data: data,
-                    type: 'POST',
-                    dataType: 'json',
-                    success: function (data) {
-                        $('#main .products').html(data.objects);
-                    }
-                });
-                return false;
+                building_data('', '', filters_obj, order_by, switcher, additional_filters);
             }
 
-            if (name === 'district') {
-                filters_obj[name] = val;
-                filters = '';
-
-                for (var key in filters_obj) {
-                    if (filters === '') {
-                        filters += key + '=' + filters_obj[key];
-                    } else {
-                        filters += ',' + key + '=' + filters_obj[key];
-                    }
-                }
-
-                //Формируем дату запросов
-                data["model"] = 'Premises';
-                if (order_by !== '') data["order_by"] = order_by;
-                if (filters !== '') data["filters"] = filters;
-                if (switcher !== '') data["switcher"] = switcher;
-                if (additional_filters !== '') data["additional_filters"] = additional_filters;
-                data["csrfmiddlewaretoken"] = '{{ csrf_token }}';
-
-                $.ajax({
-                    url: '/ajax/sidebar-filters/',
-                    data: data,
-                    type: 'POST',
-                    dataType: 'json',
-                    success: function (data) {
-                        $('#main .products').html(data.objects);
-                    }
-                });
-                return false;
+            if (name === 'district__in') {
+                building_data(name, val, filters_obj, order_by, switcher, additional_filters);
             }
         });
 

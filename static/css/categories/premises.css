@@ -699,7 +699,7 @@ header .header-main .second-part .buttons-panel a img {
 }
 
 #main .content .premises-card-content .title-block .part-one{
-  width: 80%;
+  width: 90%;
 }
 
 #main .content .premises-card-content .title-block .part-one span{
@@ -727,20 +727,20 @@ header .header-main .second-part .buttons-panel a img {
   width: 40%;
   display: flex;
   align-items: center;
-  text-align: right;
+  text-align: left;
   margin-bottom: 20px;
 }
 #main .parameters .element:nth-child(odd) {
   margin-right: 10%;
 }
 #main .parameters .element img {
-  width: 25px;
+  width: 30px;
   height: auto;
   margin-right: 6px;
 }
 #main .parameters .element span {
   font-weight: 600;
-  font-size: 15px;
+  font-size: 17px;
 }
 #main .content .premises-card-content .rating {
   display: flex;

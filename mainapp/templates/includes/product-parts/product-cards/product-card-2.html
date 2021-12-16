@@ -47,8 +47,11 @@
                 {% if name == 'animator' %}
                 <h6>Мин. длительность</h6>
                 <span>{{ parent.price}} ч</span>
-                {% else %}
+                {% elif name != 'services' %}
                 <h6>Мин. стоимость заказа</h6>
+                <span>{{ parent.price}}₽</span>
+                {% else %}
+                <h6>Мин. стоимость часа</h6>
                 <span>{{ parent.price}}₽</span>
                 {% endif %}
 
@@ -70,9 +73,7 @@
 
             </div>
 
-            {% if name == 'animator' %}
-            <a href="#" class="menu-download"><h3>Скачать полный прайс</h3></a>
-            {% elif name == 'decoration' %}
+            {% if name != 'food' %}
             <a href="#" class="menu-download"><h3>Скачать полный прайс</h3></a>
             {% else %}
             <a href="#" class="menu-download"><h3>Скачать полное меню</h3></a>

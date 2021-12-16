@@ -1,0 +1,897 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+          id="metaViewport">
+    <title>Title</title>
+    <meta name="twitter:title" content="Title">
+    <meta property="og:title" content="Title">
+    <meta name="description" content="">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="img/default.png">
+    <meta property="vk:image" content="img/default.png">
+    <meta name="twitter:image" content="img/default.png">
+    <link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+    <meta name="theme-color">
+    <meta name="msapplication-navbutton-color">
+    <meta name="apple-mobile-web-app-status-bar-style">
+
+    <link rel="stylesheet" href="{% static 'css/reset.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'css/quiz/quiz.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+    <script src="https://kit.fontawesome.com/6c1cf59610.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+
+{% include 'includes/header.html' %}
+
+<div class="container-sm container-md container-lg container-xl container-xxl">
+
+    <section id="start">
+
+
+        <div class="start-container">
+
+            <div class="cake">
+                <img src="{% static 'images/cacke2.png' %}" alt="Image">
+            </div>
+
+            <div class="first-part">
+
+                <h1>Праздник - это всегда конструктор</h1>
+                <h3>Создайте свой идеальный праздник в несколько кликов</h3>
+
+                <h2>
+                    Чтобы сделать детский праздник с вау-эффектом, <br>
+                    придется потратить много времени. <br>
+                    Есть выход: онлайн-конструктор праздника!
+                </h2>
+
+                <h3>
+                    Ответьте на 8 вопросов и получите готовые <br>
+                    предложения по всем категориям сразу.
+                </h3>
+
+                <button><a href="#">Собрать праздник <br> в конструкторе</a></button>
+
+                <h5>*только на нашем сайте ХХХ проверенных исполнителей</h5>
+
+            </div>
+
+            <div class="second-part">
+
+                <h4>У родителей именинника всегда много дел</h4>
+
+                <div class="notepad">
+
+                    <div class="row">
+
+                        <div class="circle"></div>
+
+                        <div class="li">
+                            <h4><span>Нужно:</span></h4>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="circle"></div>
+
+                        <div class="li">
+                            <h4>Купить подарки</h4>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="circle"></div>
+
+                        <div class="li">
+                            <h4>Выбрать помещение</h4>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="circle"></div>
+
+                        <div class="li">
+                            <h4>Украсить его</h4>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="circle"></div>
+
+                        <div class="li">
+                            <h4>Накормить гостей</h4>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="circle"></div>
+
+                        <div class="li">
+                            <h4>Придумать развлечения</h4>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="hood">
+                <img src="{% static 'images/hood.png' %}" alt="Image">
+            </div>
+
+        </div>
+
+
+    </section>
+
+    <section class="question">
+
+        <div class="question-container">
+
+            <div class="content  active"
+
+                <h3>
+                    Ответьте на 8 вопросов и получите подброку исполнителей по вашим параметрам
+                    Мы поможем организовать любое мероприятие для детей!
+                </h3>
+
+                <h2>Что будем праздновать?</h2>
+
+                <div class="progress-block one">
+
+                    <h5>Вопрос 1 из 8</h5>
+
+                    <div class="progress-bar"></div>
+
+                    <div class="variants-container">
+
+                        <div class="variant">
+
+                            <div class="img-container"
+                                 style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+
+                            <div class="checkbox">
+                                <input type="checkbox" data-name="" id="checkbox1">
+                                <label for="checkbox1">День рождения</label>
+                            </div>
+
+                        </div>
+                        <div class="variant">
+
+                            <div class="img-container"
+                                 style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+
+                            <div class="checkbox">
+                                <input type="checkbox" data-name="" id="checkbox2">
+                                <label for="checkbox2">Выпускной</label>
+                            </div>
+
+                        </div>
+                        <div class="variant">
+
+                            <div class="img-container"
+                                 style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+
+                            <div class="checkbox">
+                                <input type="checkbox" data-name="" id="checkbox3">
+                                <label for="checkbox3">Тематическая вечеринка</label>
+                            </div>
+
+                        </div>
+                        <div class="variant">
+
+                            <div class="img-container"
+                                 style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+
+                            <div class="checkbox">
+                                <input type="checkbox" data-name="" id="checkbox4">
+                                <label for="checkbox4">Просто весёлый выходной</label>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="additional-info">
+
+                        <div class="checkbox">
+                            <input type="checkbox" data-name="" id="checkbox5">
+                            <label for="checkbox5">Другое</label>
+                        </div>
+
+                        <div class="input-block">
+                            <input type="text" placeholder="Как называется ваше мероприятие?">
+                        </div>
+
+                        <button class="next">Следующий вопрос</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="content">
+                <h2>Кто именинник?</h2>
+
+                <div class="progress-block">
+
+                    <h5>Вопрос 2 из 8</h5>
+
+                    <div class="progress-bar two"></div>
+
+                    <div class="variants-container">
+
+                        <div class="variant">
+
+                            <div class="img-container"
+                                 style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+
+                            <div class="checkbox">
+                                <input type="checkbox" data-name="" id="checkbox6">
+                                <label for="checkbox6">Девочка</label>
+                            </div>
+
+                        </div>
+                        <div class="variant">
+
+                            <div class="img-container"
+                                 style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+
+                            <div class="checkbox">
+                                <input type="checkbox" data-name="" id="checkbox7">
+                                <label for="checkbox7">Мальчик</label>
+                            </div>
+
+                        </div>
+                        <div class="variant">
+
+                            <div class="img-container"
+                                 style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+
+                            <div class="checkbox">
+                                <input type="checkbox" data-name="" id="checkbox8">
+                                <label for="checkbox8">Их сразу несколько</label>
+                            </div>
+
+                        </div>
+                        <div class="manager">
+
+                            <div class="avatar-block">
+                                <div class="avatar"
+                                     style="background-image: url({% static 'images/mask.png' %}); background-size: cover;background-position: center;"></div>
+                                <div class="avatar-info">
+                                    <h4>Соня Иванова</h4>
+                                    <h5>ивент-менеджер</h5>
+                                </div>
+                            </div>
+
+                            <h6>
+                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                                Aenean commodo ligula eget dolor.
+                                Aenean massa dolor sit amet, consectetuer.
+                            </h6>
+                        </div>
+
+                    </div>
+
+                    <div class="additional-info">
+
+                        <div class="checkbox">
+                            <label for="checkbox5">Сколько лет исполняется? </label>
+                            <select>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                            </select>
+                        </div>
+
+                        <div class="input-block">
+                            <h4 class="prev">Назад</h4>
+                        </div>
+
+                        <button class="next">Следующий вопрос</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="content">
+
+                <h2>Сколько будет гостей?</h2>
+
+                <div class="progress-block">
+
+                    <h5>Вопрос 3 из 8</h5>
+
+                    <div class="progress-bar three"></div>
+
+                    <div class="variants-container">
+
+                        <div class="variant">
+
+                            <div class="img-container"
+                                 style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+
+                            <div class="checkbox">
+                                <input type="checkbox" data-name="" id="checkbox9">
+                                <label for="checkbox9">Только близкие до 20 человек</label>
+                            </div>
+
+                        </div>
+                        <div class="variant">
+
+                            <div class="img-container"
+                                 style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+
+                            <div class="checkbox">
+                                <input type="checkbox" data-name="" id="checkbox10">
+                                <label for="checkbox10">от 20 до 50 человек</label>
+                            </div>
+
+                        </div>
+                        <div class="variant">
+
+                            <div class="img-container"
+                                 style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+
+                            <div class="checkbox">
+                                <input type="checkbox" data-name="" id="checkbox11">
+                                <label for="checkbox11">больше 50 человек</label>
+                            </div>
+
+                        </div>
+                        <div class="variant">
+
+                            <div class="img-container"
+                                 style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+
+                            <div class="checkbox">
+                                <input type="checkbox" data-name="" id="checkbox12">
+                                <label for="checkbox12">Пока что сложно сказать</label>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="additional-info">
+
+                        <div class="checkbox">
+                            <label for="checkbox5">А сколько из них малышей (до 4 лет)? </label>
+                            <select>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                            </select>
+                        </div>
+
+                        <div class="input-block">
+                            <h4 class="prev">Назад</h4>
+                        </div>
+
+                        <button class="next">Следующий вопрос</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="content">
+                <h2>Где будем праздновать?</h2>
+
+                <div class="progress-block">
+
+                    <h5>Вопрос 4 из 8</h5>
+
+                    <div class="progress-bar four"></div>
+
+                    <div class="variants-container">
+
+                        <div class="variant">
+
+                            <div class="img-container"
+                                 style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+
+                            <div class="checkbox">
+                                <input type="checkbox" data-name="" id="checkbox13">
+                                <label for="checkbox13">Студия</label>
+                            </div>
+
+                        </div>
+                        <div class="variant">
+
+                            <div class="img-container"
+                                 style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+
+                            <div class="checkbox">
+                                <input type="checkbox" data-name="" id="checkbox14">
+                                <label for="checkbox14">Лофт</label>
+                            </div>
+
+                        </div>
+                        <div class="variant">
+
+                            <div class="img-container"
+                                 style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+
+                            <div class="checkbox">
+                                <input type="checkbox" data-name="" id="checkbox15">
+                                <label for="checkbox15">Детский центр</label>
+                            </div>
+
+                        </div>
+                        <div class="variant">
+
+                            <div class="img-container"
+                                 style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+
+                            <div class="checkbox">
+                                <input type="checkbox" data-name="" id="checkbox16">
+                                <label for="checkbox16">На свежем воздухе</label>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="additional-info">
+
+                        <div class="checkbox">
+                            <input type="checkbox" data-name="" id="checkbox17">
+                            <div class="label-block">
+                                <label for="checkbox17">Не знаю</label>
+                                <h6>Чтобы было просторно</h6>
+                            </div>
+                        </div>
+
+                        <div class="checkbox">
+                            <input type="checkbox" data-name="" id="checkbox18">
+                            <div class="label-block">
+                                <label for="checkbox18">Будем дома</label>
+                                <h6>Помещение не нужно</h6>
+                            </div>
+                        </div>
+
+                        <div class="input-block">
+                            <h4 class="prev">Назад</h4>
+                        </div>
+
+                        <button class="next">Следующий вопрос</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="content">
+
+                <h2>Как будем развлекать детей?</h2>
+
+                <div class="progress-block">
+
+                    <h5>Вопрос 5 из 8</h5>
+
+                    <div class="progress-bar five"></div>
+
+                    <div class="variants-container">
+
+                        <div class="variant">
+
+                            <div class="img-container"
+                                 style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+
+                            <div class="checkbox">
+                                <input type="checkbox" data-name="" id="checkbox19">
+                                <label for="checkbox19">Аниматор</label>
+                            </div>
+
+                        </div>
+                        <div class="variant">
+
+                            <div class="img-container"
+                                 style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+
+                            <div class="checkbox">
+                                <input type="checkbox" data-name="" id="checkbox20">
+                                <label for="checkbox20">Научное шоу</label>
+                            </div>
+
+                        </div>
+                        <div class="variant">
+
+                            <div class="img-container"
+                                 style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+
+                            <div class="checkbox">
+                                <input type="checkbox" data-name="" id="checkbox21">
+                                <label for="checkbox21">Фокусы</label>
+                            </div>
+
+                        </div>
+                        <div class="variant">
+
+                            <div class="img-container"
+                                 style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+
+                            <div class="checkbox">
+                                <input type="checkbox" data-name="" id="checkbox22">
+                                <label for="checkbox22">Квест</label>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="additional-info">
+
+                        <div class="checkbox">
+                            <input type="checkbox" data-name="" id="checkbox23">
+                            <div class="label-block">
+                                <label for="checkbox23">Не знаю</label>
+                                <h6>Чтобы было весело</h6>
+                            </div>
+                        </div>
+
+                        <div class="checkbox">
+                            <input type="checkbox" data-name="" id="checkbox24">
+                            <div class="label-block">
+                                <label for="checkbox24">Не нужно</label>
+                                <h6>Что-нибудь придумаем</h6>
+                            </div>
+                        </div>
+
+                        <div class="input-block">
+                            <h4 class="prev">Назад</h4>
+                        </div>
+
+                        <button class="next">Следующий вопрос</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="content">
+
+                <h2>Чем будем кормить гостей?</h2>
+
+                <div class="progress-block">
+
+                    <h5>Вопрос 6 из 8</h5>
+
+                    <div class="progress-bar six"></div>
+
+                    <div class="variants-container">
+
+                        <div class="variant">
+
+                            <div class="img-container"
+                                 style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+
+                            <div class="checkbox">
+                                <input type="checkbox" data-name="" id="checkbox25">
+                                <label for="checkbox25">Кейтеринг</label>
+                            </div>
+
+                        </div>
+                        <div class="variant">
+
+                            <div class="img-container"
+                                 style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+
+                            <div class="checkbox">
+                                <input type="checkbox" data-name="" id="checkbox26">
+                                <label for="checkbox26">Закажем пиццу</label>
+                            </div>
+
+                        </div>
+                        <div class="variant">
+
+                            <div class="img-container"
+                                 style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+
+                            <div class="checkbox">
+                                <input type="checkbox" data-name="" id="checkbox27">
+                                <label for="checkbox27">Огромный торт</label>
+                            </div>
+
+                        </div>
+                        <div class="variant">
+
+                            <div class="img-container"
+                                 style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+
+                            <div class="checkbox">
+                                <input type="checkbox" data-name="" id="checkbox28">
+                                <label for="checkbox28">Принесём свою еду</label>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="additional-info">
+
+                        <div class="checkbox">
+                            <input type="checkbox" data-name="" id="checkbox29">
+                            <div class="label-block">
+                                <label for="checkbox29">Не знаю</label>
+                                <h6>Хочу всё посмотреть</h6>
+                            </div>
+                        </div>
+
+                        <div class="checkbox">
+                            <input type="checkbox" data-name="" id="checkbox30">
+                            <div class="label-block">
+                                <label for="checkbox30">Не нужно</label>
+                                <h6>Кормить никого не будем</h6>
+                            </div>
+                        </div>
+
+                        <div class="input-block">
+                            <h4 class="prev">Назад</h4>
+                        </div>
+
+                        <button class="next">Следующий вопрос</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="content">
+
+                <h2>Как оформим праздник?</h2>
+
+                <div class="progress-block">
+
+                    <h5>Вопрос 7 из 8 <span>До идеального праздника осталось совсем немножко!</span></h5>
+
+                    <div class="progress-bar seven"></div>
+
+                    <div class="variants-container">
+
+                        <div class="variant">
+
+                            <div class="img-container"
+                                 style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+
+                            <div class="checkbox">
+                                <input type="checkbox" data-name="" id="checkbox31">
+                                <label for="checkbox31">По максимуму</label>
+                            </div>
+
+                        </div>
+                        <div class="variant">
+
+                            <div class="img-container"
+                                 style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+
+                            <div class="checkbox">
+                                <input type="checkbox" data-name="" id="checkbox32">
+                                <label for="checkbox32">Шарики, гирлянды и стол</label>
+                            </div>
+
+                        </div>
+                        <div class="variant">
+
+                            <div class="img-container"
+                                 style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+
+                            <div class="checkbox">
+                                <input type="checkbox" data-name="" id="checkbox33">
+                                <label for="checkbox33">Просто шарики</label>
+                            </div>
+
+                        </div>
+                        <div class="variant">
+
+                            <div class="img-container"
+                                 style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+
+                            <div class="checkbox">
+                                <input type="checkbox" data-name="" id="checkbox34">
+                                <label for="checkbox34">Ростовые куклы</label>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="additional-info">
+
+                        <div class="checkbox">
+                            <input type="checkbox" data-name="" id="checkbox35">
+                            <div class="label-block">
+                                <label for="checkbox35">Не разбираюсь</label>
+                                <h6>Посоветуйте мне</h6>
+                            </div>
+                        </div>
+
+                        <div class="checkbox">
+                            <input type="checkbox" data-name="" id="checkbox36">
+                            <div class="label-block">
+                                <label for="checkbox36">Не нужно</label>
+                                <h6>Украсим сами</h6>
+                            </div>
+                        </div>
+
+                        <div class="input-block">
+                            <h4 class="prev">Назад</h4>
+                        </div>
+
+                        <button class="next">Следующий вопрос</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="content">
+
+                <h2>Сделаем фильм на память?</h2>
+
+                <div class="progress-block">
+
+                    <h5>Вопрос 8 из 8 <span>Ура, последний вопрос!</span></h5>
+
+                    <div class="progress-bar eight"></div>
+
+                    <div class="variants-container">
+
+                        <div class="variant">
+
+                            <div class="img-container"
+                                 style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+
+                            <div class="checkbox">
+                                <input type="checkbox" data-name="" id="checkbox37">
+                                <label for="checkbox37">Да, фильм нужен</label>
+                            </div>
+
+                        </div>
+                        <div class="variant">
+
+                            <div class="img-container"
+                                 style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+
+                            <div class="checkbox">
+                                <input type="checkbox" data-name="" id="checkbox38">
+                                <label for="checkbox38">И фильм, и фото</label>
+                            </div>
+
+                        </div>
+                        <div class="variant">
+
+                            <div class="img-container"
+                                 style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+
+                            <div class="checkbox">
+                                <input type="checkbox" data-name="" id="checkbox39">
+                                <label for="checkbox39">Только фото</label>
+                            </div>
+
+                        </div>
+                        <div class="manager">
+
+                            <div class="avatar-block">
+                                <div class="avatar"
+                                     style="background-image: url({% static 'images/mask.png' %}); background-size: cover;background-position: center;"></div>
+                                <div class="avatar-info">
+                                    <h4>Соня Иванова</h4>
+                                    <h5>ивент-менеджер</h5>
+                                </div>
+                            </div>
+
+                            <h6>
+                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                                Aenean commodo ligula eget dolor.
+                                Aenean massa dolor sit amet, consectetuer.
+                            </h6>
+                        </div>
+
+                    </div>
+
+                    <div class="additional-info">
+
+                        <div class="checkbox">
+                            <input type="checkbox" data-name="" id="checkbox40">
+                            <div class="label-block">
+                                <label for="checkbox40">Не нужно</label>
+                                <h6>Сами справимся</h6>
+                            </div>
+                        </div>
+
+
+                        <div class="input-block">
+                            <h4 class="prev">Назад</h4>
+                        </div>
+
+                        <button class="end">Получить результат</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+<script>
+
+    $(document).ready(function () {
+        $('#start button').on('click', function () {
+            $('#start').next().fadeIn(3000);
+            $('#start').fadeOut(1000);
+            setTimeout(function () {
+                $(document).scrollTop(250);
+            }, 1000);
+        });
+        $('.next').on('click', function () {
+            let th_elem = $(this).parent().parent().parent();
+            th_elem.hide();
+            th_elem.next().fadeIn(1000);
+        });
+        $('.prev').on('click', function () {
+            let th_elem = $(this).parent().parent().parent().parent();
+            th_elem.hide();
+            th_elem.prev().fadeIn(1000);
+        });
+    });
+
+</script>
+{% include 'includes/footer.html' %}

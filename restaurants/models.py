@@ -7,18 +7,69 @@ class Restaurant(models.Model):
         verbose_name = 'Ресторан'
         verbose_name_plural = 'Рестораны'
 
+    # Варианты для select полей
+    RUBRIC_CHOICES = [
+        ('Кейтеринг', 'Кейтеринг'),
+        ('Доставка', 'Доставка'),
+        ('Обслуживание', 'Обслуживание'),
+        ('Акции %', 'Акции %'),
+    ]
+    DISHES_CHOICES = [
+        ('Пицца', 'Пицца'),
+        ('Пироги', 'Пироги'),
+        ('Бургеры и канапе', 'Бургеры и канапе'),
+        ('Торты и десерты', 'Торты и десерты'),
+        ('Суши и роллы', 'Суши и роллы'),
+    ]
+    KITCHEN_TYPE_CHOICES = [
+        ('Русская', 'Русская'),
+        ('Средиземноморская', 'Средиземноморская'),
+        ('Кавказская', 'Кавказская'),
+        ('Восточная', 'Восточная'),
+        ('Американская', 'Американская'),
+    ]
+    ADDITIONALLY_CHOICES = [
+        ('Нет дополнений', 'Нет дополнений'),
+        ('Правильное питание', 'Правильное питание'),
+        ('Веганские блюда', 'Веганские блюда'),
+        ('Фермерские продукты', 'Фермерские продукты'),
+        ('Меню для малышей до 2 лет', 'Меню для малышей до 2 лет'),
+    ]
+
+    # Поля базы данных
     category = models.ForeignKey(Category, verbose_name='Категория', on_delete=models.CASCADE)
     title = models.CharField(max_length=255, verbose_name='Название')
     slug = models.SlugField(unique=True)
-    rubric = models.CharField(max_length=255, verbose_name='Рубрика', null = True)
     price = models.DecimalField(max_digits=9, decimal_places=0, verbose_name='Минимальная стоимость')
     booking_time = models.IntegerField(verbose_name='Время брони')
     price_departure = models.DecimalField(max_digits=9, decimal_places=0, verbose_name='Цена за доставку', null = True)
     last_order = models.TextField(verbose_name = 'Последний заказ')
     service = models.BooleanField(verbose_name = 'Обслуживание', null = True)
-    dishes = models.CharField(max_length=255, verbose_name='Блюда', null = True)
-    kitchen_type = models.CharField(max_length=255, verbose_name='Тип кухни', null = True)
-    additionally = models.CharField(max_length= 255, verbose_name='Дополнительно', null = True)
+    rubric = models.CharField(
+        max_length= 255,
+        verbose_name='Разновидность',
+        choices=RUBRIC_CHOICES,
+        default='Кейтеринг',
+    )
+    dishes = models.CharField(
+        max_length= 255,
+        verbose_name='Блюда',
+        choices=DISHES_CHOICES,
+        default='Пицца',
+    )
+    kitchen_type = models.CharField(
+        max_length= 255,
+        verbose_name='Тип кухни',
+        choices=KITCHEN_TYPE_CHOICES,
+        default='Русская',
+    )
+    additionally = models.CharField(
+        max_length= 255,
+        verbose_name='Дополнительно',
+        choices=ADDITIONALLY_CHOICES,
+        default='Нет дополнений',
+        null = True
+    )
     description_1 = models.TextField(verbose_name = 'Описание ресторана', null = True)
     description_2 = models.TextField(verbose_name = 'Описание кухни', null = True)
     description_3 = models.TextField(verbose_name = 'Описание поваров', null = True)

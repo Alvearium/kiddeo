@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'on85w^g^uq6#&smpm7izdf5egxqbvy
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ronik.beget.tech']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -34,6 +34,9 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'mathfilters',
+    'mdeditor',
+    'markdownify',
+    'multiselectfield',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -43,6 +46,9 @@ INSTALLED_APPS = [
     'restaurants.apps.RestaurantsConfig',
     'animators.apps.AnimatorsConfig',
     'decorations.apps.DecorationsConfig',
+    'photos.apps.PhotosConfig',
+    'holidays.apps.HolidaysConfig',
+    'blog.apps.BlogConfig',
 ]
 
 MIDDLEWARE = [
@@ -82,8 +88,12 @@ WSGI_APPLICATION = 'kiddeo.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'kiddeo',
+        'USER': 'postgres',
+        'PASSWORD': 'zx78232531',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -133,3 +143,24 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CART_SESSION_ID = "cart"
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+MDEDITOR_CONFIGS = {
+    'default': {
+        'emoji': True,
+        'language': 'en',
+        'toolbar': ["undo", "redo", "|",
+         "bold", "italic", "quote", "ucwords", "uppercase", "lowercase", "|",
+         "h1", "h2", "h3","h4", "h5", "h6", "|",
+         "list-ul", "list-ol", "hr", "|",
+         "link", "image", "datetime", "html-entities", "|",
+         "||", "preview", "watch", "fullscreen"],
+    }
+}
+MARKDOWNIFY = {
+  "default": {
+     "WHITELIST_TAGS": ["table", "thead", "tr", "th", "tbody", "img", "a", "p", "strong", "em", "blockquote", "h1", "h2", "h3", "h4", "h5", "h6", "hr", "ol", "ul", "li"],
+     "WHITELIST_ATTRS": ['href', 'src', 'alt']
+  },
+}

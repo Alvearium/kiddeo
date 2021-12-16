@@ -7,17 +7,74 @@ class Agency(models.Model):
         verbose_name = 'Агенство'
         verbose_name_plural = 'Агенства'
 
+    # Варианты для select полей
+    RUBRIC_CHOICES = [
+        ('Детское шоу', 'Детское шоу'),
+        ('Аниматор', 'Аниматор'),
+        ('Выезд на место', 'Выезд на место'),
+        ('Акции %', 'Акции %'),
+    ]
+    GUESTS_AGE_CHOICES = [
+        ('От 1 года до 3 лет', 'От 1 года до 3 лет'),
+        ('От 3 до 7 лет', 'От 3 до 7 лет'),
+        ('От 8 до 12 лет', 'От 8 до 12 лет'),
+        ('12+ лет', '12+ лет'),
+    ]
+    JOIN_ENTERTAINMENT_CHOICES = [
+        ('Шоу мыльных пузырей', 'Шоу мыльных пузырей'),
+        ('Ютуб-вечеринка', 'Ютуб-вечеринка'),
+        ('Шоу мороженого', 'Шоу мороженого'),
+        ('Фокусник', 'Фокусник'),
+        ('Конфетти-шоу', 'Конфетти-шоу'),
+        ('Шоу трансформеров', 'Шоу трансформеров'),
+        ('Научное шоу', 'Научное шоу'),
+        ('Бумажное шоу', 'Бумажное шоу'),
+        ('Квест', 'Квест'),
+        ('Дино-шоу', 'Дино-шоу'),
+        ('Шерстяное шоу', 'Шерстяное шоу'),
+        ('Спектакль', 'Спектакль'),
+    ]
+    ADDITIONALLY_CHOICES = [
+        ('Нет дополнений', 'Нет дополнений'),
+        ('Аквагрим', 'Аквагрим'),
+        ('Караоке', 'Караоке'),
+        ('Шоколадный фонтан', 'Шоколадный фонтан'),
+        ('Ручные животные', 'Ручные животные'),
+    ]
+
+    # Поля базы данных
     category = models.ForeignKey(Category, verbose_name='Категория', on_delete=models.CASCADE)
     title = models.CharField(max_length=255, verbose_name='Название')
     slug = models.SlugField(unique=True)
-    rubric = models.CharField(max_length=255, verbose_name='Рубрика', null = True)
     price = models.IntegerField(verbose_name='Минимальная длительность', null = True)
     booking_time = models.IntegerField(verbose_name='Время брони')
     price_departure = models.DecimalField(max_digits=9, decimal_places=0, verbose_name='Цена за выезд')
     last_order = models.TextField(verbose_name = 'Последний заказ')
-    guests_age = models.CharField(max_length=255, verbose_name='Возраст гостей', null = True)
-    joint_entertainment = models.CharField(max_length=255, verbose_name='Совместные развлечения', null = True)
-    additionally = models.CharField(max_length= 255, verbose_name='Дополнительно', null = True)
+    rubric = models.CharField(
+        max_length= 255,
+        verbose_name='Разновидность',
+        choices=RUBRIC_CHOICES,
+        default='Аниматор',
+    )
+    guests_age = models.CharField(
+        max_length= 255,
+        verbose_name='Возраст гостей',
+        choices=GUESTS_AGE_CHOICES,
+        default='От 1 года до 3 лет',
+    )
+    joint_entertainment = models.CharField(
+        max_length= 255,
+        verbose_name='Совместные развлечения',
+        choices=JOIN_ENTERTAINMENT_CHOICES,
+        default='Шоу мыльных пузырей',
+    )
+    additionally = models.CharField(
+        max_length= 255,
+        verbose_name='Дополнительно',
+        choices=ADDITIONALLY_CHOICES,
+        default='Нет дополнений',
+        null = True
+    )
     description_1 = models.TextField(verbose_name = 'Описание агенства', null = True)
     description_2 = models.TextField(verbose_name = 'Описание программы', null = True)
     description_3 = models.TextField(verbose_name = 'Описание реквизита', null = True)

@@ -1,0 +1,157 @@
+{% load static %}
+{% load mathfilters %}
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+          id="metaViewport">
+    <title>Title</title>
+    <meta name="twitter:title" content="Title">
+    <meta property="og:title" content="Title">
+    <meta name="description" content="">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="img/default.png">
+    <meta property="vk:image" content="img/default.png">
+    <meta name="twitter:image" content="img/default.png">
+    <link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+    <meta name="theme-color">
+    <meta name="msapplication-navbutton-color">
+    <meta name="apple-mobile-web-app-status-bar-style">
+
+    <link rel="stylesheet" href="{% static 'css/reset.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'css/concierge_service.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+    <script src="https://kit.fontawesome.com/6c1cf59610.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+
+{% include 'includes/header.html' %}
+
+<div class="container-sm container-md container-lg container-xl container-xxl">
+
+    <section id="mini-panel">
+
+        <ul class="breadcrumbs">
+            <li><a href="/">Главная</a></li>
+            <li><a href="{{ SITE_URL }}/concierge-service/">Консьерж-сервис</a></li>
+        </ul>
+
+    </section>
+
+    <section id="service">
+
+        <h1>Консьерж-сервис экономит ваше время</h1>
+
+        <h3 class="sub-title">Мы знаем о праздниках все. Поэтому за 4 простых шага организуем ваш идеальный
+            праздник!</h3>
+
+        <div class="service-container">
+
+            <div class="list">
+
+                <div class="img-container"
+                     style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+
+                <div class="content">
+                    <h3>1. Кто?</h3>
+
+                    <h4>
+                        Расскажите нам о
+                        виновнике торжества:
+                        что он любит и чего
+                        ждет от праздника
+                    </h4>
+                </div>
+            </div>
+            <div class="list">
+
+                <div class="img-container"
+                     style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+
+                <div class="content">
+
+                    <h3>2. Где?</h3>
+
+                    <h4>
+                        Опишите, каким вы
+                        видите место праздника:
+                        лофт, парк или детский
+                        центр. Близко ли от
+                        центра?
+                    </h4>
+
+                </div>
+
+            </div>
+            <div class="list">
+
+                <div class="img-container"
+                     style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+
+                <div class="content">
+
+                    <h3>3. Когда?</h3>
+
+                    <h4>
+                        Выберите удобные
+                        для вас и ваших
+                        гостей время и день
+                    </h4>
+
+                </div>
+            </div>
+            <div class="list">
+
+                <div class="img-container"
+                     style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+
+                <div class="content">
+
+                    <h3>4. Что ещё?</h3>
+
+                    <h4>
+                        Аниматоры, детские шоу,
+                        торты, пицца и полезный кейтеринг.
+                        А еще - праздничное
+                        оформление и съемка
+                    </h4>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="banner">
+
+            <img src="{% static 'images/time.png' %}" alt="Image">
+
+            <h3>Подберем несколько вариантов под ваши параметры. Вам будет легко выбрать</h3>
+
+            <div class="button-block">
+
+                <button>Оставить заявку</button>
+
+                <h6>это бесплатно</h6>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+<script>
+    $(document).ready(function () {
+
+    });
+</script>
+{% include 'includes/footer.html' %}

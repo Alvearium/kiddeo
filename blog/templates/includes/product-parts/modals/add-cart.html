@@ -1,0 +1,75 @@
+{% load static %}
+<section class="modal modal-cart">
+
+</section>
+<script>
+    $(document).ready(function() {
+        $(document).on('click','.add_cart', function () {
+            let product = $(this).attr('data-product');
+            let model = $(this).attr('data-model');
+            let slug = $(this).attr('data-slug');
+            let parent = $(this).attr('data-parent');
+            let quantity = $(this).attr('data-quantity');
+            let data = {product_id: product, model_name: model, parent: parent, slug: slug, quantity: quantity, csrfmiddlewaretoken: '{{ csrf_token }}'}
+
+            $.ajax({
+                url: '/ajax/add-cart/',
+                data: data,
+                type: 'POST',
+                dataType: 'json',
+                success: function(data){
+                    alert();
+                }
+            });
+        });
+
+        $('#product-card').on('click', '.product', function () {
+            data = {
+                model: $(this).attr('data-model'),
+                product_id: $(this).attr('data-product'),
+                parent: $(this).attr('data-parent'),
+                slug: $(this).attr('data-slug'),
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+            }
+            $.ajax({
+                url: '/ajax/data-output-to-modal/',
+                data: data,
+                type: 'POST',
+                dataType: 'json',
+                success: function(data){
+                    $('.modal-cart').css('display', 'flex');
+                    $('body').css('overflow', 'hidden');
+                    $('.modal-cart').html(data.result);
+                }
+            });
+            return false;
+        });
+
+        $(document).on('click', '.close', function () {
+            $('.modal-cart').css('display', 'none');
+            $('body').css('overflow-y', 'scroll');
+        });
+    });
+
+    $(document).on('click', '.plus', function () {
+        let counter = $('.counter').text();
+        let price = $('.add_cart').attr('data-price');
+        let total = $('.add_cart span').text();
+        if (Number(counter) <= 500) {
+            $('.counter').text(Number(counter) + 1);
+            $('.add_cart span').text(Number(price) + Number(total));
+            $('.add_cart').attr('data-quantity', Number(counter) + 1);
+        }
+    });
+
+    $(document).on('click', '.minus', function () {
+        let counter = $('.counter').text();
+        let price = $('.add_cart').attr('data-price');
+        let total = $('.add_cart span').text();
+        if (Number(counter) > 1) {
+            $('.counter').text(Number(counter) - 1);
+            $('.add_cart span').text(Number(total) - Number(price));
+            $('.add_cart').attr('data-quantity', Number(counter) - 1);
+        }
+    });
+</script>

@@ -1,0 +1,184 @@
+{% load static %}
+{% load mathfilters %}
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+          id="metaViewport">
+    <title>Title</title>
+    <meta name="twitter:title" content="Title">
+    <meta property="og:title" content="Title">
+    <meta name="description" content="">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="img/default.png">
+    <meta property="vk:image" content="img/default.png">
+    <meta name="twitter:image" content="img/default.png">
+    <link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+    <meta name="theme-color">
+    <meta name="msapplication-navbutton-color">
+    <meta name="apple-mobile-web-app-status-bar-style">
+
+    <link rel="stylesheet" href="{% static 'css/reset.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'css/add_product.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+    <script src="https://kit.fontawesome.com/6c1cf59610.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+
+{% include 'includes/header.html' %}
+
+<div class="container-sm container-md container-lg container-xl container-xxl">
+
+    <section id="mini-panel">
+
+        <ul class="breadcrumbs">
+            <li><a href="/">Главная</a></li>
+            <li><a href="{{ SITE_URL }}/concierge-service/">Разместить услуги</a></li>
+        </ul>
+
+    </section>
+
+    <section id="description">
+
+        <h3>Найдите новых клиентов с Kiddeo</h3>
+
+        <h4>
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+            Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
+            ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo,
+            fringilla vel, aliquet nec, vulputate eget, arcu. In enim
+        </h4>
+        <h3>Почему быть партнером Kiddeo выгодно</h3>
+        <h4>
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+            Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
+            ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo,
+            fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
+            justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper
+            nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae
+        </h4>
+        <h3>
+            Как это работает
+        </h3>
+        <h4>
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+            Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
+            ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo,
+            fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
+            justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper
+            nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae
+        </h4>
+        <h3>Наши правила</h3>
+        <h4>
+            Правила (примерные) для партнеров для размещения на платформе <br>
+            - Партнер может размещать свои услуги, так и услуги своих подрядчиков (третих лиц) (возможно) <br>
+            - Размещенная услуга проверяется менеджером сервиса <br>
+            - При размещении услуг запрещено размещение заведомо ложной информации <br>
+            - При размещении фотографий услуг используются только фотографии, без вписанных названий, фраз и акций <br>
+            - Партнер может размещать акции своих услуг в отдельной графе своей личной страницы <br>
+            - Размещая услугу, партнер соглашается на все условия сервиса, а так же комиссии указанные в пункте
+            бла-бла-бла <br>
+            - Партнер имеет право бронировать дни в календаре сервиса своими мероприятиями <br>
+            - При неисполнении услуги, партнер блокируется сервисом (на срок определенный комиссией по проблемным
+            партнерам) <br>
+
+        </h4>
+
+
+    </section>
+
+    <div id="contacts">
+
+        <div class="avatar-block">
+
+            <div class="img-container"
+                 style="background-image: url({% static 'images/avatar2.png' %}); background-size: cover;background-position: center;"></div>
+
+            <h4>Алина Казарновская, менеджер Kiddeo</h4>
+
+        </div>
+
+        <div class="content-block">
+
+            <h2>
+                Обсудите возможное
+                сотрудничество прямо сейчас
+            </h2>
+
+            <h3>Выберите удобный способ общения с менеджером Kiddeo</h3>
+
+            <div class="contacts-block">
+
+                <div class="column">
+
+                    <h3>Позвоните</h3>
+                    <h5>звонок по России бесплатный</h5>
+
+                    <span>+ 7 800 837 73 33</span>
+                    
+                    <h4><a href="#">Заказать звонок</a></h4>
+
+                </div>
+
+                <div class="column">
+
+                    <h3>Задавайте вопрос</h3>
+                    <h5>Среднее время ответа 5 минут</h5>
+
+                    <div class="networks">
+
+                        <a href="#" class="network">
+
+                            <img src="{% static 'icons/watsapp.png' %}" alt="Image">
+
+                            <h6>WhatsApp</h6>
+
+                        </a>
+                        <a href="#" class="network">
+
+                            <img src="{% static 'icons/watsapp.png' %}" alt="Image">
+
+                            <h6>Telegram</h6>
+
+                        </a>
+                        <a href="#" class="network">
+
+                            <img src="{% static 'icons/watsapp.png' %}" alt="Image">
+
+                            <h6>Viber</h6>
+
+                        </a>
+                        <a href="#" class="network">
+
+                            <img src="{% static 'icons/watsapp.png' %}" alt="Image">
+
+                            <h6>Вконтакте</h6>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<script>
+    $(document).ready(function () {
+
+    });
+</script>
+{% include 'includes/footer.html' %}

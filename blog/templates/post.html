@@ -1,0 +1,184 @@
+{% load static %}
+{% load markdownify %}
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+          id="metaViewport">
+    <title>Title</title>
+    <meta name="twitter:title" content="Title">
+    <meta property="og:title" content="Title">
+    <meta name="description" content="">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="img/default.png">
+    <meta property="vk:image" content="img/default.png">
+    <meta name="twitter:image" content="img/default.png">
+    <link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+    <meta name="theme-color">
+    <meta name="msapplication-navbutton-color">
+    <meta name="apple-mobile-web-app-status-bar-style">
+
+    <link rel="stylesheet" href="{% static 'css/reset.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'css/blog/post.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+    <script src="https://kit.fontawesome.com/6c1cf59610.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+</head>
+
+<body>
+
+
+{% include 'includes/header.html' %}
+
+<div class="container-sm container-md container-lg container-xl container-xxl">
+
+    <section id="post">
+
+        <h5 class="rubric">Рубрика: <span>База знаний</span></h5>
+
+        <h6 class="date">{{post.date}}</h6>
+
+        <div class="post-container">
+
+            <div class="post-content">
+                <h1>{{post.title}}</h1>
+                <h3 class="mini-desc">{{post.mini_desc}}</h3>
+                <div class="img-container" style="background-image: url({{post.image.url}}); background-size: cover;background-position: center;"></div>
+                <div class="content" id = "test-editor">
+                    {{ post.content|markdownify }}
+                </div>
+                <div class="share">
+                    <h5 class="rubric">Рубрика: <span>{{post.rubric}}</span></h5>
+                    <div class="share-block">
+                        <h3>Поделиться</h3>
+                        <img src="{% static 'icons/vk.png' %}" alt="Image">
+                        <img src="{% static 'icons/fb.png' %}" alt="Image">
+                        <img src="{% static 'icons/twitter.png' %}" alt="Image">
+                        <img src="{% static 'icons/google.png' %}" alt="Image">
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <h2>Сейчас действуют акции</h2>
+                <div class="sale-container" style="background-image: url({% static 'images/stock.png' %}); background-size: cover;background-position: center;"></div>
+                <div class="sale-container" style="background-image: url({% static 'images/stock.png' %}); background-size: cover;background-position: center;"></div>
+                <div class="sale-container" style="background-image: url({% static 'images/stock.png' %}); background-size: cover;background-position: center;"></div>
+                <h4><a href="#">Смотреть все акции</a></h4>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section id="similar">
+
+        <h2>Похожие статьи</h2>
+
+        <div class="similar-container">
+         {% for similar_post in similar_posts %}
+            {% if similar_post.title != post.title %}
+            <div class="post">
+                <div class="img-container" style="background-image: url({{similar_post.image.url}}); background-size: cover;background-position: center;"></div>
+                <h6 class="date">{{similar_post.date}}</h6>
+                <h3>{{similar_post.title}}</h3>
+                <h4><a href="{{similar_post.slug}}">Читать</a></h4>
+            </div>
+            {% endif %}
+         {% endfor %}   
+        </div>
+
+    </section>
+
+    <section id="comments">
+
+        <div class="comments-container">
+
+            <h2>Что вы думаете о статье? Оставьте комментарий</h2>
+
+            <div class="errors-block">
+                <h4>Исправьте ошибки в полях формы!</h4>
+            </div>
+
+            <div class="input-block">
+
+                <input type="text" class="name" placeholder="Как вас зовут?">
+
+            </div>
+
+            <textarea class="comment_area">Ваш комментарий</textarea>
+
+            <div class="button-block">
+                <button>Отправить</button>
+            </div>
+
+            <div class="comments">
+             {% for comment in comments %}
+                {% if comment.status != False %}
+                <div class="comment">
+                    <div class="title-block">
+
+                        <h3>{{comment.name}}</h3>
+                        <h6>{{comment.date}}</h6>
+
+                    </div>
+                    <p>
+                        {{comment.content}}
+                    </p>
+                    <br>
+                </div>
+                {% endif %}
+             {% endfor %}   
+            </div>
+            
+
+        </div>
+
+
+
+    </section>
+
+
+</div>
+<script>
+    $(document).ready(function () {
+        $('.comments-container button').on('click', function (e) {
+            e.preventDefault();
+
+            let name = $('.name').val();
+            let comment = $('.comment_area').val();
+
+            if (name === '' || comment === '') {
+                $('.errors-block').fadeIn();
+            } else {
+                $('.errors-block').fadeOut();
+
+                data = {
+                    name: name,
+                    comment: comment,
+                    title: $('.post-content h1').text(),
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                };
+
+                $.ajax({
+                    url: '/ajax/add-blog-comment/',
+                    data: data,
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (data) {
+
+                    }
+                });
+                return false;
+            }
+        });
+    });
+</script>
+{% include 'includes/footer.html' %}

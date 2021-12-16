@@ -1,0 +1,140 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+          id="metaViewport">
+    <title>Title</title>
+    <meta name="twitter:title" content="Title">
+    <meta property="og:title" content="Title">
+    <meta name="description" content="">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="img/default.png">
+    <meta property="vk:image" content="img/default.png">
+    <meta name="twitter:image" content="img/default.png">
+    <link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+    <meta name="theme-color">
+    <meta name="msapplication-navbutton-color">
+    <meta name="apple-mobile-web-app-status-bar-style">
+
+    <link rel="stylesheet" href="{% static 'css/reset.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'css/quiz/result.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+    <script src="https://kit.fontawesome.com/6c1cf59610.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+
+{% include 'includes/header.html' %}
+
+{% if not result %}
+
+<section id="result">
+    <div class="container-sm container-md container-lg container-xl container-xxl">
+
+        <h1>Ого! У вас получился отличный праздник</h1>
+        <h4 class="sub-title">Есть из чего выбрать - вам подходит 25 компаний</h4>
+
+    </div>
+
+    <div class="result-container">
+
+        {% include 'includes/quiz/results.html' %}
+
+    </div>
+
+    <div class="container-sm container-md container-lg container-xl container-xxl">
+
+        {% include 'includes/pagination.html' %}
+
+        <p class="last-text">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+            when an unknown printer took a galley of type and scrambled it to make a type
+            specimen book. It has survived not only five centuries, but also the leap into
+            electronic typesetting, remaining essentially unchanged. It was popularised in
+            the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+            and more recently with desktop publishing software like Aldus PageMaker including
+            versions of Lorem Ipsum
+        </p>
+
+    </div>
+
+</section>
+
+<div class="container-sm container-md container-lg container-xl container-xxl">
+
+    <section id="more">
+
+        <div class="more-container">
+
+            <div class="more-box arrow">
+                <h3>
+                    Сохраняем ваше время <br>
+                    и дарим <br>
+                    скидки
+                </h3>
+            </div>
+
+            <div class="more-box chief">
+                <span>Более 100 вариантов</span>
+                <h4><a href="#">Праздник "под ключ"</a></h4>
+                <span>Выбирайте, чем порадовать именинника</span>
+            </div>
+
+            <div class="more-box arrow">
+                <h3>
+                    Праздник на любой <br>
+                    вкус и бюджет
+                </h3>
+            </div>
+
+            <div class="more-box chief">
+                <span>Вау-эффект обеспечен</span>
+                <h4><a href="#">Конструктор праздника</a></h4>
+                <span>Не ограничивайте фантазию</span>
+            </div>
+        </div>
+
+    </section>
+
+</div>
+
+{% else %}
+<div class="container-sm container-md container-lg container-xl container-xxl">
+<section id="no-results">
+
+    <div class="variant">
+
+        <span>Ой, под ваши критерии никто не подходит</span>
+        <h3>Давайте попробуем что-то изменить и выбрать ещё раз</h3>
+
+        <button><a href="#">Давайте повыбираем</a></button>
+
+    </div>
+
+    <div class="variant">
+
+        <span>Или посмотрите в категории "Праздник под ключ"</span>
+        <h3>Мы собрали там самые популярные варианты под любой запрос</h3>
+
+        <div class="button-block">
+            <a class="to-main" href="/">На главную</a>
+            <button><a href="#">Что же вы молчали?</a></button>
+        </div>
+
+    </div>
+
+</section>
+</div>
+{% endif %}
+
+{% include 'includes/footer.html' %}

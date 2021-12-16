@@ -7,17 +7,63 @@ class AgencyDecoration(models.Model):
         verbose_name = 'Агенство'
         verbose_name_plural = 'Агенства'
 
+    # Варианты для select полей
+    RUBRIC_CHOICES = [
+        ('Комплексное оформление', 'Комплексное оформление'),
+        ('Тематические наборы', 'Тематические наборы'),
+        ('Оформление стола', 'Оформление стола'),
+        ('Акции %', 'Акции %'),
+    ]
+    DESIGN_ELEMENTS_CHOICES = [
+        ('Воздушные шары', 'Воздушные шары'),
+        ('Шары-цифры', 'Шары-цифры'),
+        ('Арка из шаров', 'Арка из шаров'),
+        ('Букеты из шаров', 'Букеты из шаров'),
+        ('Фигруы из шаров', 'Фигруы из шаров'),
+        ('Шар-сюрприз', 'Шар-сюрприз'),
+        ('Ростовые куклы', 'Ростовые куклы'),
+        ('Баннеры на стене', 'Баннеры на стене'),
+        ('Фон из пайеток', 'Фон из пайеток'),
+        ('Гирлянды', 'Гирлянды'),
+        ('Бумажные украшения', 'Бумажные украшения'),
+    ]
+    ADDITIONALLY_CHOICES = [
+        ('Нет дополнений', 'Нет дополнений'),
+        ('Живые цветы', 'Живые цветы'),
+        ('Фотозона', 'Фотозона'),
+        ('Аксессуар для гостей', 'Аксессуар для гостей'),
+        ('Персонализация', 'Персонализация'),
+        ('Пригласительные', 'Пригласительные'),
+    ]
+
+    # Поля базы данных
     category = models.ForeignKey(Category, verbose_name='Категория', on_delete=models.CASCADE)
     title = models.CharField(max_length=255, verbose_name='Название')
     slug = models.SlugField(unique=True)
-    rubric = models.CharField(max_length=255, verbose_name='Рубрика', null = True)
     price = models.IntegerField(verbose_name='Минимальная стоимость заказа', null = True)
     booking_time = models.IntegerField(verbose_name='Время брони')
     price_departure = models.DecimalField(max_digits=9, decimal_places=0, verbose_name='Цена за выезд')
     price_delivery = models.DecimalField(max_digits=9, decimal_places=0, verbose_name='Доставка')
-    design_elements = models.CharField(max_length=255, verbose_name='Элементы оформления', null = True)
-    additionally = models.CharField(max_length= 255, verbose_name='Дополнительно', null = True)
     last_order = models.TextField(verbose_name = 'Последний заказ')
+    rubric = models.CharField(
+        max_length= 255,
+        verbose_name='Разновидность',
+        choices=RUBRIC_CHOICES,
+        default='Комплексное оформление',
+    )
+    design_elements = models.CharField(
+        max_length= 255,
+        verbose_name='Элементы оформления',
+        choices=DESIGN_ELEMENTS_CHOICES,
+        default='Воздушные шары',
+    )
+    additionally = models.CharField(
+        max_length= 255,
+        verbose_name='Дополнительно',
+        choices=ADDITIONALLY_CHOICES,
+        default='Нет дополнений',
+        null = True
+    )
     description_1 = models.TextField(verbose_name = 'Описание агенства', null = True)
     description_2 = models.TextField(verbose_name = 'Описание стилистики', null = True)
     description_3 = models.TextField(verbose_name = 'Описание рекзвиита', null = True)
