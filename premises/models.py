@@ -127,3 +127,4 @@ class ImageLibrary(models.Model):
     question =  models.ForeignKey(Questions, verbose_name = 'Вопрос', on_delete = models.CASCADE, null = True)
     audit_element = models.ForeignKey(AuditElement, verbose_name = 'Элемент аудита', on_delete = models.CASCADE, null = True)
     image = models.ImageField(verbose_name = 'Изображение')
+    

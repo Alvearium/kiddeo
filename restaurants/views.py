@@ -8,10 +8,12 @@ from restaurants.models import Restaurant, Food, ImageLibrary, Reviews, Question
 
 # Create your views here.
 def foodsView(request):
-    restaurants = Restaurant.objects.all()[:20]
+    restaurants = Restaurant.objects.all()[:7]
     restaurants_count = Restaurant.objects.all().count()
+    
     for restaurant in restaurants:
         restaurant.additional_data = Food.objects.filter(restaurant=restaurant)[:4]
+        
     return render(request, 'foods.html', {"restaurants": restaurants, "restaurants_count": restaurants_count})
 
 def foodView(request, food_slug):
@@ -22,7 +24,13 @@ def foodView(request, food_slug):
     reviews = Reviews.objects.filter(restaurant_id=restaurant.id)[:2]
     questions = Questions.objects.filter(restaurant_id=restaurant.id)[:2]
     recommendations = productRecommendation()
-    listPurchasesViewed = request.session['viewed_products']
+
+    if not request.session.get('viewed_products'):
+        request.session['viewed_products'] = list()
+        listPurchasesViewed = False
+    else:
+       listPurchasesViewed = request.session['viewed_products']    
+    
     for food in foods:
         if not food.subcategory in subcategories:
             subcategories.append(food.subcategory)
@@ -37,7 +45,10 @@ def foodView(request, food_slug):
 
     if not reviews:
         reviews = False
-
+        
+    if not listPurchasesViewed: 
+        listPurchasesViewed = False
+        
     return render(request, 'food.html', {
         'restaurant': restaurant,
         'foods': foods,

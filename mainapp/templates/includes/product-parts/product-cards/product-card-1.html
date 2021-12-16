@@ -5,40 +5,42 @@
     <div class="title-container">
 
         <div class="title-block">
-            <h2>{{product.title}}</h2>
+            <h1>{{product.title}}</h1>
             <div class="rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <h4><span>147</span> оценок</h4>
+                <div class="rating-stars">
+                    <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                    <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                    <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                    <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                    <img src="{% static 'icons/star_red.png' %}" alt="Icon">
+                </div>
+                <h4>147 оценок 54 отзыва</h4>
             </div>
 
             <div class="questions">
-                <i class="fas fa-comment-alt"></i>
+                <img src="{% static 'icons/comment.png' %}" alt="Icon">
                 <h4><span>4</span> вопроса</h4>
             </div>
 
             <div class="favourites">
-                <i class="far fa-heart"></i>
+                <img src="{% static 'icons/like.png' %}" alt="Icon">
                 <h4>В избранное</h4>
             </div>
 
             <div class="compare">
-                <i class="fas fa-cash-register"></i>
+                <img src="{% static 'icons/change.png' %}" alt="Icon">
                 <h4>Сравнить</h4>
             </div>
 
             <div class="share">
-                <i class="fas fa-share"></i>
+                <img src="{% static 'icons/repost.png' %}" alt="Icon">
                 <h4>Поделиться</h4>
             </div>
         </div>
 
         <div class="description-block">
 
-            <h4>{{product.mini_desc}}</h4>
+            <h3>{{product.mini_desc}}</h3>
 
         </div>
 
@@ -49,28 +51,35 @@
         <div class="block-viewing">
 
             <div class="slider-viewing">
-                {% for product_slider_image in product.premisesimage_set.all %}
+                {% for product_slider_image in product.imagelibrary_set.all %}
                 <div class="slide">
-                    <img src="{{product_slider_image.image.url}}" alt="Image">
+                    <div class="image-wrapper">
+                        <img src="{{product_slider_image.image.url}}" alt="Image">
+                    </div>
                 </div>
                 {% endfor %}
                 {% if not product.video %}
                 <div class="slide">
-                    <img src="{{product.image.url}}" alt="Image">
+                    <div class="image-wrapper">
+                        <img src="{{product.image.url}}" alt="Image">
+                    </div>
                 </div>
                 {% else %}
                 <div class="slide">
-                    <video controls="false" src="{{ product.video.url }}"></video>
-                    <div class="camera">
-                        <i class="fas fa-video"></i>
-                    </div>
+                    <div class="image-wrapper">
+                        <video controls="false" src="{{ product.video.url }}"></video>
+                        <div class="camera">
+                            <img src="{% static 'icons/play.png' %}" alt="Icon">
+                        </div>
+                    </div>    
                     <div class="blackout"></div>
                 </div>
                 {% endif %}
             </div>
             <div class="slider-preview">
                 {% if product.video %}
-                <video controls="false" src="{{ product.video.url }}"></video><div class="tap"><i class="fas fa-hand-pointer"></i></div>
+                <video controls="false" src="{{ product.video.url }}"></video>
+                <div class="tap"><i class="fas fa-hand-pointer"></i></div>
                 {% else %}
                 <div style="background: url({{ product.image.url }}); background-size: cover; background-position: center"></div>
                 {% endif %}
@@ -124,43 +133,57 @@
             <div class="row-price">
                 {% if product.sale %}
                 <span class="price">{{product.sale}}₽</span>
-                <h4>за час</h4>
+                <h5>за час</h5>
                 <span class="sale_price">{{product.price}}₽</span>
                 {% else %}
                 <span class="price">{{product.price}}₽</span>
-                <h4>за час</h4>
+                <h5>за час</h5>
                 {% endif %}
             </div>
-            {% if product.sale %}
-            <h4><span class="economy">{{product.price|sub:product.sale}}₽</span> ваша экономия в час</h4>
-            {% endif %}
-            <h4>Б <span class="bonus">X2</span> 80 бонусов на ваш счёт</h4>
-            <button class="add_cart" data-product="{{product.id}}" data-slug="product.slug" data-model="premises" data-quantity="1">Добавить в корзину</button>
-            {% if min_price != product.price %}
-            <a href="{{ SITE_URL }}/product/premise/{{cheaper_slug}}" class="row-cheaper">
-                <h4>Есть дешевле</h4>
-                <span>{{min_price}}₽</span>
-            </a>
-            {% endif %}
+            <div class="row">
+                {% if product.sale %}
+                <h5><span class="economy">{{product.price|sub:product.sale}}₽</span> ваша экономия в час</h5>
+                {% endif %}
+            </div>
+            <div class="row">
+                <h5><strong>Б</strong> <span class="bonus">X2</span> 80 бонусов на ваш счёт</h5>
+            </div>
+            <div class="row">
+                <button class="add_cart" data-product="{{product.id}}" data-slug="product.slug" data-model="premises"
+                        data-quantity="1">Добавить в корзину
+                </button>
+                {% if min_price != product.price %}
+                <a href="{{ SITE_URL }}/product/premise/{{cheaper_slug}}" class="row-cheaper">
+                    <h5>Есть дешевле</h5>
+                    <span>{{min_price}}₽</span>
+                </a>
+                {% endif %}
+            </div>
         </div>
 
 </section>
 
 <script>
-    $(document).ready(function() {
-        $(document).on('click','.add_cart', function () {
+    $(document).ready(function () {
+        $(document).on('click', '.add_cart', function () {
             let product = $(this).attr('data-product');
             let model = $(this).attr('data-model');
             let slug = $(this).attr('data-slug');
             let quantity = $(this).attr('data-quantity');
-            let data = {product_id: product, slug: slug, model_name: model, quantity: quantity, csrfmiddlewaretoken: '{{ csrf_token }}'}
+            let data = {
+                product_id: product,
+                slug: slug,
+                model_name: model,
+                quantity: quantity,
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+            }
 
             $.ajax({
                 url: '/ajax/add-cart/',
                 data: data,
                 type: 'POST',
                 dataType: 'json',
-                success: function(data){
+                success: function (data) {
                     alert();
                 }
             });

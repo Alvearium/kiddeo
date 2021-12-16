@@ -12,24 +12,3 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-
-#class Cart(models.Model):
-
-#    cart - object
-#        {
-#            count
-#            price
-#            sale
-#            result_price
-#        }
-#   products- object
-#        {
-#           id
-#           image
-#           link
-#           title
-#           address
-#           price
-#           sale
- #          count
- #       }

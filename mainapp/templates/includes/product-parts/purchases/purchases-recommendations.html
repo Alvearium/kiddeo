@@ -1,5 +1,5 @@
 {% load static %}
-<section id="purchases">
+<section id="purchases" class="recommendations">
 
     <h2>Рекомендуем также:</h2>
 
@@ -7,7 +7,7 @@
 
         <div class="purchases-slider">
          {% for product in recommendations %}
-         {% if product != None %}    
+         {% if product != None %}
             <div>
                 {% if product.category.name == "Помещения" %}
                     <a href="/product/premise/{{product.slug}}">
@@ -20,8 +20,10 @@
                 {% endif %}
                     <div class="product">
                         <div class="img-container" style="background: url({{product.image.url}});background-size: cover;background-position: center"></div>
-                        <h3>{{product.title}}</h3>
-                        <h5>{{product.mini_desc}}</h5>
+                        <div class="text-container">
+                            <h3>{{product.title}}</h3>
+                            <h5>{{product.mini_desc}}</h5>
+                        </div>
                     </div>
                 </a>
             </div>

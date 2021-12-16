@@ -1,0 +1,222 @@
+{% load static %}
+{% load mathfilters %}
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+          id="metaViewport">
+    <title>Title</title>
+    <meta name="twitter:title" content="Title">
+    <meta property="og:title" content="Title">
+    <meta name="description" content="">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="img/default.png">
+    <meta property="vk:image" content="img/default.png">
+    <meta name="twitter:image" content="img/default.png">
+    <link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+    <meta name="theme-color">
+    <meta name="msapplication-navbutton-color">
+    <meta name="apple-mobile-web-app-status-bar-style">
+
+    <link rel="stylesheet" href="{% static 'css/reset.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'css/post.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+    <script src="https://kit.fontawesome.com/6c1cf59610.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+
+{% include 'includes/header.html' %}
+
+<div class="container-sm container-md container-lg container-xl container-xxl">
+
+    <section id="post">
+
+        <h5 class="rubric">Рубрика: <span>База знаний</span></h5>
+
+        <h6 class="date">21 июня 2021</h6>
+
+        <div class="post-container">
+
+            <div class="post-content">
+                <h1>ТОП-20 способов отметить 10 летие ребёнка</h1>
+                <h3 class="mini-desc">Рейтинг от независимого эксперта с нашими комментариями</h3>
+                <div class="img-container" style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+                <div class="content">
+                    <h3>Какой способ лучший?</h3>
+                    <p>
+                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                        when an unknown printer took a galley of type and scrambled it to make a type
+                        specimen book. It has survived not only five centuries, but also the leap into
+                        electronic typesetting, remaining essentially unchanged. It was popularised in
+                        the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+                    </p>
+                    <h3>Родители чаще всего используют:</h3>
+                    <ul>
+                        <li>
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                            when an unknown printer took a galley of type and scrambled it to make a type
+                            specimen book.
+                        </li>
+                        <li>
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                            when an unknown printer took a galley of type and scrambled it to make a type
+                            specimen book.
+                        </li>
+                        <li>
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                            when an unknown printer took a galley of type and scrambled it to make a type
+                            specimen book.
+                        </li>
+                        <li>
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                            when an unknown printer took a galley of type and scrambled it to make a type
+                            specimen book.
+                        </li>
+                        <li>
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                            when an unknown printer took a galley of type and scrambled it to make a type
+                            specimen book.
+                        </li>
+                    </ul>
+                    <img src="{% static 'images/slide1.png' %}" alt="Image">
+                    <img src="{% static 'images/slide1.png' %}" alt="Image">
+                    <h3>Что делать, если возраст гостей от 1 до 77 лет?</h3>
+                    <p>
+                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                        when an unknown printer took a galley of type and scrambled it to make a type
+                        specimen book. It has survived not only five centuries, but also the leap into
+                        electronic typesetting, remaining essentially unchanged. It was popularised in
+                        the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+                    </p>
+                    <ul>
+                        <li>
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                            when an unknown printer took a galley of type and scrambled it to make a type
+                            specimen book.
+                        </li>
+                        <li>
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                            when an unknown printer took a galley of type and scrambled it to make a type
+                            specimen book.
+                        </li>
+                        <li>
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                            when an unknown printer took a galley of type and scrambled it to make a type
+                            specimen book.
+                        </li>
+                    </ul>
+                    <p>
+                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                        when an unknown printer took a galley of type and scrambled it to make a type
+                        specimen book. It has survived not only five centuries, but also the leap into
+                        electronic typesetting, remaining essentially unchanged. It was popularised in
+                        the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+                    </p>
+                </div>
+                <div class="share">
+                    <h5 class="rubric">Рубрика: <span>База знаний</span></h5>
+                    <div class="share-block">
+                        <h3>Поделиться</h3>
+                        <img src="{% static 'icons/watsapp.png' %}" alt="Image">
+                        <img src="{% static 'icons/watsapp.png' %}" alt="Image">
+                        <img src="{% static 'icons/watsapp.png' %}" alt="Image">
+                        <img src="{% static 'icons/watsapp.png' %}" alt="Image">
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <h2>Сейчас действуют акции</h2>
+                <div class="sale-container" style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+                <div class="sale-container" style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+                <div class="sale-container" style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+                <h4><a href="#">Смотреть все акции</a></h4>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section id="similar">
+
+        <h2>Похожие статьи</h2>
+
+        <div class="similar-container">
+
+            <div class="post">
+                <div class="img-container" style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+                <h6 class="date">21 марта 2021</h6>
+                <h3>Как найти аниматора с которым не скучно</h3>
+                <h4><a href="#">Читать</a></h4>
+            </div>
+            <div class="post">
+                <div class="img-container" style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+                <h6 class="date">21 марта 2021</h6>
+                <h3>Как найти аниматора с которым не скучно</h3>
+                <h4><a href="#">Читать</a></h4>
+            </div>
+            <div class="post">
+                <div class="img-container" style="background-image: url({% static 'images/banner_2.png' %}); background-size: cover;background-position: center;"></div>
+                <h6 class="date">21 марта 2021</h6>
+                <h3>Как найти аниматора с которым не скучно</h3>
+                <h4><a href="#">Читать</a></h4>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section id="comments">
+
+        <div class="comments-container">
+
+            <h2>Что вы думаете о статье? Оставьте комментарий</h2>
+
+            <input type="text" class="name" placeholder="Как вас зовут?">
+
+            <textarea class="comment">Ваш комментарий</textarea>
+
+            <div class="button-block">
+
+                <button>Отправить</button>
+
+            </div>
+
+            <div class="comments">
+
+                <div class="comment">
+                    <div class="title-block">
+
+                        <h3 class="name">Мария</h3>
+                        <h6 class="date">21 марта 2021</h6>
+
+                    </div>
+                    <p>
+                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                        when an unknown printer took a galley of type and scrambled it to make a type
+                        specimen book. It has survived not only five centuries, but also the leap into
+                        electronic typesetting, remaining essentially unchanged. It was popularised in
+                        the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </section>
+
+
+</div>
+
+{% include 'includes/footer.html' %}

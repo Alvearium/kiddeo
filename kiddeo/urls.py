@@ -6,12 +6,15 @@ from restaurants.views import foodsView, foodView
 from premises.views import premisesView, premiseView
 from animators.views import animatorsView, animatorView
 from decorations.views import decorationsView, decorationView
-from mainapp.views import indexView, cartView, MiniProductsCategoryFilter, SidebarFilters, AddCart, OutputModalData, DeleteCart
-
+from mainapp.views import indexView, blogView, postView, cartView, checkoutView, MiniProductsCategoryFilter, SidebarFilters, AddCart, OutputModalData, DeleteCart
+    
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', indexView, name = 'index'),
     path('cart/', cartView, name = 'cart'),
+    path('blog/', blogView, name = 'blog'),
+    path('blog/post', postView, name = 'post'),
+    path('checkout/', checkoutView, name = 'checkout'),
     path('categories/foods/', foodsView, name = 'foods'),
     path('categories/premises/', premisesView, name = 'premises'),
     path('categories/animators/', animatorsView, name = 'animators'),
